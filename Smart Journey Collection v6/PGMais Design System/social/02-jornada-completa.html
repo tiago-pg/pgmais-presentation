@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<template id="__bundler_thumbnail" data-bg-color="#172c66">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#172c66"/>
+      <text x="100" y="700" font-family="Lato, sans-serif" font-weight="900" font-size="560" fill="none" stroke="#f2f24b" stroke-width="5" letter-spacing="-30">1</text>
+      <text x="600" y="220" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="64" fill="#f2f24b">Jornada Completa</text>
+      <text x="600" y="280" text-anchor="middle" font-family="Lato, sans-serif" font-weight="400" font-style="italic" font-size="36" fill="#ededed">4 pilares da cobrança</text>
+    </svg>
+</template>
+<title>PGMais · Jornada Completa de Cobrança</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  .deck { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 920px) { .deck { grid-template-columns: 1fr; } }
+
+  /* Big outline number for the 4 numbered pillar slides */
+  .bignum {
+    position: absolute;
+    left: 40px;
+    bottom: 60px;
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 580px;
+    line-height: 0.80;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 4.5px currentColor;
+    z-index: 1;
+    user-select: none;
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    pointer-events: none;
+  }
+  .bignum .dot {
+    width: 80px;
+    height: 80px;
+    border: 4.5px solid currentColor;
+    border-radius: 50%;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+  }
+
+  .step-eyebrow {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.06;
+    margin: 0 0 16px;
+  }
+  .step-title {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 56px;
+    line-height: 1.06;
+    margin: 0 0 36px;
+  }
+  .step-body {
+    font-family: var(--font-primary);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 1.28;
+    max-width: 640px;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .step-bullets {
+    margin: 28px 0 0;
+    padding-left: 36px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 34px;
+    line-height: 1.28;
+    max-width: 640px;
+  }
+  .step-bullets li { margin-bottom: 12px; text-wrap: pretty; }
+  .step-kicker {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-style: italic;
+    font-size: 36px;
+    line-height: 1.20;
+    margin: 40px 0 0;
+    max-width: 640px;
+    text-wrap: pretty;
+  }
+
+  .ph {
+    width: 100%; height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(23,44,102,.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ph.dark-bg { background: rgba(255,255,255,.10); }
+  .ph .ph-text {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(23,44,102,.42);
+    text-align: center;
+    padding: 16px 32px;
+    line-height: 1.4;
+  }
+  .ph.dark-bg .ph-text { color: rgba(255,255,255,.55); }
+  .ph::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(23,44,102,.04) 32px 33px);
+    pointer-events: none;
+  }
+  .ph.dark-bg::after { background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(255,255,255,.05) 32px 33px); }
+
+  .accent-rule {
+    height: 2.5px;
+    width: 320px;
+    background: currentColor;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Step-content position: top-aligned to the right of the bignum so the
+     two never overlap. Numbers live in the bottom-left as decoration. */
+  .step-content {
+    position: absolute;
+    inset: 200px 80px auto 380px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+  }
+</style>
+</head>
+<body>
+
+<!-- PGMais brand symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pg-sym" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M12 7.5v9M7.5 12h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="page">
+  <div class="page-head">
+    <div>
+      <div class="crumb"><a href="index.html">Social</a> &nbsp;/&nbsp; Carrossel 02</div>
+      <h1>Jornada Completa de Cobrança</h1>
+    </div>
+    <div class="meta">
+      8 slides · 1080×1350 · Instagram Feed<br>
+      Sequência numerada · 4 pilares
+    </div>
+  </div>
+
+  <div class="deck">
+
+    <!-- ════════════════════════════ 01 · COVER ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>01</b> · Capa · Navy + foto + acento amarelo</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="01 Cover">
+
+          <div class="s-chrome">
+            <span class="handle" style="color:#ededed">@pgmais</span>
+            <div class="handle-row" style="color:#f2f24b">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--between">
+            <!-- Photo top -->
+            <div style="height:640px; flex-shrink:0">
+              <div class="ph dark-bg">
+                <div class="ph-text">FOTO<br>mulher madura no computador</div>
+              </div>
+            </div>
+            <!-- Headline bottom -->
+            <div>
+              <h2 style="font-family:var(--font-primary); font-weight:900; font-size:76px; line-height:1.02; color:#f2f24b; margin:0">
+                Da inadimplência<br>à fidelização: <span style="color:#ededed">é possível?</span>
+              </h2>
+              <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:34px; line-height:1.28; color:#ededed; margin:32px 0 0; max-width:840px">
+                Com uma jornada estratégica, você transforma cobrança em estratégia de relacionamento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 02 · INTRO ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>02</b> · Intro · Amarelo + 4 pilares</div>
+      <div class="deck-stage">
+        <div class="slide v-yellow" data-screen-label="02 Intro">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:400; font-size:68px; line-height:1.10; color:#172c66; margin:0">
+              Dividimos a atuação em<br><b style="font-weight:900">quatro pilares essenciais.</b>
+            </h2>
+            <div class="accent-rule" style="color:#172c66; width:240px; margin:48px 0"></div>
+            <h3 style="font-family:var(--font-primary); font-weight:900; font-style:italic; font-size:60px; line-height:1.10; color:#172c66; margin:0">
+              Cada etapa com abordagem, tom e objetivos específicos.
+            </h3>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 03 · PILAR 1 · PREVENTIVA ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>03</b> · Pilar 1 · Preventiva · Rosa</div>
+      <div class="deck-stage">
+        <div class="slide v-pink" data-screen-label="03 Step 1">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#ededed">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="step-content" style="color:#172c66">
+            <p class="step-eyebrow">Preventiva:</p>
+            <h3 class="step-title">O lembrete que cuida</h3>
+            <p class="step-body">Entre a geração do débito e o vencimento, apareça em dois momentos-chave:</p>
+            <ul class="step-bullets">
+              <li>Quando o valor é definido;</li>
+              <li>Um dia antes do vencimento.</li>
+            </ul>
+            <p class="step-kicker">Tom amigável, foco em conveniência.</p>
+          </div>
+
+          <div class="bignum" style="color:#ededed">
+            1<div class="dot"></div>
+          </div>
+
+          <div class="s-foot" style="color:#ededed">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 04 · PILAR 2 · ATIVA ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>04</b> · Pilar 2 · Ativa · Off-white</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="04 Step 2">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f173ac">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="step-content" style="color:#172c66">
+            <p class="step-eyebrow">Ativa: <span style="font-style:italic;font-weight:900">multicanal e humanizada</span></p>
+            <p class="step-body">Combine pressão e cuidado em momentos certos:</p>
+            <ul class="step-bullets">
+              <li><b style="font-weight:700;font-style:normal">Primeiros dias:</b> intensifique a presença sem exagerar.</li>
+              <li><b style="font-weight:700;font-style:normal">Dívida envelhecida:</b> seja mais assertivo expondo consequências de forma humana.</li>
+            </ul>
+            <p class="step-kicker">O segredo: combinar canais digitais + IA + atendimento humano.</p>
+          </div>
+
+          <div class="bignum" style="color:#f173ac">
+            2<div class="dot"></div>
+          </div>
+
+          <div class="s-foot" style="color:#f173ac">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 05 · PILAR 3 · GESTÃO DE ACORDO ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>05</b> · Pilar 3 · Acordo e Remarketing · Navy</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="05 Step 3">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f2f24b">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="step-content" style="color:#ededed">
+            <p class="step-eyebrow" style="font-weight:700">Gestão de acordo<br>e <span style="font-style:italic">Remarketing</span></p>
+            <p class="step-body">Aqui trabalhamos duas frentes que fazem a diferença entre promessa e pagamento.</p>
+            <ul class="step-bullets" style="font-style:normal; font-weight:400">
+              <li><b style="font-weight:900">Manutenção:</b> automatize lembretes para garantir continuidade das parcelas.</li>
+              <li><b style="font-weight:900">Remarketing:</b> não perca quem demonstrou interesse, reative quem prometeu mas não pagou a entrada.</li>
+            </ul>
+          </div>
+
+          <div class="bignum" style="color:#f2f24b">
+            3<div class="dot"></div>
+          </div>
+
+          <div class="s-foot" style="color:#f2f24b">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 06 · PILAR 4 · PÓS-PAGAMENTO ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>06</b> · Pilar 4 · Pós-pagamento · Off-white</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="06 Step 4">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f173ac">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="step-content" style="color:#172c66">
+            <p class="step-eyebrow"><span style="font-weight:700">Pós-pagamento:</span><br><span style="font-style:italic;font-weight:900">Recuperação da relação</span></p>
+            <p class="step-body">A jornada não termina na baixa do débito.</p>
+            <ul class="step-bullets" style="font-style:normal; font-weight:400">
+              <li>Ofereça <b style="font-weight:900">incentivos</b> (ex: cupons);</li>
+              <li><b style="font-weight:900">Condições especiais;</b></li>
+              <li><b style="font-weight:900">Benefícios exclusivos.</b></li>
+            </ul>
+            <p class="step-kicker">Fidelize quem te escolheu de novo.</p>
+          </div>
+
+          <div class="bignum" style="color:#172c66">
+            4<div class="dot"></div>
+          </div>
+
+          <div class="s-foot" style="color:#f173ac">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 07 · SYNTHESIS ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>07</b> · Síntese · Degradê azul→verde (brand)</div>
+      <div class="deck-stage">
+        <div class="slide v-gradient" data-screen-label="07 Synthesis">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:76px; line-height:1.06; color:#ededed; margin:0; max-width:920px">
+              Com um <em style="font-style:italic">ecossistema de relacionamento digital,</em> você cria conexões verdadeiras em cada etapa da jornada.
+            </h2>
+            <div class="accent-rule" style="color:#ededed; width:260px; margin:48px 0"></div>
+            <p style="font-family:var(--font-primary); font-weight:900; font-style:italic; font-size:54px; color:#ededed; margin:0">
+              Fale com a gente.
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#ededed">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 08 · CTA ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>08</b> · CTA · Rosa + Link na bio</div>
+      <div class="deck-stage">
+        <div class="slide v-pink" data-screen-label="08 CTA">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#172c66">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:76px; line-height:1.06; color:#ededed; margin:0; max-width:920px">
+              Quer <em style="font-style:italic;font-weight:900">orquestrar uma jornada</em> que cuida do cliente em cada etapa?
+            </h2>
+            <div class="accent-rule" style="color:#172c66; width:240px; margin:48px 0 40px"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:44px; line-height:1.30; color:#172c66; margin:0">
+              Fale com nossos especialistas.<br>
+              <span style="font-weight:900;font-style:italic">Link na bio.</span>
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Jornada completa de cobrança</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="_init.js"></script>
+</body>
+</html>

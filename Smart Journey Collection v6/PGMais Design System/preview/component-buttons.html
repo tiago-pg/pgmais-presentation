@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Buttons — PGMais Components</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  /* override card.css width — buttons page is its own canvas */
+  html, body { width: 1240px !important; overflow: visible !important; }
+  body {
+    margin: 0;
+    background: var(--gray-10);
+    color: var(--fg-default);
+    padding: 40px 48px 64px;
+    font-family: var(--font-secondary);
+  }
+  .page-head { margin-bottom: 36px; }
+  .page-head .crumb {
+    font-family: var(--font-primary); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500);
+  }
+  .page-head h1 {
+    font: 700 36px/1.15 var(--font-primary);
+    letter-spacing: -0.01em; color: var(--gray-900); margin: 6px 0 6px;
+  }
+  .page-head p {
+    font: 400 14px/1.6 var(--font-secondary); color: var(--gray-600);
+    max-width: 720px; margin: 0;
+  }
+
+  /* Section */
+  section { margin-top: 40px; }
+  .sec-title {
+    font: 600 18px/1.3 var(--font-primary); color: var(--gray-900);
+    margin: 0 0 4px;
+  }
+  .sec-desc {
+    font: 400 13px/1.55 var(--font-secondary); color: var(--gray-600);
+    margin: 0 0 20px; max-width: 760px;
+  }
+
+  /* States grid */
+  .states {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-30);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .state-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px 14px 12px;
+    border: 1px dashed var(--gray-50);
+    border-radius: 10px;
+    min-height: 100px;
+  }
+  .state-cell .label-state {
+    font: 500 10px/1 var(--font-primary);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gray-500);
+  }
+  .state-cell .render { display: flex; align-items: center; min-height: 40px; }
+  .state-cell .specs {
+    margin-top: auto;
+    font: 400 9px/1.4 var(--font-mono);
+    color: var(--gray-500);
+    border-top: 1px solid var(--gray-30);
+    padding-top: 8px;
+  }
+  .state-cell .specs b { color: var(--gray-700); font-weight: 600; }
+
+  /* Hierarchy variant headers */
+  .hier-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 18px;
+    align-items: stretch;
+    margin-top: 14px;
+  }
+  .hier-row:first-of-type { margin-top: 0; }
+  .hier-label {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 18px 14px;
+    background: var(--tertiary-blue-50);
+    border-radius: 10px;
+    border: 1px solid var(--tertiary-blue-100);
+  }
+  .hier-label .h-name {
+    font: 600 13px/1.2 var(--font-primary);
+    color: var(--tertiary-blue-800);
+  }
+  .hier-label .h-desc {
+    font: 400 11px/1.45 var(--font-secondary);
+    color: var(--tertiary-blue-700);
+  }
+
+  /* ============================================================
+     BUTTON BASE — Figma: padding 12px 22px, radius 12px,
+     font Poppins 14/700, gap 8px between icon + label
+     ============================================================ */
+  .btn {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    padding: 12px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 150ms var(--ease-standard), color 150ms var(--ease-standard),
+                box-shadow 150ms var(--ease-standard), transform 80ms var(--ease-standard);
+    user-select: none;
+    white-space: nowrap;
+  }
+  .btn:active:not(:disabled) { transform: translateY(0.5px); }
+
+  /* PRIMARY — Hierarchy = primary, Color = primary  */
+  .btn-primary { background: var(--primary-blue-500); color: var(--gray-0); }
+  .btn-primary:hover { background: var(--primary-blue-600); box-shadow: 0 0 0 4px rgba(53,89,235,0.18); }
+  .btn-primary.is-pressed, .btn-primary:active { background: var(--primary-blue-700); }
+  .btn-primary.is-focused { box-shadow: 0 0 0 3px rgba(1,32,235,0.35); }
+  .btn-primary:disabled,
+  .btn-primary.is-disabled { background: var(--primary-blue-500); color: var(--gray-0); opacity: 0.36; cursor: not-allowed; }
+
+  /* SECONDARY — Hierarchy = secondary */
+  .btn-secondary { background: var(--gray-0); color: var(--primary-blue-500); border: 1px solid var(--primary-blue-500); padding: 11px 21px; }
+  .btn-secondary:hover { background: var(--primary-blue-50); }
+  .btn-secondary.is-pressed { background: var(--tertiary-blue-50); border-color: var(--tertiary-blue-900); color: var(--tertiary-blue-900); }
+  .btn-secondary.is-focused { box-shadow: 0 0 0 3px rgba(1,32,235,0.35); }
+  .btn-secondary.is-disabled { color: var(--gray-300); border-color: var(--gray-300); cursor: not-allowed; }
+
+  /* TERTIARY — text-only with underline on hover */
+  .btn-tertiary { background: transparent; color: var(--primary-blue-500); padding: 12px 16px; }
+  .btn-tertiary:hover { color: var(--primary-blue-600); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .btn-tertiary.is-pressed { color: var(--tertiary-blue-900); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .btn-tertiary.is-disabled { color: var(--gray-300); cursor: not-allowed; }
+
+  /* OUTLINED — pill shape per Figma "Outlined" */
+  .btn-outlined { background: transparent; color: var(--primary-blue-500); border: 1px solid var(--primary-blue-500); border-radius: 999px; padding: 11px 22px; }
+  .btn-outlined:hover { background: var(--primary-blue-50); }
+  .btn-outlined.is-pressed { background: var(--primary-blue-100); }
+  .btn-outlined.is-focused { box-shadow: 0 0 0 3px rgba(1,32,235,0.30); }
+  .btn-outlined.is-disabled { color: var(--gray-300); border-color: var(--gray-300); cursor: not-allowed; }
+
+  /* TEXT — pill shape, no border */
+  .btn-text { background: transparent; color: var(--primary-blue-500); border-radius: 999px; padding: 11px 22px; }
+  .btn-text:hover { background: var(--primary-blue-50); }
+  .btn-text.is-pressed { background: var(--primary-blue-100); }
+  .btn-text.is-disabled { color: var(--gray-300); cursor: not-allowed; }
+
+  /* ELEVATED — pill, white surface, drop shadow */
+  .btn-elevated { background: var(--gray-0); color: var(--primary-blue-500); border-radius: 999px; padding: 11px 22px; box-shadow: var(--elevation-2); }
+  .btn-elevated:hover { background: var(--primary-blue-50); box-shadow: var(--elevation-3); }
+  .btn-elevated.is-pressed { background: var(--primary-blue-100); }
+  .btn-elevated.is-disabled { color: var(--gray-300); box-shadow: none; cursor: not-allowed; background: var(--gray-30); }
+
+  /* SEMANTIC — Success */
+  .btn-success { background: var(--success-500); color: var(--gray-900); }
+  .btn-success:hover { background: var(--success-600); }
+  .btn-success.is-pressed { background: var(--success-800); color: var(--gray-0); }
+  .btn-success.is-disabled { background: var(--success-500); opacity: 0.36; cursor: not-allowed; }
+
+  /* SEMANTIC — Danger */
+  .btn-danger { background: var(--error-500); color: var(--gray-0); }
+  .btn-danger:hover { background: var(--error-600); }
+  .btn-danger.is-pressed { background: var(--error-800); }
+  .btn-danger.is-disabled { background: var(--error-500); opacity: 0.36; cursor: not-allowed; }
+
+  /* GRAY — neutral pause action */
+  .btn-gray { background: var(--gray-700); color: var(--gray-0); }
+  .btn-gray:hover { background: var(--gray-800); }
+  .btn-gray.is-pressed { background: var(--gray-900); }
+  .btn-gray.is-disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; }
+
+  /* ICON BUTTON — square, 40px */
+  .btn-icon {
+    all: unset; box-sizing: border-box; cursor: pointer;
+    width: 40px; height: 40px; display: inline-flex;
+    align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: var(--primary-blue-500); color: var(--gray-0);
+    transition: background 150ms var(--ease-standard);
+  }
+  .btn-icon:hover { background: var(--primary-blue-600); }
+  .btn-icon.is-pressed { background: var(--primary-blue-700); }
+  .btn-icon.is-disabled { background: var(--primary-blue-500); opacity: 0.36; cursor: not-allowed; }
+  .btn-icon.is-danger { background: var(--error-500); }
+  .btn-icon.is-danger:hover { background: var(--error-600); }
+  .btn-icon.is-dark { background: var(--gray-900); }
+  .btn-icon.is-dark.is-disabled { background: var(--gray-900); opacity: 0.3; }
+
+  /* FLOATING ACTION BUTTON */
+  .fab {
+    all: unset; box-sizing: border-box; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 48px; padding: 0 22px; border-radius: 999px;
+    background: var(--gray-0); color: var(--gray-700);
+    border: 1px solid var(--gray-50);
+    box-shadow: var(--elevation-4);
+    font-family: var(--font-secondary); font-weight: 600; font-size: 14px;
+    transition: all 150ms var(--ease-standard);
+  }
+  .fab:hover { box-shadow: var(--elevation-5); border-color: var(--gray-100); }
+  .fab.is-active { background: var(--primary-blue-50); color: var(--primary-blue-700); border-color: var(--primary-blue-200); }
+  .fab.is-disabled { color: var(--gray-300); border-color: var(--gray-30); box-shadow: var(--elevation-1); cursor: not-allowed; }
+  .fab svg { flex-shrink: 0; }
+
+  /* tooltip preview */
+  .tooltip-preview {
+    position: relative; display: inline-flex;
+  }
+  .tooltip-preview .tip {
+    position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: var(--gray-800); color: var(--gray-0);
+    font: 500 11px/1.2 var(--font-secondary);
+    padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+  }
+  .tooltip-preview .tip::after {
+    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border: 4px solid transparent; border-top-color: var(--gray-800);
+  }
+
+  /* Icon Position panel */
+  .icon-pos-panel {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-30);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .icon-pos-panel .cell {
+    display: flex; flex-direction: column; gap: 12px;
+    align-items: flex-start;
+    padding: 14px;
+    border: 1px dashed var(--gray-50);
+    border-radius: 10px;
+  }
+  .icon-pos-panel .cell .lbl {
+    font: 500 10px/1 var(--font-primary);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500);
+  }
+
+  /* Anatomy panel */
+  .anatomy {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-30);
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .anatomy .specimen {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    position: relative; padding: 28px 20px;
+  }
+  .anatomy .marker {
+    position: absolute; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--secondary-pink-500); color: var(--gray-0);
+    font: 700 10px/22px var(--font-primary); text-align: center;
+  }
+  .anatomy .legend {
+    display: grid; grid-template-columns: 22px 1fr; gap: 8px 12px;
+    font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700);
+  }
+  .anatomy .legend .num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--secondary-pink-500); color: var(--gray-0);
+    font: 700 10px/22px var(--font-primary); text-align: center;
+  }
+  .anatomy .legend b { font-weight: 600; color: var(--gray-900); }
+  .anatomy .legend .meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+
+  /* Floating button application example */
+  .fab-app {
+    background: var(--gray-30);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 12px;
+    border: 1px solid var(--gray-50);
+  }
+  .fab-app .fab-app-card {
+    background: var(--gray-0); border-radius: 12px; padding: 22px;
+    display: flex; gap: 16px; align-items: center; justify-content: space-between;
+  }
+  .fab-app .fab-app-card .skel-row { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .fab-app .fab-app-card .skel-line { height: 8px; background: var(--gray-50); border-radius: 4px; }
+  .fab-app .fab-app-card .skel-line.short { width: 40%; }
+  .fab-app .fab-app-card .skel-line.med { width: 70%; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Components · Buttons</div>
+  <h1>Buttons</h1>
+  <p>Componente de botões preenchidos e com ícones. Os botões representam ações que o usuário pode tomar — desde a ação principal de uma tela até interações secundárias e neutras. A hierarquia visual reflete a importância da ação.</p>
+</header>
+
+<!-- ============= ANATOMY ============= -->
+<section>
+  <h2 class="sec-title">Anatomia</h2>
+  <p class="sec-desc">Estrutura base: container + label + ícone (opcional). Padding e raio são consistentes entre as variantes preenchidas.</p>
+
+  <div class="anatomy">
+    <div class="specimen">
+      <button class="btn btn-primary" style="font-size:16px;padding:14px 28px">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Label
+      </button>
+      <div style="font: 500 10px/1 var(--font-primary); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500)">Specimen</div>
+    </div>
+    <div class="legend">
+      <span class="num">1</span><div><b>Label</b><div class="meta">Style: Body 2 · Color: gray-0</div></div>
+      <span class="num">2</span><div><b>Container</b><div class="meta">Background: primary-blue-500</div></div>
+      <span class="num">3</span><div><b>Icon</b> (opcional)<div class="meta">Color: gray-0 · Scale: 16px</div></div>
+      <span class="num">4</span><div><b>Border / Padding</b><div class="meta">Radius: 12px · Padding: 12 22</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= ICON POSITION ============= -->
+<section>
+  <h2 class="sec-title">Icon position</h2>
+  <p class="sec-desc">Posicione o ícone do lado direito ou esquerdo, ou então não utilize ícone.</p>
+  <div class="icon-pos-panel">
+    <div class="cell">
+      <div class="lbl">Icon left</div>
+      <button class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Label
+      </button>
+    </div>
+    <div class="cell">
+      <div class="lbl">Icon right</div>
+      <button class="btn btn-primary">
+        Label
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M5 3l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div class="cell">
+      <div class="lbl">No icon</div>
+      <button class="btn btn-primary">Label</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============= HIERARCHY = PRIMARY ============= -->
+<section>
+  <h2 class="sec-title">Hierarchy = Primary</h2>
+  <p class="sec-desc">A cor <b>Primary</b> deve ser utilizada para ações primárias e importantes que devem ter destaque na tela.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Primary</div>
+      <div class="h-desc">Ação principal do fluxo. Use uma única vez por tela.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-primary">Label</button></div><div class="specs"><b>Color</b> gray-0<br><b>BG</b> primary-blue-500</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-primary" style="background:var(--primary-blue-600);box-shadow:0 0 0 4px rgba(53,89,235,0.18)">Label</button></div><div class="specs"><b>Color</b> gray-0<br><b>BG</b> primary-blue-600</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-primary is-pressed">Label</button></div><div class="specs"><b>Color</b> gray-0<br><b>BG</b> primary-blue-700</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-primary is-focused">Label</button></div><div class="specs"><b>Color</b> gray-0<br><b>Ring</b> 3px blue/35</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-primary is-disabled">Label</button></div><div class="specs"><b>Opacity</b> 0.36<br><b>Cursor</b> not-allowed</div></div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Danger</div>
+      <div class="h-desc">Ações drásticas: excluir, remover, limpar tudo.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-danger">Label</button></div><div class="specs"><b>BG</b> error-500</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-danger" style="background:var(--error-600)">Label</button></div><div class="specs"><b>BG</b> error-600</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-danger is-pressed">Label</button></div><div class="specs"><b>BG</b> error-800</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-danger" style="box-shadow:0 0 0 3px rgba(245,45,0,0.30)">Label</button></div><div class="specs"><b>Ring</b> 3px error/30</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-danger is-disabled">Label</button></div><div class="specs"><b>Opacity</b> 0.36</div></div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Success</div>
+      <div class="h-desc">Ações positivas que não se encaixam em primary. Ex: reiniciar.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-success">Label</button></div><div class="specs"><b>BG</b> success-500<br><b>Color</b> gray-900</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-success" style="background:var(--success-600)">Label</button></div><div class="specs"><b>BG</b> success-600</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-success is-pressed">Label</button></div><div class="specs"><b>BG</b> success-800<br><b>Color</b> gray-0</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-success" style="box-shadow:0 0 0 3px rgba(64,235,79,0.40)">Label</button></div><div class="specs"><b>Ring</b> 3px success/40</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-success is-disabled">Label</button></div><div class="specs"><b>Opacity</b> 0.36</div></div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Gray</div>
+      <div class="h-desc">Ações neutras que não se encaixam nos requisitos de primary. Ex: pausar.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-gray">Label</button></div><div class="specs"><b>BG</b> gray-700</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-gray" style="background:var(--gray-800)">Label</button></div><div class="specs"><b>BG</b> gray-800</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-gray is-pressed">Label</button></div><div class="specs"><b>BG</b> gray-900</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-gray" style="box-shadow:0 0 0 3px rgba(85,90,100,0.35)">Label</button></div><div class="specs"><b>Ring</b> 3px gray/35</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-gray is-disabled">Label</button></div><div class="specs"><b>BG</b> gray-200<br><b>Color</b> gray-400</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= HIERARCHY = SECONDARY ============= -->
+<section>
+  <h2 class="sec-title">Hierarchy = Secondary</h2>
+  <p class="sec-desc">Botão de contorno usado para ações secundárias ao lado de um Primary. Mantém destaque mas cede o foco visual.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Primary</div>
+      <div class="h-desc">Borda preenchida 1px com label colorido.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-secondary">Label</button></div><div class="specs"><b>Border</b> 1px primary-blue-500<br><b>Color</b> primary-blue-500</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-secondary" style="background:var(--primary-blue-50)">Label</button></div><div class="specs"><b>BG</b> primary-blue-50</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-secondary is-pressed">Label</button></div><div class="specs"><b>BG</b> tertiary-blue-50<br><b>Border</b> tertiary-blue-900</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-secondary is-focused">Label</button></div><div class="specs"><b>Ring</b> 3px blue/35</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-secondary is-disabled">Label</button></div><div class="specs"><b>Border</b> gray-300<br><b>Color</b> gray-300</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= HIERARCHY = TERTIARY ============= -->
+<section>
+  <h2 class="sec-title">Hierarchy = Tertiary</h2>
+  <p class="sec-desc">Botão de texto, sem container nem borda. Usado para ações de menor importância dentro de fluxos.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Color = Primary</div>
+      <div class="h-desc">Apenas o label, com sublinhado em hover/click.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><button class="btn btn-tertiary">Label</button></div><div class="specs"><b>Color</b> primary-blue-500</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn btn-tertiary" style="color:var(--primary-blue-600);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px">Label</button></div><div class="specs"><b>Underline</b> 2px<br><b>Color</b> primary-blue-600</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn btn-tertiary is-pressed">Label</button></div><div class="specs"><b>Color</b> tertiary-blue-900</div></div>
+      <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-tertiary" style="box-shadow:0 0 0 3px rgba(1,32,235,0.20);border-radius:8px">Label</button></div><div class="specs"><b>Ring</b> 3px blue/20</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-tertiary is-disabled">Label</button></div><div class="specs"><b>Color</b> gray-300</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= OUTLINED & TEXT (pill shapes) ============= -->
+<section>
+  <h2 class="sec-title">Outlined</h2>
+  <p class="sec-desc">Bottom de contorno em formato pílula (radius full). Use para ações importantes em interfaces minimalistas.</p>
+
+  <div class="states">
+    <div class="state-cell"><div class="label-state">Enabled</div><div class="render"><button class="btn btn-outlined">Enabled</button></div><div class="specs"><b>Border</b> 1px primary-blue-500</div></div>
+    <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-outlined is-disabled">Disabled</button></div><div class="specs"><b>Color</b> gray-300</div></div>
+    <div class="state-cell"><div class="label-state">Hovered</div><div class="render"><button class="btn btn-outlined" style="background:var(--primary-blue-50)">Hovered</button></div><div class="specs"><b>BG</b> primary-blue-50</div></div>
+    <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-outlined is-focused">Focused</button></div><div class="specs"><b>Ring</b> 3px blue/30</div></div>
+    <div class="state-cell"><div class="label-state">Pressed</div><div class="render"><button class="btn btn-outlined is-pressed">Pressed</button></div><div class="specs"><b>BG</b> primary-blue-100</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">Text</h2>
+  <p class="sec-desc">Bottons de texto são escolhas ideais quando se busca uma abordagem minimalista e limpa, integrando-se em designs simples e modernos.</p>
+
+  <div class="states">
+    <div class="state-cell"><div class="label-state">Enabled</div><div class="render"><button class="btn btn-text">Enabled</button></div><div class="specs"><b>BG</b> transparent</div></div>
+    <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-text is-disabled">Disabled</button></div><div class="specs"><b>Color</b> gray-300</div></div>
+    <div class="state-cell"><div class="label-state">Hovered</div><div class="render"><button class="btn btn-text" style="background:var(--primary-blue-50)">Hovered</button></div><div class="specs"><b>BG</b> primary-blue-50</div></div>
+    <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-text" style="background:var(--primary-blue-100)">Focused</button></div><div class="specs"><b>BG</b> primary-blue-100</div></div>
+    <div class="state-cell"><div class="label-state">Pressed</div><div class="render"><button class="btn btn-text is-pressed">Pressed</button></div><div class="specs"><b>BG</b> primary-blue-100</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 class="sec-title">Elevated</h2>
+  <p class="sec-desc">Use bottons "elevated" para representar ações principais ou chamadas para ação importantes na interface — ajudam a atrair a atenção do usuário.</p>
+
+  <div class="states">
+    <div class="state-cell"><div class="label-state">Enabled</div><div class="render"><button class="btn btn-elevated">Enabled</button></div><div class="specs"><b>Shadow</b> elevation-2</div></div>
+    <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn btn-elevated is-disabled">Disabled</button></div><div class="specs"><b>BG</b> gray-30<br><b>Color</b> gray-300</div></div>
+    <div class="state-cell"><div class="label-state">Hovered</div><div class="render"><button class="btn btn-elevated" style="background:var(--primary-blue-50);box-shadow:var(--elevation-3)">Hovered</button></div><div class="specs"><b>Shadow</b> elevation-3</div></div>
+    <div class="state-cell"><div class="label-state">Focused</div><div class="render"><button class="btn btn-elevated" style="box-shadow:0 0 0 3px rgba(1,32,235,0.30), var(--elevation-2)">Focused</button></div><div class="specs"><b>Ring</b> 3px blue/30</div></div>
+    <div class="state-cell"><div class="label-state">Pressed</div><div class="render"><button class="btn btn-elevated is-pressed">Pressed</button></div><div class="specs"><b>BG</b> primary-blue-100</div></div>
+  </div>
+</section>
+
+<!-- ============= ICON BUTTON ============= -->
+<section>
+  <h2 class="sec-title">Icon Button</h2>
+  <p class="sec-desc">Botão quadrado de ação com ícone e tooltip. Use para barras de ferramentas e ações inline em tabelas.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Default · light</div>
+      <div class="h-desc">Aplica em interfaces claras com tooltip sempre presente.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell"><div class="label-state">Default</div><div class="render"><div class="tooltip-preview"><div class="tip">Some text here</div><button class="btn-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button></div></div><div class="specs"><b>Size</b> 40×40<br><b>BG</b> primary-blue-500</div></div>
+      <div class="state-cell"><div class="label-state">Hover</div><div class="render"><button class="btn-icon" style="background:var(--primary-blue-600)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs"><b>BG</b> primary-blue-600</div></div>
+      <div class="state-cell"><div class="label-state">Click</div><div class="render"><button class="btn-icon is-pressed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs"><b>BG</b> primary-blue-700</div></div>
+      <div class="state-cell"><div class="label-state">Disabled</div><div class="render"><button class="btn-icon is-disabled"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs"><b>Opacity</b> 0.36</div></div>
+      <div class="state-cell"><div class="label-state">Danger = true</div><div class="render"><button class="btn-icon is-danger"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 4h6l-.5 9h-5L5 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 4h10M7 7v3M9 7v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="specs"><b>BG</b> error-500</div></div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Background = Dark</div>
+      <div class="h-desc">Aplicar quando o fundo da página/modal for escuro.</div>
+    </div>
+    <div class="states" style="background:var(--gray-800);border-color:var(--gray-700)">
+      <div class="state-cell" style="border-color:var(--gray-700)"><div class="label-state" style="color:var(--gray-300)">Default</div><div class="render"><button class="btn-icon is-dark"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="white" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs" style="color:var(--gray-400);border-color:var(--gray-700)"><b style="color:var(--gray-200)">BG</b> gray-900</div></div>
+      <div class="state-cell" style="border-color:var(--gray-700)"><div class="label-state" style="color:var(--gray-300)">Hover</div><div class="render"><button class="btn-icon is-dark" style="background:var(--gray-800);outline:1px solid var(--gray-600)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="white" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs" style="color:var(--gray-400);border-color:var(--gray-700)"><b style="color:var(--gray-200)">BG</b> gray-800</div></div>
+      <div class="state-cell" style="border-color:var(--gray-700)"><div class="label-state" style="color:var(--gray-300)">Click</div><div class="render"><button class="btn-icon is-dark" style="background:var(--gray-700)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="white" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs" style="color:var(--gray-400);border-color:var(--gray-700)"><b style="color:var(--gray-200)">BG</b> gray-700</div></div>
+      <div class="state-cell" style="border-color:var(--gray-700)"><div class="label-state" style="color:var(--gray-300)">Disabled</div><div class="render"><button class="btn-icon is-dark is-disabled"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="white" stroke-width="1.75" stroke-linecap="round"/></svg></button></div><div class="specs" style="color:var(--gray-400);border-color:var(--gray-700)"><b style="color:var(--gray-200)">Opacity</b> 0.3</div></div>
+      <div class="state-cell" style="border-color:var(--gray-700)"><div class="label-state" style="color:var(--gray-300)">Danger</div><div class="render"><button class="btn-icon is-danger"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 4h6l-.5 9h-5L5 4z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 4h10" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></button></div><div class="specs" style="color:var(--gray-400);border-color:var(--gray-700)"><b style="color:var(--gray-200)">BG</b> error-500</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FLOATING BUTTON ============= -->
+<section>
+  <h2 class="sec-title">Floating Button</h2>
+  <p class="sec-desc">O componente representa uma ação primária do organismo. Usado quando uma ação precisa estar sempre visível e flutuante sobre o conteúdo.</p>
+
+  <div class="states" style="grid-template-columns: repeat(4, 1fr)">
+    <div class="state-cell">
+      <div class="label-state">Default</div>
+      <div class="render">
+        <button class="fab">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Hover
+        </button>
+      </div>
+      <div class="specs"><b>Height</b> 48px · <b>Radius</b> 24px<br><b>Shadow</b> elevation-4</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Active</div>
+      <div class="render">
+        <button class="fab is-active">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Active
+        </button>
+      </div>
+      <div class="specs"><b>BG</b> primary-blue-50<br><b>Color</b> primary-blue-700</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Focused</div>
+      <div class="render">
+        <button class="fab" style="box-shadow:0 0 0 3px rgba(1,32,235,0.30), var(--elevation-4)">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Focused
+        </button>
+      </div>
+      <div class="specs"><b>Ring</b> 3px blue/30</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Disabled</div>
+      <div class="render">
+        <button class="fab is-disabled">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3 8l5-5 5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Disabled
+        </button>
+      </div>
+      <div class="specs"><b>Color</b> gray-300</div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px">
+    <h3 class="sec-title" style="font-size:14px">Application example</h3>
+    <p class="sec-desc">Use em listas e cards onde uma ação importante deve estar visível independente da rolagem.</p>
+    <div class="fab-app">
+      <div class="fab-app-card">
+        <div class="skel-row">
+          <div class="skel-line med"></div>
+          <div class="skel-line short"></div>
+        </div>
+        <button class="fab is-active">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+          Adicionar novo
+        </button>
+      </div>
+      <div class="fab-app-card">
+        <div class="skel-row">
+          <div class="skel-line med"></div>
+          <div class="skel-line short"></div>
+        </div>
+        <button class="fab">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 4h6l-.5 9h-5L5 4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 4h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Limpar
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

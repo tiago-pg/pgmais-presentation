@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($dest = \"C:\\\\Users\\\\thalia.oliveira\\\\Downloads\\\\PGMais-DS-extract\"; if \\(-not \\(Test-Path $dest\\)\\) { Expand-Archive -Path \"C:\\\\Users\\\\thalia.oliveira\\\\Downloads\\\\PGMais Design System.zip\" -DestinationPath $dest -Force }; Get-ChildItem $dest -Recurse -Depth 2 | Select-Object Mode, Length, FullName | Format-Table -AutoSize)"
+    ]
+  }
+}

@@ -1,0 +1,572 @@
+/* =========================================================================
+   PGMais Design System — colors_and_type.css
+   Single source of truth for all design tokens.
+   Based on: Cópia de Novo Posicionamento_Brand Guide_Mini.pdf (2026)
+            + Template Institucional PGMais.
+   ========================================================================= */
+
+/* ------ Lato (self-hosted) + Poppins (Google Fonts) ------
+   Lato is the brand's primary type family and is now served from the local
+   /fonts directory. Poppins remains a Google Fonts import — drop Poppins
+   .ttf files into /fonts and add matching @font-face rules to self-host.
+   ----------------------------------------- */
+
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ===================================================================
+     COLORS — Core (4 cores fundamentais, per the positioning guide)
+     =================================================================== */
+  --color-navy:          #172c66;  /* Azul Escuro Profundo — primary bg & text on light */
+  --color-blue:          #0120eb;  /* Azul Vibrante — gradient partner, low-emph signals */
+  --color-green:         #40eb4f;  /* Verde — signature accent, high-emph elements, CTAs */
+  --color-gray-light:    #ededed;  /* Cinza Claro — text on navy, breathing-room fills */
+
+  /* ===================================================================
+     COLORS — Extended (secondary palette from the Cores spread)
+     =================================================================== */
+  --color-sky:           #3db7f4;  /* Azul Claro — info / data surfaces */
+  --color-yellow:        #f2f24b;  /* Amarelo — highlight / emphasis */
+  --color-pink:          #f173ac;  /* Rosa — human / empathy-coded surfaces */
+
+  /* ===================================================================
+     COLORS — Neutral scale (derived — not in guide, for UI use)
+     =================================================================== */
+  --color-white:         #ffffff;
+  --color-gray-50:       #f8f8f9;
+  --color-gray-100:      #ededed;  /* same as --color-gray-light */
+  --color-gray-200:      #e1e1e3;
+  --color-gray-300:      #c8c9cd;
+  --color-gray-400:      #9a9ca5;
+  --color-gray-500:      #6d7080;
+  --color-gray-600:      #4a4e5e;
+  --color-gray-700:      #32364a;
+  --color-gray-800:      #20243a;
+  --color-gray-900:      #172c66;  /* same as --color-navy */
+  --color-black:         #0b1230;  /* deeper than navy, for extreme contrast only */
+
+  /* ===================================================================
+     COLORS — Navy tints (derived, for hover/subtle-fill states)
+     =================================================================== */
+  --color-navy-95:       #1d3574;
+  --color-navy-90:       #243e82;
+  --color-navy-80:       #4a5d9a;
+  --color-navy-20:       #d1d5e0;
+  --color-navy-10:       #e8eaf0;
+  --color-navy-05:       #f3f4f8;
+
+  /* ===================================================================
+     COLORS — Green tints
+     =================================================================== */
+  --color-green-hover:   #30d93e;  /* -6% lightness for button hover */
+  --color-green-press:   #23c431;  /* -12% for press */
+  --color-green-20:      #caf6ce;
+  --color-green-10:      #e4fae6;
+
+  /* ===================================================================
+     SEMANTIC COLOR ROLES — use these in components, not raw palette names
+     =================================================================== */
+
+  /* Surfaces */
+  --bg-page:             var(--color-gray-light);  /* comfort fill per guide */
+  --bg-surface:          var(--color-white);
+  --bg-surface-raised:   var(--color-white);
+  --bg-brand:            var(--color-navy);        /* primary branded bg */
+  --bg-brand-soft:       var(--color-navy-05);
+  --bg-inverse:          var(--color-navy);
+
+  /* Foreground / text */
+  --fg-default:          var(--color-navy);        /* MANDATORY text color on light bg */
+  --fg-muted:            var(--color-gray-600);
+  --fg-subtle:           var(--color-gray-500);
+  --fg-on-brand:         var(--color-gray-light);  /* MANDATORY text color on navy bg */
+  --fg-on-brand-muted:   rgba(237, 237, 237, 0.72);
+  --fg-inverse:          var(--color-gray-light);
+  --fg-accent:           var(--color-green);
+  --fg-link:             var(--color-blue);
+
+  /* Borders */
+  --border-hairline:     rgba(23, 44, 102, 0.08);
+  --border-default:      rgba(23, 44, 102, 0.12);
+  --border-strong:       rgba(23, 44, 102, 0.24);
+  --border-on-brand:     rgba(237, 237, 237, 0.12);
+  --border-accent:       var(--color-green);
+  --border-focus:        var(--color-blue);
+
+  /* Status (derived from extended palette) */
+  --status-success:      var(--color-green);
+  --status-info:         var(--color-sky);
+  --status-warning:      var(--color-yellow);
+  --status-danger:       var(--color-pink);
+
+  /* ===================================================================
+     GRADIENTS — Brand signature
+     =================================================================== */
+  --gradient-brand:      linear-gradient(90deg, var(--color-green) 0%, var(--color-blue) 100%);
+  --gradient-brand-diag: linear-gradient(135deg, var(--color-green) 0%, var(--color-blue) 100%);
+  --gradient-hero:       radial-gradient(60% 80% at 20% 30%, rgba(64,235,79,0.35) 0%, transparent 60%),
+                         radial-gradient(60% 80% at 80% 70%, rgba(1,32,235,0.30) 0%, transparent 60%);
+  --gradient-navy-fade:  linear-gradient(180deg, var(--color-navy) 0%, #0f1e47 100%);
+
+  /* ===================================================================
+     TYPOGRAPHY — Families
+     =================================================================== */
+  --font-primary:        'Lato', 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary:      'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:           ui-monospace, 'SF Mono', Menlo, 'Cascadia Mono', monospace;
+
+  /* ===================================================================
+     TYPOGRAPHY — Weights (canonical set per guide)
+     =================================================================== */
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-bold:     700;
+  --fw-black:    900;
+
+  /* ===================================================================
+     TYPOGRAPHY — Type scale (semantic roles)
+     Size / line-height / letter-spacing tokens. Family+weight on the role.
+     =================================================================== */
+  --text-display-size:    72px;  --text-display-lh:    1.05;  --text-display-ls: -0.02em;
+  --text-h1-size:         56px;  --text-h1-lh:         1.10;  --text-h1-ls:      -0.02em;
+  --text-h2-size:         40px;  --text-h2-lh:         1.15;  --text-h2-ls:      -0.01em;
+  --text-h3-size:         28px;  --text-h3-lh:         1.20;  --text-h3-ls:      -0.005em;
+  --text-h4-size:         22px;  --text-h4-lh:         1.30;  --text-h4-ls:      0;
+  --text-subtitle-size:   20px;  --text-subtitle-lh:   1.40;  --text-subtitle-ls: 0;
+  --text-body-size:       16px;  --text-body-lh:       1.60;  --text-body-ls:    0;
+  --text-body-sm-size:    14px;  --text-body-sm-lh:    1.55;  --text-body-sm-ls: 0;
+  --text-caption-size:    12px;  --text-caption-lh:    1.50;  --text-caption-ls: 0;
+  --text-eyebrow-size:    12px;  --text-eyebrow-lh:    1.40;  --text-eyebrow-ls: 0.12em;
+  --text-cta-size:        16px;  --text-cta-lh:        1.00;  --text-cta-ls:     0.01em;
+
+  /* ===================================================================
+     SPACING — 4/8 px base unit
+     =================================================================== */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-20:  80px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  /* ===================================================================
+     RADII
+     =================================================================== */
+  --radius-none: 0;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   32px;
+  --radius-2xl:  48px;
+  --radius-full: 9999px;
+
+  /* ===================================================================
+     SHADOWS
+     =================================================================== */
+  --shadow-none:       none;
+  --shadow-sm:         0 1px 2px rgba(23,44,102,0.06);
+  --shadow-md:         0 4px 16px rgba(23,44,102,0.08), 0 1px 3px rgba(23,44,102,0.06);
+  --shadow-lg:         0 16px 48px rgba(23,44,102,0.12), 0 4px 12px rgba(23,44,102,0.08);
+  --shadow-xl:         0 32px 96px rgba(23,44,102,0.16), 0 8px 24px rgba(23,44,102,0.10);
+  --shadow-focus:      0 0 0 3px rgba(1,32,235,0.25);
+  --shadow-glow-green: 0 0 0 6px rgba(64,235,79,0.18);
+
+  /* ===================================================================
+     MOTION
+     =================================================================== */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in:       cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --ease-out:      cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-fast: 150ms;
+  --duration-mid:  240ms;
+  --duration-slow: 400ms;
+
+  /* ===================================================================
+     LAYOUT
+     =================================================================== */
+  --container-sm:  640px;
+  --container-md:  960px;
+  --container-lg:  1280px;
+  --container-xl:  1440px;
+  --nav-h:         72px;
+  --focus-ring-w:  2px;
+
+  /* ===================================================================
+     FOUNDATION — Color ramps (per Figma "Cores - uso interno")
+     13 ramps × 10 stops. Use these for product UI; the Core/Extended
+     palette above stays for brand surfaces.
+     =================================================================== */
+
+  /* primary-blue */
+  --primary-blue-50:   #E7EBFD;  --primary-blue-100:  #C2CDF9;
+  --primary-blue-200:  #9AACF5;  --primary-blue-300:  #728BF1;
+  --primary-blue-400:  #5372EE;  --primary-blue-500:  #3559EB;
+  --primary-blue-600:  #3051E9;  --primary-blue-700:  #2848E5;
+  --primary-blue-800:  #223EE2;  --primary-blue-900:  #162EDD;
+
+  /* secondary-blue (sky) */
+  --secondary-blue-50:  #E8F6FE;  --secondary-blue-100: #C5E9FC;
+  --secondary-blue-200: #9EDBFA;  --secondary-blue-300: #77CDF7;
+  --secondary-blue-400: #5AC2F6;  --secondary-blue-500: #3DB7F4;
+  --secondary-blue-600: #37B0F3;  --secondary-blue-700: #2FA7F1;
+  --secondary-blue-800: #279FEF;  --secondary-blue-900: #1A90EC;
+
+  /* tertiary-blue (navy) */
+  --tertiary-blue-50:  #E5E7F0;  --tertiary-blue-100: #BDC4DA;
+  --tertiary-blue-200: #929DC1;  --tertiary-blue-300: #6675A8;
+  --tertiary-blue-400: #455896;  --tertiary-blue-500: #243A83;
+  --tertiary-blue-600: #20347B;  --tertiary-blue-700: #1B2C70;
+  --tertiary-blue-800: #162566;  --tertiary-blue-900: #0D1853;
+
+  /* brand-email (cyan-bright) */
+  --brand-email-50:  #E4FBFD;  --brand-email-100: #BCF5FB;
+  --brand-email-200: #90EFF8;  --brand-email-300: #63E9F5;
+  --brand-email-400: #41E4F3;  --brand-email-500: #20DFF1;
+  --brand-email-600: #1CDBEF;  --brand-email-700: #18D7ED;
+  --brand-email-800: #13D2EB;  --brand-email-900: #0BCAE7;
+
+  /* secondary-pink */
+  --secondary-pink-50:  #FFEEF7;  --secondary-pink-100: #FFD4EB;
+  --secondary-pink-200: #FFB8DE;  --secondary-pink-300: #FE9BD1;
+  --secondary-pink-400: #FE85C7;  --secondary-pink-500: #FE70BD;
+  --secondary-pink-600: #FE68B7;  --secondary-pink-700: #FE5DAE;
+  --secondary-pink-800: #FE53A6;  --secondary-pink-900: #FD4198;
+
+  /* cyan (teal) */
+  --cyan-50:  #E2FAF9;  --cyan-100: #B6F4F0;
+  --cyan-200: #85ECE7;  --cyan-300: #54E4DD;
+  --cyan-400: #30DFD5;  --cyan-500: #0BD9CE;
+  --cyan-600: #0AD5C9;  --cyan-700: #08CFC2;
+  --cyan-800: #06CABC;  --cyan-900: #03C0B0;
+
+  /* green (lime) */
+  --green-50:  #F3FAE0;  --green-100: #E2F2B3;
+  --green-200: #CEE980;  --green-300: #BAE04D;
+  --green-400: #ACD926;  --green-500: #9DD200;
+  --green-600: #95CD00;  --green-700: #8BC700;
+  --green-800: #81C100;  --green-900: #5D930A;
+
+  /* purple */
+  --purple-50:  #F2E8FF;  --purple-100: #DFC6FF;
+  --purple-200: #C9A0FF;  --purple-300: #B379FF;
+  --purple-400: #A35DFF;  --purple-500: #9340FF;
+  --purple-600: #8B3AFF;  --purple-700: #8032FF;
+  --purple-800: #7325FF;  --purple-900: #641CFF;
+
+  /* coral */
+  --coral-50:  #FCEDEE;  --coral-100: #F9D3D5;
+  --coral-200: #F5B5B9;  --coral-300: #F0979C;
+  --coral-400: #ED8187;  --coral-500: #EA6B72;
+  --coral-600: #E7636A;  --coral-700: #E4585F;
+  --coral-800: #E14E55;  --coral-900: #DB3C42;
+
+  /* orange */
+  --orange-50:  #FEEFE1;  --orange-100: #FCD7B3;
+  --orange-200: #FABC80;  --orange-300: #F7A14D;
+  --orange-400: #F68D27;  --orange-500: #F47901;
+  --orange-600: #F37101;  --orange-700: #F16601;
+  --orange-800: #EF5C01;  --orange-900: #DB4604;
+
+  /* success */
+  --success-50:  #E8FDEA;  --success-100: #C6F9CA;
+  --success-200: #A0F5A7;  --success-300: #79F184;
+  --success-400: #5DEE69;  --success-500: #40EB4F;
+  --success-600: #3AE948;  --success-700: #32E53F;
+  --success-800: #2AE236;  --success-900: #1CDD26;
+
+  /* warning */
+  --warning-50:  #FFF7E0;  --warning-100: #FFECB3;
+  --warning-200: #FFDF80;  --warning-300: #FFD24D;
+  --warning-400: #FFC826;  --warning-500: #FFBE00;
+  --warning-600: #FFB800;  --warning-700: #FFAF00;
+  --warning-800: #FFA700;  --warning-900: #FF9900;
+
+  /* error */
+  --error-50:  #FEE6E0;  --error-100: #FCC0B3;
+  --error-200: #FA9680;  --error-300: #F86C4D;
+  --error-400: #F74D26;  --error-500: #F52D00;
+  --error-600: #F42800;  --error-700: #F22200;
+  --error-800: #F01C00;  --error-900: #EE1100;
+
+  /* gray scale (10 stops, gray-0 = white) */
+  --gray-0:   #FFFFFF;  --gray-10:  #F5F7F8;  --gray-30:  #EFF0F2;
+  --gray-50:  #E1E1E4;  --gray-100: #CBD0D6;  --gray-200: #B5BCC4;
+  --gray-300: #9EA7B1;  --gray-400: #8A929B;  --gray-500: #7C818A;
+  --gray-600: #6B717C;  --gray-700: #555A64;  --gray-800: #3A4148;
+  --gray-900: #1D1F27;
+
+  /* brand product hexes */
+  --brand-sms-500: #00B6F5;
+  --brand-rcs-500: #0064E4;
+  --info-500:      #0045F5;
+
+  /* ===================================================================
+     FOUNDATION — Typography scale (Figma: Base 16, Scale 1.25)
+     =================================================================== */
+  --foundation-base:        16px;
+  --foundation-headline-1:  61px;  /* 3.812rem */
+  --foundation-headline-2:  49px;  /* 3.062rem */
+  --foundation-headline-3:  39px;  /* 2.438rem */
+  --foundation-headline-4:  31px;  /* 1.938rem */
+  --foundation-subtitle-1:  25px;  /* 1.562rem */
+  --foundation-subtitle-2:  20px;  /* 1.250rem */
+  --foundation-subtitle-3:  16px;  /* 1.000rem */
+  --foundation-body-1:      16px;  /* 1.000rem */
+  --foundation-body-2:      13px;  /* 0.812rem */
+  --foundation-caption:     10px;  /* 0.625rem */
+  --foundation-line-height: 120%;
+
+  /* ===================================================================
+     FOUNDATION — Elevation (8 levels)
+     =================================================================== */
+  --elevation-0: none;
+  --elevation-1: 0 1px 2px rgba(29,31,39,0.06);
+  --elevation-2: 0 2px 4px rgba(29,31,39,0.08), 0 1px 2px rgba(29,31,39,0.04);
+  --elevation-3: 0 4px 8px rgba(29,31,39,0.10), 0 2px 4px rgba(29,31,39,0.06);
+  --elevation-4: 0 8px 16px rgba(29,31,39,0.12), 0 2px 6px rgba(29,31,39,0.06);
+  --elevation-5: 0 12px 24px rgba(29,31,39,0.14), 0 4px 8px rgba(29,31,39,0.08);
+  --elevation-6: 0 16px 32px rgba(29,31,39,0.16), 0 6px 12px rgba(29,31,39,0.10);
+  --elevation-7: 0 24px 48px rgba(29,31,39,0.20), 0 10px 20px rgba(29,31,39,0.12);
+
+  /* ===================================================================
+     FOUNDATION — Spacing (8-point grid extension)
+     =================================================================== */
+  --space-fnd-4:  4px;   --space-fnd-8:  8px;   --space-fnd-12: 12px;
+  --space-fnd-16: 16px;  --space-fnd-20: 20px;  --space-fnd-24: 24px;
+  --space-fnd-32: 32px;  --space-fnd-40: 40px;  --space-fnd-48: 48px;
+  --space-fnd-56: 56px;  --space-fnd-64: 64px;  --space-fnd-72: 72px;
+  --space-fnd-80: 80px;
+
+  /* ===================================================================
+     FOUNDATION — Breakpoints
+     =================================================================== */
+  --bp-xs:  600px;   /* < 600  Extra Small Phone */
+  --bp-sm:  940px;   /* 600–940 Small Tablet */
+  --bp-md:  1264px;  /* 940–1264 Medium Laptop / Tablet */
+  --bp-lg:  1904px;  /* 1264–1904 Desktop Large */
+  /* > 1904 Full HD 4k */
+}
+
+/* =========================================================================
+   SEMANTIC TYPE CLASSES
+   Apply these to elements so that changing the role changes the look.
+   ========================================================================= */
+
+.t-display {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-black);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-lh);
+  letter-spacing: var(--text-display-ls);
+  color: var(--fg-default);
+}
+.t-h1 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-lh);
+  letter-spacing: var(--text-h1-ls);
+  color: var(--fg-default);
+}
+.t-h2 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-lh);
+  letter-spacing: var(--text-h2-ls);
+  color: var(--fg-default);
+}
+.t-h3 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-h3-size);
+  line-height: var(--text-h3-lh);
+  letter-spacing: var(--text-h3-ls);
+  color: var(--fg-default);
+}
+.t-h4 {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-h4-size);
+  line-height: var(--text-h4-lh);
+  color: var(--fg-default);
+}
+.t-subtitle {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-subtitle-size);
+  line-height: var(--text-subtitle-lh);
+  color: var(--fg-muted);
+}
+.t-body {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  color: var(--fg-default);
+}
+.t-body-sm {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-body-sm-size);
+  line-height: var(--text-body-sm-lh);
+  color: var(--fg-muted);
+}
+.t-caption {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-caption-size);
+  line-height: var(--text-caption-lh);
+  color: var(--fg-muted);
+}
+.t-eyebrow {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-lh);
+  letter-spacing: var(--text-eyebrow-ls);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.t-cta {
+  font-family: var(--font-secondary);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-cta-size);
+  line-height: var(--text-cta-lh);
+  letter-spacing: var(--text-cta-ls);
+}
+
+/* =========================================================================
+   BASE ELEMENT STYLES — apply defaults so unclassed HTML still looks right
+   ========================================================================= */
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  font-family: var(--font-secondary);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-lh);
+  color: var(--fg-default);
+  background: var(--bg-page);
+}
+
+h1 { font: var(--fw-bold) var(--text-h1-size)/var(--text-h1-lh) var(--font-primary); letter-spacing: var(--text-h1-ls); margin: 0; }
+h2 { font: var(--fw-bold) var(--text-h2-size)/var(--text-h2-lh) var(--font-primary); letter-spacing: var(--text-h2-ls); margin: 0; }
+h3 { font: var(--fw-medium) var(--text-h3-size)/var(--text-h3-lh) var(--font-primary); letter-spacing: var(--text-h3-ls); margin: 0; }
+h4 { font: var(--fw-medium) var(--text-h4-size)/var(--text-h4-lh) var(--font-primary); margin: 0; }
+p  { margin: 0 0 var(--space-4) 0; text-wrap: pretty; }
+
+a {
+  color: var(--fg-link);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover { text-decoration: underline; }
+a:focus-visible {
+  outline: var(--focus-ring-w) solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* =========================================================================
+   UTILITY: dark surface — apply to any section to invert text handling
+   ========================================================================= */
+.on-brand {
+  background: var(--bg-brand);
+  color: var(--fg-on-brand);
+}
+.on-brand h1, .on-brand h2, .on-brand h3, .on-brand h4,
+.on-brand .t-display, .on-brand .t-h1, .on-brand .t-h2, .on-brand .t-h3, .on-brand .t-h4 {
+  color: var(--fg-on-brand);
+}
+.on-brand .t-subtitle, .on-brand .t-body-sm, .on-brand .t-caption, .on-brand .t-eyebrow {
+  color: var(--fg-on-brand-muted);
+}
+.on-brand a { color: var(--color-green); }

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PGMais · Social Media Templates</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#0a1230">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a1230"/>
+    <g transform="translate(600 400)">
+      <!-- 3 vertical IG-card silhouettes -->
+      <rect x="-330" y="-180" width="180" height="225" rx="10" fill="#f2f24b"/>
+      <rect x="-90"  y="-180" width="180" height="225" rx="10" fill="#172c66" stroke="#f2f24b" stroke-width="2"/>
+      <rect x="150"  y="-180" width="180" height="225" rx="10" fill="#f173ac"/>
+      <!-- handle line + circled plus, mimicking the slide chrome -->
+      <g transform="translate(0 100)" fill="none" stroke="#40eb4f" stroke-width="2.5" stroke-linecap="round">
+        <line x1="-340" y1="0" x2="280" y2="0"/>
+        <circle cx="320" cy="0" r="22"/>
+        <line x1="307" y1="0" x2="333" y2="0"/>
+        <line x1="320" y1="-13" x2="320" y2="13"/>
+      </g>
+    </g>
+    <text x="600" y="700" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="38" fill="#ededed">PGMais · Social</text>
+  </svg>
+</template>
+
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  .hero {
+    padding: 8px 0 40px;
+    border-bottom: 1px solid rgba(237,237,237,.12);
+    margin-bottom: 48px;
+  }
+  .hero .eyebrow {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(64,235,79,.95);
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--color-gray-light);
+    max-width: 880px;
+    margin: 0 0 16px;
+  }
+  .hero .sub {
+    font-family: var(--font-secondary);
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(237,237,237,.7);
+    max-width: 680px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px)  { .grid { grid-template-columns: 1fr; } }
+  .card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-radius: 18px;
+    transition: transform 200ms var(--ease-standard);
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card .preview {
+    width: 100%;
+    aspect-ratio: 1080 / 1350;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+  }
+  .card .cap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 4px;
+  }
+  .card .cap .name {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--color-gray-light);
+    letter-spacing: -0.005em;
+  }
+  .card .cap .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(237,237,237,.5);
+    letter-spacing: 0.1em;
+  }
+  .card .desc {
+    font-family: var(--font-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(237,237,237,.55);
+    padding: 0 4px;
+  }
+
+  .system {
+    margin-top: 64px;
+    padding: 40px;
+    border-radius: 18px;
+    background: rgba(237,237,237,.04);
+    border: 1px solid rgba(237,237,237,.08);
+  }
+  .system h3 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-gray-light);
+    margin: 0 0 24px;
+  }
+  .system-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+    align-items: start;
+  }
+  .system .anatomy {
+    aspect-ratio: 1080 / 1350;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+    max-width: 360px;
+  }
+  .system .rules {
+    display: flex; flex-direction: column; gap: 18px;
+    font-family: var(--font-secondary); font-size: 14px; line-height: 1.55;
+    color: rgba(237,237,237,.72);
+  }
+  .system .rules .rule { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: baseline; }
+  .system .rules .rule .k {
+    font-family: var(--font-primary); font-weight: 700; font-size: 13px;
+    color: var(--color-gray-light); text-transform: uppercase; letter-spacing: 0.1em;
+  }
+  .system .rules .rule code {
+    background: rgba(64,235,79,.10); color: #40eb4f; padding: 1px 6px; border-radius: 4px;
+    font-size: 12px; font-family: var(--font-mono);
+  }
+  .swatches {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
+  }
+  .swatches .sw {
+    width: 56px; height: 36px; border-radius: 8px;
+    border: 1px solid rgba(237,237,237,.10);
+    font-family: var(--font-mono); font-size: 10px; color: rgba(237,237,237,.9);
+    display: flex; align-items: flex-end; padding: 4px 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- PGMais brand symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pg-sym" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M12 7.5v9M7.5 12h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="page">
+  <div class="page-head">
+    <div>
+      <div class="crumb"><a href="../preview/index.html">Design System</a> &nbsp;/&nbsp; Social Media</div>
+      <h1>Templates · Redes Sociais</h1>
+    </div>
+    <div class="meta">
+      3 carrosséis · 8 slides cada<br>
+      Instagram Feed Retrato 1080 × 1350
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Sistema editorial</div>
+    <h1>Carrosséis institucionais para o Instagram.</h1>
+    <div class="sub">Header com <b style="color:#fff">@pgmais</b> + linha de acento + símbolo PGMais · footer com label da série e ícones do feed · 7 fundos do sistema, paleta restrita.</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ─────────────── Card 1: Cobrança Humanizada ─────────────── -->
+    <a class="card" href="01-cobranca-humanizada.html">
+      <div class="preview">
+        <div class="slide v-yellow cover-yellow">
+          <div class="s-chrome">
+            <span class="handle" style="color:#172c66">@pgmais</span>
+            <div class="handle-row" style="color:#172c66">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+          <div style="position:absolute; left:80px; right:80px; top:200px;">
+            <h1 style="font-family:var(--font-primary); font-size:96px; line-height:1.02; letter-spacing:-0.02em; color:#172c66; margin:0">
+              <span style="font-weight:900">E se a cobrança</span><br>
+              <span style="font-weight:400">pudesse fortalecer</span><br>
+              <span style="font-weight:400">relacionamentos ao</span><br>
+              <span style="font-weight:400">invés de romper vínculos?</span>
+            </h1>
+            <p style="font-family:var(--font-primary); font-weight:700; font-size:32px; color:#172c66; margin:28px 0 0">Descubra o poder da <b style="font-style:italic;font-weight:900">cobrança humanizada.</b></p>
+          </div>
+          <div style="position:absolute; left:80px; right:80px; bottom:80px; height:480px; border-radius:32px; background:rgba(23,44,102,.06); display:flex; align-items:center; justify-content:center; color:rgba(23,44,102,.42); font-family:var(--font-primary); font-weight:700; font-size:22px; letter-spacing:0.12em; text-transform:uppercase; text-align:center">FOTO<br>pessoa no laptop</div>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="name">01 · Cobrança Humanizada</span>
+        <span class="meta">8 SLIDES</span>
+      </div>
+      <div class="desc">Pergunta editorial → tese → empatia → mercado → ONE Collect → stats → CTA. Alterna amarelo, navy, rosa e verde.</div>
+    </a>
+
+    <!-- ─────────────── Card 2: Jornada Completa ─────────────── -->
+    <a class="card" href="02-jornada-completa.html">
+      <div class="preview">
+        <div class="slide v-navy-deep">
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f2f24b">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+          <div style="position:absolute; left:80px; right:80px; top:200px; height:560px; border-radius:32px; background:rgba(255,255,255,.10); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); font-family:var(--font-primary); font-weight:700; font-size:22px; letter-spacing:0.12em; text-transform:uppercase; text-align:center">FOTO<br>mulher madura no computador</div>
+          <div style="position:absolute; left:80px; right:80px; top:820px;">
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:64px; line-height:1.04; color:#f2f24b; margin:0">
+              Da inadimplência<br>à fidelização: <span style="color:#ededed">é possível?</span>
+            </h2>
+            <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:30px; line-height:1.30; color:#ededed; margin:28px 0 0">Com uma jornada estratégica, você transforma cobrança em estratégia de relacionamento.</p>
+          </div>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="name">02 · Jornada Completa</span>
+        <span class="meta">8 SLIDES</span>
+      </div>
+      <div class="desc">4 pilares numerados (Preventiva · Ativa · Acordo · Pós-pagamento) com glifos gigantes em outline.</div>
+    </a>
+
+    <!-- ─────────────── Card 3: Cobrança Multicanal ─────────────── -->
+    <a class="card" href="03-cobranca-multicanal.html">
+      <div class="preview">
+        <div class="slide v-light">
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#0120eb">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+          <div style="position:absolute; left:80px; right:80px; top:200px; height:520px; border-radius:32px; background:rgba(23,44,102,.06); display:flex; align-items:center; justify-content:center; color:rgba(23,44,102,.42); font-family:var(--font-primary); font-weight:700; font-size:22px; letter-spacing:0.12em; text-transform:uppercase; text-align:center">FOTO<br>orelhões nostálgicos</div>
+          <div style="position:absolute; left:80px; right:80px; top:780px;">
+            <p style="font-family:var(--font-primary); font-weight:400; font-size:48px; line-height:1.15; color:#172c66; margin:0">
+              O orelhão sumiu porque<br>o consumidor <em style="font-style:italic">mudou.</em>
+            </p>
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:64px; line-height:1.05; color:#172c66; margin:32px 0 0">
+              Sua cobrança<br>acompanhou?
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="cap">
+        <span class="name">03 · Cobrança Multicanal</span>
+        <span class="meta">8 SLIDES</span>
+      </div>
+      <div class="desc">Provocação editorial sobre canais · 5 canais (WhatsApp, SMS, E-mail, Voz, Portais) · citação Samir + degradê de marca.</div>
+    </a>
+
+  </div>
+
+  <!-- ─────────────── System reference ─────────────── -->
+  <div class="system">
+    <h3>Anatomia do template</h3>
+    <div class="system-grid">
+
+      <div class="anatomy">
+        <div class="slide v-light">
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f173ac">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+          <div style="position:absolute; left:80px; right:80px; top:340px;">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:60px; line-height:1.10; color:#172c66; margin:0">
+              Título do<br>slide.
+            </h2>
+            <div style="height:2.5px; width:260px; background:#f173ac; border-radius:2px; margin:32px 0 32px"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-size:32px; line-height:1.30; color:#172c66; margin:0; max-width:720px">
+              Bloco de corpo de texto editorial, com <em style="font-style:italic;font-weight:700">grifo em itálico</em> para ênfase.
+            </p>
+          </div>
+          <div class="s-foot" style="color:#f173ac">
+            <span class="s-label">Série</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rules">
+        <div class="rule">
+          <div class="k">Formato</div>
+          <div>1080 × 1350 px · 4:5 · Instagram Feed retrato. Safe-area: <code>80px</code> em todas as bordas.</div>
+        </div>
+        <div class="rule">
+          <div class="k">Header</div>
+          <div><b style="color:#fff;font-weight:700">@pgmais</b> à esquerda (sempre em cor do texto), linha + símbolo PGMais à direita na cor de acento do slide.</div>
+        </div>
+        <div class="rule">
+          <div class="k">Footer</div>
+          <div>Label da série prefixada por <code>_</code> à esquerda, em cor de acento. Ícones bookmark + share à direita.</div>
+        </div>
+        <div class="rule">
+          <div class="k">Tipografia</div>
+          <div>Lato · pesos 400 / 700 / 900 + variantes italic. Sempre em <code>--font-primary</code> · sem Poppins.</div>
+        </div>
+        <div class="rule">
+          <div class="k">Paleta</div>
+          <div>
+            <div class="swatches">
+              <div class="sw" style="background:#ededed;color:#172c66">#ED</div>
+              <div class="sw" style="background:#f2f24b;color:#172c66">#F2</div>
+              <div class="sw" style="background:#f173ac;color:#172c66">#F1</div>
+              <div class="sw" style="background:#40eb4f;color:#172c66">#40</div>
+              <div class="sw" style="background:#0120eb;color:#ededed">#01</div>
+              <div class="sw" style="background:#172c66;color:#ededed">#17</div>
+              <div class="sw" style="background:linear-gradient(135deg,#0120eb,#40eb4f);color:#fff">gr.</div>
+            </div>
+          </div>
+        </div>
+        <div class="rule">
+          <div class="k">Acento</div>
+          <div>Uma cor de acento por slide (define linha do header, label do footer e marcadores ⊕). <em>Nunca</em> 2 cores de acento no mesmo slide.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="_init.js"></script>
+</body>
+</html>

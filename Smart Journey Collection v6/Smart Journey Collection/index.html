@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGMais — Commercial Presentation Tool</title>
+    <link rel="stylesheet" href="colors_and_type.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body class="menu-body">
+
+    <!-- Orbs decorativos -->
+    <div class="t-orb t-orb-1"></div>
+    <div class="t-orb t-orb-2"></div>
+    <div class="t-orb t-orb-3"></div>
+
+    <div class="menu-wrapper">
+
+      <!-- ── Cabeçalho do menu ── -->
+      <div class="menu-header">
+        <img
+          src="Figma/assets/PGMais - Logo.png"
+          alt="PGMais"
+          class="menu-pgmais-logo"
+        />
+        <div class="menu-header-sep"></div>
+        <span class="menu-header-tag">Commercial Presentation Tool</span>
+      </div>
+
+      <!-- ── Título ── -->
+      <div class="menu-titulo">
+        Selecione o <strong>serviço</strong>
+      </div>
+      <p class="menu-subtitulo">
+        Escolha qual apresentação preparar para o cliente
+      </p>
+
+      <!-- ── Grade de serviços ── -->
+      <div class="menu-grid">
+
+        <!-- Smart Journey Collection -->
+        <a href="smart-journey.html" class="menu-card menu-card-destaque">
+          <div class="menu-card-badge">DISPONÍVEL</div>
+          <div class="menu-card-iframe-wrap">
+            <iframe src="smart-journey.html" class="menu-card-iframe" scrolling="no" tabindex="-1" loading="lazy"></iframe>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-titulo">Smart Journey <strong>Collection</strong></div>
+            <div class="menu-card-desc">
+              Ecossistema completo de relacionamento digital para cobrança.
+            </div>
+            <div class="menu-card-footer">
+              Iniciar <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gestão de Acordo -->
+        <a href="gestao-acordo.html" class="menu-card menu-card-destaque">
+          <div class="menu-card-badge">DISPONÍVEL</div>
+          <div class="menu-card-iframe-wrap">
+            <iframe src="gestao-acordo.html" class="menu-card-iframe" scrolling="no" tabindex="-1" loading="lazy"></iframe>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-titulo">Gestão de <strong>Acordo</strong></div>
+            <div class="menu-card-desc">
+              Gestão inteligente e personalizada de acordos com o cliente final.
+            </div>
+            <div class="menu-card-footer">
+              Iniciar <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gestão de Fatura -->
+        <a href="gestao-fatura.html" class="menu-card menu-card-destaque">
+          <div class="menu-card-badge">DISPONÍVEL</div>
+          <div class="menu-card-iframe-wrap">
+            <iframe src="gestao-fatura.html" class="menu-card-iframe" scrolling="no" tabindex="-1" loading="lazy"></iframe>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-titulo">Gestão de <strong>Fatura</strong></div>
+            <div class="menu-card-desc">
+              Controle completo do ciclo de vida da fatura do cliente.
+            </div>
+            <div class="menu-card-footer">
+              Iniciar <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+        <!-- Jornada de Cobrança -->
+        <a href="jornada-cobranca.html" class="menu-card menu-card-destaque">
+          <div class="menu-card-badge">DISPONÍVEL</div>
+          <div class="menu-card-iframe-wrap">
+            <iframe src="jornada-cobranca.html" class="menu-card-iframe" scrolling="no" tabindex="-1" loading="lazy"></iframe>
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-titulo">Jornada de <strong>Cobrança</strong></div>
+            <div class="menu-card-desc">
+              Fluxo integrado e automatizado de toda a jornada de cobrança.
+            </div>
+            <div class="menu-card-footer">
+              Iniciar <i class="bi bi-arrow-right"></i>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /menu-grid -->
+
+    </div><!-- /menu-wrapper -->
+
+    <script>
+      function ajustarIframes() {
+        document.querySelectorAll('.menu-card-iframe-wrap').forEach(wrap => {
+          const iframe = wrap.querySelector('.menu-card-iframe');
+          if (!iframe) return;
+          const w = wrap.clientWidth;
+          if (!w) return;
+          // escala para caber com margens laterais (~80% da largura)
+          const scale = (w * 0.50) / 1280;
+          iframe.style.transform = `scale(${scale})`;
+          wrap.style.height = Math.round(720 * scale) + 'px';
+        });
+      }
+      function agendarAjuste() {
+        requestAnimationFrame(() => requestAnimationFrame(ajustarIframes));
+      }
+      window.addEventListener('load', agendarAjuste);
+      window.addEventListener('resize', ajustarIframes);
+      document.addEventListener('DOMContentLoaded', agendarAjuste);
+    </script>
+  </body>
+</html>

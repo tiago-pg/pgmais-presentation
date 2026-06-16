@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Iconography</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1100px !important; overflow: visible !important; }
+  body { padding: 28px 32px; gap: 16px; background: var(--gray-0); }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 28px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--gray-600); font-size: 13px; line-height: 1.55; max-width: 720px; margin: 0; }
+  .meta-row { display: flex; gap: 24px; padding-top: 12px; }
+  .meta-row .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--gray-10); border: 1px solid var(--gray-50); padding: 8px 14px; border-radius: 9999px; font-family: var(--font-primary); font-size: 12px; font-weight: 500; color: var(--gray-800); }
+  .meta-row .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success-500); }
+  .meta-row .dot.outline { background: transparent; border: 1.5px solid var(--gray-700); }
+  .meta-row .dot.custom { background: var(--secondary-pink-500); }
+  .sheet { background: var(--gray-0); border: 1px solid var(--gray-50); border-radius: 16px; padding: 24px; box-shadow: var(--elevation-1); }
+  .sheet img { width: 100%; height: auto; display: block; }
+  .specs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding-top: 18px; }
+  .specs .item { background: var(--gray-10); border-radius: 10px; padding: 14px 16px; }
+  .specs .item .k { font-family: var(--font-primary); font-weight: 500; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-600); }
+  .specs .item .v { font-family: var(--font-mono); font-size: 12px; color: var(--gray-900); margin-top: 4px; }
+  .specs .item .v b { font-family: var(--font-primary); font-weight: 600; }
+</style></head>
+<body>
+  <h2>Iconografia oficial PGMais</h2>
+  <p class="sub">Conjunto proprietário do design system. Cada ícone está disponível em duas variantes principais — <b>Solid</b> (preenchido) e <b>Outline</b> (contorno) — mais um conjunto <b>Custom</b> para casos específicos. O folder mostra a migração da nomenclatura: <b>Antigo</b> (deprecated) e <b>Novo</b> (atual). Use sempre os ícones marcados como <b>Novo</b>.</p>
+
+  <div class="meta-row">
+    <span class="pill"><span class="dot"></span>Solid · preenchido · uso padrão</span>
+    <span class="pill"><span class="dot outline"></span>Outline · contorno · ação secundária</span>
+    <span class="pill"><span class="dot custom"></span>Custom · ícones especiais</span>
+  </div>
+
+  <div class="sheet">
+    <img src="../assets/icons/pgmais-icons.svg" alt="Folder oficial de ícones PGMais — Solid / Outline / Custom, com pares Antigo/Novo">
+  </div>
+
+  <div class="specs">
+    <div class="item">
+      <div class="k">Stroke</div>
+      <div class="v"><b>1.75–2px</b> · Outline · rounded caps & joins</div>
+    </div>
+    <div class="item">
+      <div class="k">Tamanhos UI</div>
+      <div class="v"><b>16 / 20 / 24 / 32px</b> · 20px é o padrão</div>
+    </div>
+    <div class="item">
+      <div class="k">Cor</div>
+      <div class="v"><b>currentColor</b> · navy em fundo claro, gray-0 em fundo escuro</div>
+    </div>
+    <div class="item">
+      <div class="k">Fonte</div>
+      <div class="v">/assets/icons/pgmais-icons.svg<br>(sprite oficial PGMais)</div>
+    </div>
+    <div class="item">
+      <div class="k">Sem emoji</div>
+      <div class="v">Nunca usar emoji no produto ou marketing</div>
+    </div>
+    <div class="item">
+      <div class="k">Migração</div>
+      <div class="v">Use apenas a versão <b>Novo</b>; <b>Antigo</b> está depreciada</div>
+    </div>
+  </div>
+</body></html>

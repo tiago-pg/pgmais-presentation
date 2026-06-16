@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Elevation</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1100px !important; overflow: visible !important; }
+  body { padding: 28px 32px; gap: 8px; background: var(--gray-30); }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 28px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--coral-500); font-size: 12px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 24px; padding-top: 18px; }
+  .col { display: flex; flex-direction: column; gap: 16px; }
+  .level { background: var(--gray-0); border-radius: 4px; height: 44px; display:flex; align-items:center; padding: 0 16px; font-family: var(--font-primary); font-weight: 700; font-size: 11px; color: var(--gray-800); justify-content: space-between; }
+  .level .role { color: var(--gray-600); font-weight: 400; }
+  .e0 { box-shadow: var(--elevation-0); border: 1px solid var(--gray-50); }
+  .e1 { box-shadow: var(--elevation-1); }
+  .e2 { box-shadow: var(--elevation-2); }
+  .e3 { box-shadow: var(--elevation-3); }
+  .e4 { box-shadow: var(--elevation-4); }
+  .e5 { box-shadow: var(--elevation-5); }
+  .e6 { box-shadow: var(--elevation-6); }
+  .e7 { box-shadow: var(--elevation-7); }
+</style></head>
+<body>
+  <h2>Elevation</h2>
+  <div class="sub">Sombras adicionam profundidade ao destaque visível ao distância e estrutura em superfícies.</div>
+  <div class="grid">
+    <div class="col">
+      <div class="level e0">e0 dp <span class="role">flat</span></div>
+      <div class="level e1">e1 dp <span class="role">card</span></div>
+      <div class="level e2">e2 dp <span class="role">card-hover</span></div>
+      <div class="level e3">e3 dp <span class="role">menu</span></div>
+      <div class="level e4">e4 dp <span class="role">popover</span></div>
+      <div class="level e5">e5 dp <span class="role">drawer</span></div>
+      <div class="level e6">e6 dp <span class="role">dialog</span></div>
+      <div class="level e7">e7 dp <span class="role">modal</span></div>
+    </div>
+    <div class="col">
+      <div class="level e0">e0 dp · left</div>
+      <div class="level e1" style="box-shadow: -2px 0 4px rgba(29,31,39,0.08)">e1 dp · left</div>
+      <div class="level e2" style="box-shadow: -4px 0 8px rgba(29,31,39,0.10)">e2 dp · left</div>
+      <div class="level e3" style="box-shadow: -8px 0 16px rgba(29,31,39,0.10)">e3 dp · left</div>
+      <div class="level e4" style="box-shadow: -12px 0 24px rgba(29,31,39,0.12)">e4 dp · left</div>
+      <div class="level e5" style="box-shadow: -16px 0 32px rgba(29,31,39,0.14)">e5 dp · left</div>
+      <div class="level e6" style="box-shadow: -20px 0 40px rgba(29,31,39,0.16)">e6 dp · left</div>
+      <div class="level e7" style="box-shadow: -24px 0 48px rgba(29,31,39,0.20)">e7 dp · left</div>
+    </div>
+    <div class="col">
+      <div class="level e0">e0 dp · right</div>
+      <div class="level e1" style="box-shadow: 2px 0 4px rgba(29,31,39,0.08)">e1 dp · right</div>
+      <div class="level e2" style="box-shadow: 4px 0 8px rgba(29,31,39,0.10)">e2 dp · right</div>
+      <div class="level e3" style="box-shadow: 8px 0 16px rgba(29,31,39,0.10)">e3 dp · right</div>
+      <div class="level e4" style="box-shadow: 12px 0 24px rgba(29,31,39,0.12)">e4 dp · right</div>
+      <div class="level e5" style="box-shadow: 16px 0 32px rgba(29,31,39,0.14)">e5 dp · right</div>
+      <div class="level e6" style="box-shadow: 20px 0 40px rgba(29,31,39,0.16)">e6 dp · right</div>
+      <div class="level e7" style="box-shadow: 24px 0 48px rgba(29,31,39,0.20)">e7 dp · right</div>
+    </div>
+    <div class="col">
+      <div class="level e0">e0 dp · top</div>
+      <div class="level e1" style="box-shadow: 0 -1px 2px rgba(29,31,39,0.06)">e1 dp · top</div>
+      <div class="level e2" style="box-shadow: 0 -2px 4px rgba(29,31,39,0.08)">e2 dp · top</div>
+      <div class="level e3" style="box-shadow: 0 -4px 8px rgba(29,31,39,0.10)">e3 dp · top</div>
+      <div class="level e4" style="box-shadow: 0 -8px 16px rgba(29,31,39,0.12)">e4 dp · top</div>
+      <div class="level e5" style="box-shadow: 0 -12px 24px rgba(29,31,39,0.14)">e5 dp · top</div>
+      <div class="level e6" style="box-shadow: 0 -16px 32px rgba(29,31,39,0.16)">e6 dp · top</div>
+      <div class="level e7" style="box-shadow: 0 -24px 48px rgba(29,31,39,0.20)">e7 dp · top</div>
+    </div>
+  </div>
+</body></html>

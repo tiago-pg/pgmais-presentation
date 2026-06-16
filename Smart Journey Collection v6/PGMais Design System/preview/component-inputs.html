@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Forms & Inputs — PGMais Components</title>
+<template id="__bundler_thumbnail" data-bg-color="#EFF0F2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#EFF0F2"/>
+    <g transform="translate(150 220)">
+      <rect width="380" height="60" rx="8" fill="#FFFFFF" stroke="#CBD0D6" stroke-width="2"/>
+      <text x="20" y="38" font-family="Lato, sans-serif" font-size="20" fill="#1D1F27">Label</text>
+      <rect x="450" y="0" width="380" height="60" rx="8" fill="#FFFFFF" stroke="#3559EB" stroke-width="2.5"/>
+      <rect x="450" y="0" width="380" height="60" rx="8" fill="none" stroke="#3559EB" stroke-width="6" opacity="0.18"/>
+      <text x="470" y="38" font-family="Lato, sans-serif" font-size="20" fill="#1D1F27">Focused</text>
+    </g>
+    <g transform="translate(150 350)">
+      <rect width="380" height="60" rx="8" fill="#EFF0F2" stroke="#CBD0D6" stroke-width="2"/>
+      <text x="20" y="38" font-family="Lato, sans-serif" font-size="20" fill="#8A929B">Disabled</text>
+      <rect x="450" y="0" width="380" height="60" rx="8" fill="#FFFFFF" stroke="#F52D00" stroke-width="2"/>
+      <text x="470" y="38" font-family="Lato, sans-serif" font-size="20" fill="#F52D00">Error</text>
+    </g>
+    <text x="600" y="120" font-family="Lato, sans-serif" font-weight="700" font-size="48" fill="#1D1F27" text-anchor="middle">Forms &amp; Inputs</text>
+    <text x="600" y="160" font-family="Lato, sans-serif" font-size="22" fill="#6B717C" text-anchor="middle">PGMais Design System</text>
+    <text x="600" y="540" font-family="Lato, sans-serif" font-weight="700" font-size="14" fill="#3559EB" text-anchor="middle" letter-spacing="2">Loading bundled assets…</text>
+  </svg>
+</template>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { width: 1240px !important; overflow: visible !important; }
+  body { margin:0; background: var(--gray-10); color: var(--fg-default); padding: 40px 48px 64px; font-family: var(--font-secondary); }
+
+  /* Page head */
+  .page-head { margin-bottom: 36px; }
+  .page-head .crumb { font-family: var(--font-primary); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color: var(--gray-500); }
+  .page-head h1 { font: 700 36px/1.15 var(--font-primary); letter-spacing:-.01em; color: var(--gray-900); margin: 6px 0; }
+  .page-head p { font: 400 14px/1.6 var(--font-secondary); color: var(--gray-600); max-width: 720px; margin: 0; }
+
+  /* Section */
+  section { margin-top: 40px; }
+  .sec-title { font: 600 18px/1.3 var(--font-primary); color: var(--gray-900); margin: 0 0 4px; }
+  .sec-desc { font: 400 13px/1.55 var(--font-secondary); color: var(--gray-600); margin: 0 0 20px; max-width: 760px; }
+
+  /* States grid */
+  .states { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 18px; }
+  .state-cell { display: flex; flex-direction: column; gap: 14px; padding: 14px; border: 1px dashed var(--gray-50); border-radius: 10px; min-height: 100px; }
+  .state-cell .label-state { font: 500 10px/1 var(--font-primary); letter-spacing: .14em; text-transform: uppercase; color: var(--gray-500); }
+  .state-cell .render { display: flex; align-items: flex-start; min-height: 40px; }
+  .state-cell .specs { margin-top:auto; font: 400 9px/1.4 var(--font-mono); color: var(--gray-500); border-top: 1px solid var(--gray-30); padding-top: 8px; }
+  .state-cell .specs b { color: var(--gray-700); font-weight: 600; }
+
+  /* hierarchy row */
+  .hier-row { display: grid; grid-template-columns: 140px 1fr; gap: 18px; align-items: stretch; margin-top: 14px; }
+  .hier-row:first-of-type { margin-top: 0; }
+  .hier-label { padding: 18px 14px; background: var(--tertiary-blue-50); border-radius: 10px; border: 1px solid var(--tertiary-blue-100); }
+  .hier-label .h-name { font: 600 13px/1.2 var(--font-primary); color: var(--tertiary-blue-800); margin-bottom: 4px;}
+  .hier-label .h-desc { font: 400 11px/1.45 var(--font-secondary); color: var(--tertiary-blue-700); }
+
+  /* ============================================================
+     INPUT BASE
+     ============================================================ */
+  .field { display: flex; flex-direction: column; gap: 4px; width: 100%; max-width: 320px; }
+  .field .label { font: 600 12px/1.3 var(--font-primary); color: var(--gray-800); }
+  .field .input-wrap {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 40px; padding: 0 12px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-100);
+    border-radius: 8px;
+    transition: all 150ms var(--ease-standard);
+  }
+  .field .input-wrap input,
+  .field .input-wrap select {
+    all: unset; flex: 1;
+    font: 400 13px/1 var(--font-secondary);
+    color: var(--gray-900);
+    min-width: 0;
+  }
+  .field .input-wrap input::placeholder { color: var(--gray-400); }
+  .field .input-wrap .icon-l { color: var(--gray-500); display: inline-flex; flex-shrink: 0; }
+  .field .input-wrap .icon-r { color: var(--gray-500); cursor: pointer; display: inline-flex; flex-shrink: 0; }
+  .field .caption { font: 400 11px/1.4 var(--font-secondary); color: var(--gray-600); }
+  .field .caption.is-error { color: var(--error-700); display: inline-flex; align-items: center; gap: 4px; }
+  .field .caption.is-error svg { flex-shrink: 0; }
+
+  /* Field states */
+  .field.is-hover .input-wrap { border-color: var(--gray-700); background: var(--gray-10); }
+  .field.is-focused .input-wrap { border-color: var(--primary-blue-500); box-shadow: 0 0 0 3px rgba(53,89,235,.18); }
+  .field.is-disabled .input-wrap { background: var(--gray-30); border-color: var(--gray-100); }
+  .field.is-disabled .input-wrap input { color: var(--gray-400); cursor: not-allowed; }
+  .field.is-disabled .label { color: var(--gray-400); }
+  .field.is-error .input-wrap { border-color: var(--error-500); }
+  .field.is-error .input-wrap input { color: var(--error-700); }
+  .field.is-filled .input-wrap input { color: var(--gray-900); font-weight: 500; }
+
+  /* Search input variant */
+  .field-search .input-wrap { background: var(--gray-0); border: 1px solid var(--gray-200); }
+
+  /* Anatomy panel */
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 32px; }
+  .anatomy .specimen { display: flex; flex-direction: column; align-items: stretch; gap: 14px; padding: 28px 20px; }
+  .anatomy .legend { display: grid; grid-template-columns: 22px 1fr; gap: 8px 12px; font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700); }
+  .anatomy .legend .num { width: 22px; height: 22px; border-radius: 50%; background: var(--secondary-pink-500); color: var(--gray-0); font: 700 10px/22px var(--font-primary); text-align: center; }
+  .anatomy .legend b { font-weight: 600; color: var(--gray-900); }
+  .anatomy .legend .meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+
+  /* Search bar with chips (dynamic) */
+  .searchbar {
+    display: flex; align-items: center; gap: 10px;
+    height: 48px; padding: 0 14px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-100);
+    border-radius: 12px;
+  }
+  .searchbar .icon { color: var(--gray-500); }
+  .searchbar input { all: unset; flex: 1; font: 400 14px/1 var(--font-secondary); color: var(--gray-900); }
+  .searchbar input::placeholder { color: var(--gray-400); }
+  .searchbar .btn-primary { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; background: var(--primary-blue-500); color: var(--gray-0); padding: 8px 18px; border-radius: 8px; font: 700 13px/1 var(--font-secondary); }
+
+  .filter-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; background: var(--gray-0); border: 1px solid var(--gray-100); border-radius: 6px; font: 500 12px/1 var(--font-secondary); color: var(--gray-800); }
+  .chip .x { color: var(--gray-500); cursor: pointer; display: inline-flex; }
+  .chip-active { background: var(--primary-blue-50); border-color: var(--primary-blue-200); color: var(--primary-blue-700); }
+  .chip-hint { display: inline-flex; align-items: center; gap: 4px; font: 400 11px/1 var(--font-secondary); color: var(--gray-500); }
+  .chip-hint kbd { display:inline-flex; padding: 2px 5px; background: var(--gray-30); border: 1px solid var(--gray-100); border-radius: 4px; font-family: var(--font-mono); font-size: 10px; color: var(--gray-700); }
+
+  /* Specimen panel for examples like dark theme */
+  .examples-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ex-card { padding: 24px; border-radius: 12px; }
+  .ex-light { background: var(--gray-0); border: 1px solid var(--gray-30); }
+  .ex-dark  { background: var(--gray-900); border: 1px solid var(--gray-800); }
+  .ex-dark .field .label { color: var(--gray-100); }
+  .ex-dark .field .input-wrap { background: var(--gray-800); border-color: var(--gray-700); }
+  .ex-dark .field .input-wrap input { color: var(--gray-30); }
+  .ex-dark .field .input-wrap input::placeholder { color: var(--gray-500); }
+  .ex-dark .field .caption { color: var(--gray-400); }
+  .ex-card .ex-title { font: 600 11px/1 var(--font-primary); letter-spacing: .14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 14px; }
+  .ex-dark .ex-title { color: var(--gray-400); }
+
+  .col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Password field */
+  .field .pw-toggle { all: unset; cursor: pointer; color: var(--gray-500); display: inline-flex; padding: 2px; border-radius: 4px; }
+  .field .pw-toggle:hover { color: var(--gray-700); }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Components · Forms & Inputs</div>
+  <h1>Forms & Inputs</h1>
+  <p>Componentes de coleta de dados: campos de texto, busca, mostrar/ocultar senha, números e barra de busca dinâmica. Cada componente segue a hierarquia label → input → caption e responde a 6 estados (Enable, Hover, Focused, Disabled, Error, Filled).</p>
+</header>
+
+<!-- ============================================================
+     ANATOMY
+     ============================================================ -->
+<section>
+  <h2 class="sec-title">Anatomia</h2>
+  <p class="sec-desc">Estrutura base: label, container com ícone opcional, caption ou mensagem de erro.</p>
+
+  <div class="anatomy">
+    <div class="specimen">
+      <div class="field">
+        <div class="label">Label</div>
+        <div class="input-wrap">
+          <input type="text" placeholder="Placeholder">
+        </div>
+        <div class="caption">Caption</div>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="num">1</span><div><b>Label</b><div class="meta">Style: Body 2 bold · 12px · color gray-800</div></div>
+      <span class="num">2</span><div><b>Container</b><div class="meta">Border: 1px gray-100 · radius 8px · padding 0 12px · height 40px</div></div>
+      <span class="num">3</span><div><b>Input text</b><div class="meta">Style: Body 2 · 13px · color gray-900 (gray-400 placeholder)</div></div>
+      <span class="num">4</span><div><b>Caption</b><div class="meta">Style: Caption · 11px · color gray-600</div></div>
+      <span class="num">5</span><div><b>Ícones (opcional)</b><div class="meta">Esquerda (busca) ou direita (toggle, clear)</div></div>
+      <span class="num">6</span><div><b>Mensagem de erro</b><div class="meta">Color error-700 · com ícone de alerta</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INPUT STATES (single hierarchy)
+     ============================================================ -->
+<section>
+  <h2 class="sec-title">Input · Estados</h2>
+  <p class="sec-desc">Componente de input para preenchimento de informações em formato de texto. 6 estados oficiais.</p>
+
+  <div class="states">
+    <div class="state-cell">
+      <div class="label-state">Enable</div>
+      <div class="render">
+        <div class="field">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input placeholder="Digite aqui..."></div>
+          <div class="caption">Caption</div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> 1px gray-100<br><b>BG</b> gray-0</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Hover</div>
+      <div class="render">
+        <div class="field is-hover">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input placeholder="Digite aqui..."></div>
+          <div class="caption">Caption</div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> 1px gray-700<br><b>BG</b> gray-10</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Focused</div>
+      <div class="render">
+        <div class="field is-focused">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input value="|"></div>
+          <div class="caption">Caption</div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> 1px primary-blue-500<br><b>Ring</b> 3px blue/18</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Disabled</div>
+      <div class="render">
+        <div class="field is-disabled">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input placeholder="Digite aqui..." disabled></div>
+          <div class="caption">Caption</div>
+        </div>
+      </div>
+      <div class="specs"><b>BG</b> gray-30<br><b>Color</b> gray-400</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Error</div>
+      <div class="render">
+        <div class="field is-error">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input value="texto inválido"></div>
+          <div class="caption is-error">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 1 22h22L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9v5M12 17v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Some error message
+          </div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> 1px error-500<br><b>Color</b> error-700</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Filled</div>
+      <div class="render">
+        <div class="field is-filled">
+          <div class="label">Label</div>
+          <div class="input-wrap"><input value="João Silva"></div>
+          <div class="caption">Caption</div>
+        </div>
+      </div>
+      <div class="specs"><b>Color</b> gray-900<br><b>Weight</b> 500</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INPUT VARIANTS (search, password, number)
+     ============================================================ -->
+<section>
+  <h2 class="sec-title">Variantes</h2>
+  <p class="sec-desc">Inputs especializados: busca, mostrar/ocultar senha e numérico.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Search</div>
+      <div class="h-desc">Com ícone de lupa à esquerda e estado de clear opcional.</div>
+    </div>
+    <div class="states">
+      <div class="state-cell">
+        <div class="label-state">Enable</div>
+        <div class="render">
+          <div class="field field-search">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <span class="icon-l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input placeholder="Label">
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Icon</b> lupa esquerda</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Focused</div>
+        <div class="render">
+          <div class="field field-search is-focused">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <span class="icon-l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input value="|">
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Ring</b> 3px blue/18</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Filled / Clear</div>
+        <div class="render">
+          <div class="field field-search is-filled">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <span class="icon-l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input value="Maria">
+              <span class="icon-r"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="m9 9 6 6M9 15l6-6"/></svg></span>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Clear</b> botão circular X</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Disabled</div>
+        <div class="render">
+          <div class="field field-search is-disabled">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <span class="icon-l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input placeholder="Label" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>BG</b> gray-30</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Error</div>
+        <div class="render">
+          <div class="field field-search is-error">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <span class="icon-l"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+              <input value="abc!@#">
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> error-500</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Password</div>
+      <div class="h-desc">Mostrar/ocultar senha com botão olho à direita.</div>
+    </div>
+    <div class="states" style="grid-template-columns: repeat(3, 1fr)">
+      <div class="state-cell">
+        <div class="label-state">ShowPass</div>
+        <div class="render">
+          <div class="field">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <input value="MinhaSenh@123" type="text">
+              <button class="pw-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <div class="caption">Caption</div>
+          </div>
+        </div>
+        <div class="specs"><b>Icon</b> olho aberto</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">HidePass</div>
+        <div class="render">
+          <div class="field">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <input value="•••••••••••••" type="text">
+              <button class="pw-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/></svg></button>
+            </div>
+            <div class="caption">Caption</div>
+          </div>
+        </div>
+        <div class="specs"><b>Icon</b> olho riscado</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Error</div>
+        <div class="render">
+          <div class="field is-error">
+            <div class="label">Label</div>
+            <div class="input-wrap">
+              <input value="••••" type="text">
+              <button class="pw-toggle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <div class="caption is-error">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 1 22h22L12 2z" stroke="currentColor" stroke-width="2"/><path d="M12 9v5M12 17v1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Senha muito curta
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> error-500</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Number</div>
+      <div class="h-desc">Input numérico com spinners e estados de status.</div>
+    </div>
+    <div class="states" style="grid-template-columns: repeat(5, 1fr)">
+      <div class="state-cell">
+        <div class="label-state">Default</div>
+        <div class="render">
+          <div class="field" style="max-width: 120px">
+            <div class="input-wrap" style="padding-right: 4px">
+              <input type="number" value="N">
+              <span class="icon-r" style="display:flex;flex-direction:column;gap:1px;color:var(--gray-500)">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> gray-100</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Focused</div>
+        <div class="render">
+          <div class="field is-focused" style="max-width: 120px">
+            <div class="input-wrap" style="padding-right: 4px">
+              <input type="text" value="|">
+              <span class="icon-r" style="display:flex;flex-direction:column;gap:1px;color:var(--gray-500)">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> primary-blue-500</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Error</div>
+        <div class="render">
+          <div class="field is-error" style="max-width: 120px">
+            <div class="input-wrap" style="padding-right: 4px">
+              <input type="number" value="N">
+              <span class="icon-r" style="display:flex;flex-direction:column;gap:1px;color:var(--error-500)">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> error-500</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Success</div>
+        <div class="render">
+          <div class="field" style="max-width: 120px">
+            <div class="input-wrap" style="padding-right: 4px;border-color:var(--success-500)">
+              <input type="number" value="N">
+              <span class="icon-r" style="display:flex;flex-direction:column;gap:1px;color:var(--success-700)">
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 5l4-4 4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Border</b> success-500</div>
+      </div>
+      <div class="state-cell">
+        <div class="label-state">Disabled</div>
+        <div class="render">
+          <div class="field is-disabled" style="max-width: 120px">
+            <div class="input-wrap"><input type="number" value="N" disabled></div>
+          </div>
+        </div>
+        <div class="specs"><b>BG</b> gray-30</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DYNAMIC SEARCH BAR
+     ============================================================ -->
+<section>
+  <h2 class="sec-title">Dynamic Search Bar</h2>
+  <p class="sec-desc">Componente para pesquisas com filtros ativos. Combina input de busca, atalhos de teclado e chips removíveis.</p>
+
+  <div class="ex-card ex-light" style="padding: 28px">
+    <div class="ex-title">Estado preenchido com filtros ativos</div>
+    <div class="searchbar">
+      <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+      <input placeholder="Pesquise com palavras-chave como nome, cpf, telefone, empresa">
+      <button class="btn-primary">Pesquisar
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+    </div>
+    <div class="filter-chips">
+      <span class="chip-hint">Estou procurando por</span>
+      <span class="chip chip-active">cpf: 123.456.789-00 <span class="x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></span>
+      <span class="chip">nome: cliente <span class="x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></span>
+      <span class="chip">telefone: número <span class="x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></span>
+      <span class="chip">email: email <span class="x"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></span></span>
+      <span class="chip-hint" style="margin-left: auto"><kbd>↹</kbd> Setas para navegar · <kbd>↵</kbd> Enter ou + para selecionar · <kbd>⌫</kbd> Backspace para remover o filtro</span>
+    </div>
+  </div>
+
+  <div class="examples-row" style="margin-top: 16px">
+    <div class="ex-card ex-light">
+      <div class="ex-title">Default</div>
+      <div class="searchbar">
+        <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+        <input placeholder="Pesquise com palavras-chave como nome, cpf, telefone, empresa">
+        <button class="btn-primary">Pesquisar
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="ex-card ex-light">
+      <div class="ex-title">Active Filter (single tag)</div>
+      <div class="searchbar">
+        <span class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg></span>
+        <input value="">
+        <button class="btn-primary">Filtro: ativo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LIGHT + DARK EXAMPLES
+     ============================================================ -->
+<section>
+  <h2 class="sec-title">Exemplos · Light & Dark</h2>
+  <p class="sec-desc">O componente funciona em ambos os contextos. No modo dark, container vai para gray-800 e label sobe para gray-100.</p>
+
+  <div class="examples-row">
+    <div class="ex-card ex-light">
+      <div class="ex-title">Light surface</div>
+      <div class="col-grid">
+        <div class="field">
+          <div class="label">Nome completo</div>
+          <div class="input-wrap"><input value="Maria Santos"></div>
+          <div class="caption">Conforme documento de identidade</div>
+        </div>
+        <div class="field is-focused">
+          <div class="label">E-mail</div>
+          <div class="input-wrap"><input value="maria@empresa.com.br|"></div>
+          <div class="caption">Receberá confirmação aqui</div>
+        </div>
+      </div>
+    </div>
+    <div class="ex-card ex-dark">
+      <div class="ex-title">Dark surface</div>
+      <div class="col-grid">
+        <div class="field">
+          <div class="label">Nome completo</div>
+          <div class="input-wrap"><input value="Maria Santos"></div>
+          <div class="caption">Conforme documento de identidade</div>
+        </div>
+        <div class="field is-focused">
+          <div class="label">E-mail</div>
+          <div class="input-wrap"><input value="maria@empresa.com.br|"></div>
+          <div class="caption">Receberá confirmação aqui</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

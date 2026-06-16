@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Typography</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1100px !important; overflow: visible !important; }
+  body { padding: 24px 28px; gap: 0; }
+  .topbar { display:flex; justify-content:space-between; align-items:baseline; padding-bottom: 12px; border-bottom: 1px solid var(--gray-50); }
+  .topbar .meta { font-family: var(--font-primary); font-size: 12px; color: var(--gray-700); display:flex; gap: 28px; }
+  .row { display: grid; grid-template-columns: 130px 1fr 280px 220px; gap: 18px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--gray-50); }
+  .row:last-child { border-bottom: none; }
+  .pill { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; background: var(--gray-900); color: var(--gray-0); border-radius: 4px; font-family: var(--font-primary); font-weight: 700; font-size: 11px; width: fit-content; white-space: nowrap; }
+  .preview { font-family: 'Lato', sans-serif; color: var(--gray-800); line-height: 120%; }
+  .props { font-family: var(--font-mono); font-size: 10px; line-height: 1.7; color: var(--gray-800); }
+  .props .k { color: var(--gray-600); }
+  .props .v { color: var(--primary-blue-500); float: right; }
+  .uso { font-family: var(--font-primary); font-size: 11px; line-height: 1.5; color: var(--gray-700); }
+  .colhead { font-family: var(--font-primary); font-weight: 700; font-size: 11px; color: var(--gray-700); letter-spacing: 0.04em; text-transform: uppercase; }
+  .header-row { display: grid; grid-template-columns: 130px 1fr 280px 220px; gap: 18px; padding-bottom: 8px; }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 28px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+</style></head>
+<body>
+  <h2 style="margin-bottom:6px">Tipografia</h2>
+  <div class="topbar">
+    <div class="meta"><span>Base Value: 16</span><span>Scale: 1.25</span><span>Família: Lato</span></div>
+  </div>
+  <div class="header-row">
+    <div class="colhead">Nome</div><div class="colhead">Visualização</div><div class="colhead">Propriedade</div><div class="colhead">Uso</div>
+  </div>
+  <div id="rows"></div>
+  <script>
+    const roles = [
+      ['Headline 1', 61, 300, 'Make innovation happen', 'Esse tipo de texto (Headline 1) é o maior texto na tela, são reservados para textos curtos, importantes e numerais.'],
+      ['Headline 2', 49, 300, 'Make innovation happen', 'Esse tipo de texto (Headline 2) é o maior texto na tela, são reservados para textos curtos, importantes e numerais.'],
+      ['Headline 3', 39, 300, 'Make innovation happen', 'Esse tipo de texto (Headline 3) é o maior texto na tela, são reservados para textos curtos, importantes e numerais.'],
+      ['Headline 4', 31, 300, 'Make innovation happen', 'Esse tipo de texto (Headline 4) é o maior texto na tela, são reservados para textos curtos, importantes e numerais.'],
+      ['Subtitle 1', 25, 300, 'Make innovation happen', 'Subtítulos são menores que headlines. Eles são usados para textos de ênfase mediana e geralmente são curtos.'],
+      ['Subtitle 2', 20, 300, 'Make innovation happen', 'Subtítulos são menores que headlines. Eles são usados para textos de ênfase mediana e geralmente são curtos.'],
+      ['Subtitle 3', 16, 600, 'Make innovation happen', 'Subtítulos são menores que headlines. Eles são usados para textos de ênfase mediana e geralmente são curtos.'],
+      ['Body 1',     16, 400, 'Make innovation happen', 'Esse tamanho de texto é utilizado para textos mais longos como descrições de páginas, conteúdos, etc.'],
+      ['Body 2',     13, 300, 'Make innovation happen', 'Esse tamanho de texto é utilizado para textos mais longos como descrições de páginas, conteúdos, etc.'],
+      ['Body 2 italic', 13, 300, 'Make innovation happen', 'Esse tamanho de texto é utilizado para textos mais longos como descrições de páginas, conteúdos, etc.', 'italic'],
+      ['Body 2 bold',   13, 700, 'Make innovation happen', 'Esse tamanho de texto é utilizado para textos mais longos como descrições de páginas, conteúdos, etc.'],
+      ['Caption',    10, 400, 'Make innovation happen', 'Esse tamanho de texto é o menor e é utilizado como fonte de imagens ou para introduzir uma headline'],
+    ];
+    const root = document.getElementById('rows');
+    root.innerHTML = roles.map(([name, size, weight, sample, uso, style])=>{
+      const rem = (size/16).toFixed(3).replace(/0+$/,'').replace(/\.$/,'');
+      const fontStyle = style==='italic' ? 'italic' : 'normal';
+      const transform = name.startsWith('Caption') ? 'none' : 'capitalize';
+      return `<div class="row">
+        <div><span class="pill">${name}</span></div>
+        <div class="preview" style="font-size:${size}px; font-weight:${weight}; font-style:${fontStyle}">${sample}</div>
+        <div class="props">
+          <div><span class="k">font-style:</span><span class="v">${fontStyle}</span></div>
+          <div><span class="k">font-weight:</span><span class="v">${weight}</span></div>
+          <div><span class="k">font-size:</span><span class="v">${size}px / ${rem}rem</span></div>
+          <div><span class="k">font-family:</span><span class="v">Lato</span></div>
+          <div><span class="k">line-height:</span><span class="v">120%</span></div>
+          <div><span class="k">text-transform:</span><span class="v">${transform}</span></div>
+        </div>
+        <div class="uso">${uso}</div>
+      </div>`;
+    }).join('');
+  </script>
+</body></html>

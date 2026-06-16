@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><title>PGMais · Vertical title</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#0a1230}
+.slide{width:1280px;height:720px;background:#172c66;color:#ededed;position:relative;overflow:hidden;font-family:var(--font-primary)}
+/* Frame: right edge bleeds off-screen. Top, left and bottom visible. */
+.frame{position:absolute;top:100px;bottom:100px;left:220px;right:-200px;border-radius:48px;pointer-events:none}
+.frame::before{content:"";position:absolute;inset:0;border-radius:48px;padding:1.5px;background:linear-gradient(135deg,#40eb4f 0%,#0120eb 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.title-col{position:absolute;left:60px;top:80px;bottom:80px;width:140px;display:flex;align-items:center;justify-content:center;z-index:2}
+.title-col .t{font-family:var(--font-primary);font-weight:900;font-size:42px;line-height:1.02;color:#40eb4f;letter-spacing:-0.01em;writing-mode:vertical-rl;transform:rotate(180deg);white-space:normal;text-align:center}
+.body{position:absolute;left:300px;right:80px;top:50%;transform:translateY(-50%);z-index:2}
+.body p{font-family:var(--font-secondary);font-weight:400;font-size:30px;line-height:1.45;color:#ededed;margin:0}
+.plus{position:absolute;top:36px;right:48px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;z-index:3}
+.plus img{width:100%;height:100%;display:block}
+</style></head>
+<body><div class="slide" data-screen-label="Vertical Title + Body">
+<div class="frame"></div>
+<div class="title-col"><div class="t">Clique para adicionar um título</div></div>
+<div class="body"><p>Clique para adicionar texto de apoio. Parágrafo em Poppins Regular para desenvolver um argumento técnico com tom humano.</p></div>
+<div class="plus"><img src="../assets/logos/pgmais-simbolo-dark.png" alt=""></div>
+</div></body></html>

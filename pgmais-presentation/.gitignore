@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+.next/
+.next-trace/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# env
+.env
+.env.local
+.env.*.local

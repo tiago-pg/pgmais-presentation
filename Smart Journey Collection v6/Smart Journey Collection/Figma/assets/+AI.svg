@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 170">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="78.2" y1="164.21" x2="156.56" y2="9.62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3db6f3"/>
+      <stop offset=".2" stop-color="#3db6f3"/>
+      <stop offset="1" stop-color="#3a60ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="7.37" y1="128.31" x2="85.72" y2="-26.28" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="77.29" y1="163.75" x2="155.65" y2="9.16" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="101.25" y1="175.9" x2="179.63" y2="21.28" xlink:href="#linear-gradient"/>
+  </defs>
+  <path class="cls-4" d="M197.9,66.49c-7.22-31.72-33.47-56.6-65.39-61.94-2.98-.5-5.98-.83-8.97-1.24h-10.21c-1.1.14-2.2.28-3.3.4-18.58,2.08-34.69,9.51-48.24,22.39-7.08,6.73-12.71,14.55-16.98,23.33-1.4,2.87-1.26,5.68.58,8.3,1.8,2.57,4.37,3.67,7.47,3.3,3.42-.4,5.34-2.63,6.81-5.57,13.3-26.51,42.89-40.82,71.91-34.84,35.28,7.27,58.32,42.07,51.15,77.25-8.74,42.93-56.08,65.53-94.94,45.27-12.81-6.68-22.26-16.68-28.69-29.59-2.15-4.31-6.84-5.9-10.89-3.83-3.99,2.03-5.43,6.69-3.39,10.92,17.77,36.96,61.22,55.05,100.01,41.64,39.7-13.73,62.4-54.72,53.05-95.79Z"/>
+  <path class="cls-1" d="M58.64,79.46h-15.6c-4.51,0-8.18-3.67-8.18-8.18v-15.6h-11.08v23.78H0v11.08h15.6c4.51,0,8.17,3.67,8.17,8.18v15.6h11.08v-23.78h23.78v-11.08Z"/>
+  <path class="cls-3" d="M100,54.29l-22.42,57.93h10.5c1.11,0,2.05-.3,2.8-.89.76-.6,1.28-1.27,1.57-2.01l3.42-10.1h22.03l3.42,10.1c.37.85.91,1.54,1.63,2.09.72.54,1.66.82,2.82.82h10.42l-22.42-57.93h-13.76ZM98.96,90.08l5.33-15.78c.4-1.01.82-2.2,1.27-3.58.45-1.38.88-2.88,1.27-4.49.45,1.59.9,3.07,1.35,4.43.45,1.37.87,2.55,1.27,3.56l5.37,15.86h-15.86Z"/>
+  <rect class="cls-2" x="141.45" y="54.29" width="13.52" height="57.93"/>
+</svg>

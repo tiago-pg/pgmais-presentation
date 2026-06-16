@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1 { fill: currentColor; }
+      .cls-2 { fill: currentColor; }
+    </style>
+  </defs>
+  <path class="cls-2" d="M124.89,90.54c-7.94,0-14.4-6.46-14.4-14.4v-27.49h-19.52v41.89h-41.89v19.52h27.49c7.94,0,14.4,6.46,14.4,14.4v27.49h19.52v-41.89h41.89v-19.52h-27.49Z"/>
+  <path class="cls-1" d="M100,9.36C50.02,9.36,9.36,50.02,9.36,100s40.66,90.64,90.64,90.64,90.64-40.66,90.64-90.64S149.98,9.36,100,9.36M100,200C44.86,200,0,155.14,0,100S44.86,0,100,0s100,44.86,100,100-44.86,100-100,100"/>
+</svg>

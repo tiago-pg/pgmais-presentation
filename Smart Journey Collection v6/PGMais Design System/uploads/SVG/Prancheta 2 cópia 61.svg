@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223 153">
+  <defs>
+    
+    <linearGradient id="linear-gradient" x1="74.7" y1="56.5" x2="146.59" y2="56.5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3db6f3"></stop>
+      <stop offset=".2" stop-color="#3db6f3"></stop>
+      <stop offset="1" stop-color="#3a60ff"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="83.15" y1="56.3" x2="148.95" y2="56.3" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-3" x1="91.61" y1="56.3" x2="118.47" y2="56.3" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="100.26" y1="56.3" x2="131.84" y2="56.3" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <text class="cls-2" transform="translate(73.81 138.95)"><tspan x="0" y="0">Seeds</tspan></text>
+  <g id="Group_1067" data-name="Group 1067">
+    <g id="Path_1823" data-name="Path 1823">
+      <path class="cls-5" d="M116.34,98.15c-22.96,0-41.65-18.68-41.65-41.65S93.38,14.85,116.34,14.85c11.01,0,21.52,4.33,29.6,12.21.84.82.86,2.17.04,3.01-.82.84-2.17.86-3.01.04-7.28-7.09-16.74-11-26.63-11-20.62,0-37.4,16.78-37.4,37.4s16.78,37.4,37.4,37.4c1.17,0,2.13.95,2.13,2.13s-.95,2.13-2.13,2.13Z"></path>
+    </g>
+    <g id="Path_1824" data-name="Path 1824">
+      <path class="cls-1" d="M116.34,89.5c-18.3,0-33.19-14.89-33.19-33.19s14.89-33.19,33.19-33.19c15.73,0,29.43,11.22,32.56,26.68.23,1.15-.51,2.27-1.66,2.51-1.15.23-2.27-.51-2.51-1.66-2.73-13.48-14.67-23.27-28.39-23.27-15.96,0-28.94,12.98-28.94,28.94s12.98,28.94,28.94,28.94c1.17,0,2.13.95,2.13,2.13s-.95,2.13-2.13,2.13Z"></path>
+    </g>
+    <g id="Path_1825" data-name="Path 1825">
+      <path class="cls-4" d="M116.34,81.04c-13.64,0-24.74-11.1-24.74-24.74s10.87-24.74,24.74-24.74c1.17,0,2.13.95,2.13,2.13s-.95,2.13-2.13,2.13c-11.49,0-20.49,9-20.49,20.49s9.19,20.49,20.49,20.49c1.17,0,2.13.95,2.13,2.13s-.95,2.13-2.13,2.13Z"></path>
+    </g>
+    <g id="Path_1826" data-name="Path 1826">
+      <path class="cls-3" d="M116.34,72.39c-8.87,0-16.09-7.22-16.09-16.09s7.22-16.09,16.09-16.09c7.11,0,13.3,4.55,15.4,11.33.35,1.12-.28,2.31-1.4,2.66-1.12.35-2.31-.28-2.66-1.4-1.55-4.99-6.1-8.34-11.34-8.34-6.53,0-11.83,5.31-11.83,11.83s5.31,11.83,11.83,11.83c1.17,0,2.13.95,2.13,2.13s-.95,2.13-2.13,2.13Z"></path>
+    </g>
+  </g>
+</svg>

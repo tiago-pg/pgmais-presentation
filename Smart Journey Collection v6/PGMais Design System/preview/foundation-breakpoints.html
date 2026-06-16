@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Breakpoints</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1200px !important; overflow: visible !important; }
+  body { padding: 24px 28px; gap: 6px; background: var(--gray-30); }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 24px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--coral-500); font-size: 12px; }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; padding-top: 12px; }
+  .bp { display: flex; flex-direction: column; gap: 8px; }
+  .bp .meta { font-family: var(--font-primary); font-size: 11px; color: var(--gray-900); display: flex; align-items: baseline; gap: 6px; }
+  .bp .meta b { font-weight: 700; }
+  .bp .frame { position: relative; height: 200px; background: var(--gray-0); padding: 8px; display: grid; gap: 4px; align-content: stretch; }
+  .bp .frame::before { content:""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--error-500); }
+  .bp .frame::after { content:""; position: absolute; right: -2px; top: -8px; width: 8px; height: 8px; border-radius: 50%; background: var(--purple-500); }
+  .col { background: var(--secondary-blue-300); border-radius: 1px; height: 100%; }
+  .gut { background: transparent; }
+  .container-row { padding-top: 18px; }
+  .container-row .meta { display:flex; align-items:baseline; gap: 12px; }
+  .container-row .frame { width: 60%; height: 220px; padding: 12px; }
+  .pad { background: var(--green-100); }
+  .stack-demo { display: flex; gap: 18px; padding-top: 18px; align-items: flex-start; }
+  .code { background: var(--gray-900); color: var(--gray-30); border-radius: 4px; padding: 12px 14px; font-family: var(--font-mono); font-size: 10px; line-height: 1.6; width: 280px; white-space: pre; }
+  .specimen { background: var(--gray-200); border-radius: 4px; padding: 16px; width: 220px; display:flex; flex-direction:column; gap:10px; }
+  .specimen .pill { background: var(--gray-0); border-radius: 4px; padding: 8px 12px; font-family: var(--font-primary); font-size: 11px; color: var(--gray-900); text-align:center; }
+  .specimen .label { font-family: var(--font-primary); font-size: 9px; color: var(--gray-700); text-align: center; }
+</style></head>
+<body>
+  <h2>Breakpoints</h2>
+  <div class="sub">Definimos breakpoints para escalar nossos componentes em PGMais para diferentes resoluções.</div>
+
+  <div class="row">
+    <div class="bp">
+      <div class="meta"><b>Full HD 4k</b> / &gt; 1904px*</div>
+      <div class="frame" style="grid-template-columns: 0.6fr repeat(12, 1fr) 0.6fr">
+        <div class="gut"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="gut"></div>
+      </div>
+    </div>
+    <div class="bp">
+      <div class="meta"><b>Desktop Large</b> / 1264px – 1904px*</div>
+      <div class="frame" style="grid-template-columns: repeat(12, 1fr) 0.4fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="gut"></div>
+      </div>
+    </div>
+    <div class="bp">
+      <div class="meta"><b>Medium Laptop ou Tablet</b> / 940px – 1264px</div>
+      <div class="frame" style="grid-template-columns: repeat(8, 1fr) 0.4fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="gut"></div>
+      </div>
+    </div>
+    <div class="bp">
+      <div class="meta"><b>Small Tablet</b> / 600px – 940px</div>
+      <div class="frame" style="grid-template-columns: repeat(8, 1fr) 0.4fr">
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+        <div class="gut"></div>
+      </div>
+    </div>
+    <div class="bp">
+      <div class="meta"><b>Extra Small Phone</b> / &lt; 600px</div>
+      <div class="frame" style="grid-template-columns: repeat(4, 1fr)">
+        <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-row">
+    <div class="meta" style="font-family:var(--font-primary); font-size:14px; color:var(--gray-900); font-weight:700">Container Fluid</div>
+  </div>
+  <div class="stack-demo">
+    <div class="frame" style="position:relative; flex: 1; height:220px; background:var(--gray-0); padding: 16px; display:grid; grid-template-columns: repeat(12, 1fr) 0.6fr; gap: 6px;">
+      <div style="position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--error-500)"></div>
+      <div style="position:absolute;right:-3px;top:-9px;width:9px;height:9px;border-radius:50%;background:var(--purple-500)"></div>
+      <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+      <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+      <div class="col"></div><div class="col"></div><div class="col"></div><div class="col"></div>
+      <div class="gut"></div>
+    </div>
+    <div class="code">@media (min-width:600px)  { /* sm  */ }
+@media (min-width:940px)  { /* md  */ }
+@media (min-width:1264px) { /* lg  */ }
+@media (min-width:1904px) { /* xl  */ }</div>
+    <div class="specimen">
+      <div class="label">small</div>
+      <div class="pill">button</div>
+      <div class="pill">2 columns</div>
+      <div class="label">large</div>
+      <div class="pill" style="font-size:14px">button</div>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<template id="__bundler_thumbnail" data-bg-color="#ededed">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#ededed"/>
+      <g transform="translate(600 360)" fill="#172c66">
+        <text x="0" y="-30" text-anchor="middle" font-family="Lato, sans-serif" font-weight="400" font-size="68" letter-spacing="-1">O orelhão sumiu.</text>
+        <text x="0" y="80"  text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="68" letter-spacing="-1">Sua cobrança acompanhou?</text>
+      </g>
+      <text x="600" y="720" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="32" fill="#172c66">PGMais · Cobrança Multicanal</text>
+    </svg>
+</template>
+<title>PGMais · Cobrança Multicanal</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  .deck { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 920px) { .deck { grid-template-columns: 1fr; } }
+
+  .ph {
+    width: 100%; height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(23,44,102,.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ph.dark-bg { background: rgba(255,255,255,.10); }
+  .ph .ph-text {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(23,44,102,.42);
+    text-align: center;
+    padding: 16px 32px;
+    line-height: 1.4;
+  }
+  .ph.dark-bg .ph-text { color: rgba(255,255,255,.55); }
+  .ph::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(23,44,102,.04) 32px 33px);
+    pointer-events: none;
+  }
+  .ph.dark-bg::after { background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(255,255,255,.05) 32px 33px); }
+
+  .accent-rule {
+    height: 2.5px;
+    width: 320px;
+    background: currentColor;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Frame with brand gradient stroke (slide 07) */
+  .quote-frame {
+    border-radius: 32px;
+    padding: 64px 64px 48px;
+    position: relative;
+  }
+  .quote-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 32px;
+    padding: 2.5px;
+    background: linear-gradient(135deg, #0120eb 0%, #40eb4f 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- PGMais brand symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pg-sym" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M12 7.5v9M7.5 12h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="page">
+  <div class="page-head">
+    <div>
+      <div class="crumb"><a href="index.html">Social</a> &nbsp;/&nbsp; Carrossel 03</div>
+      <h1>Cobrança Multicanal</h1>
+    </div>
+    <div class="meta">
+      8 slides · 1080×1350 · Instagram Feed<br>
+      Provocação editorial · 5 canais
+    </div>
+  </div>
+
+  <div class="deck">
+
+    <!-- ════════════════════════════ 01 · COVER ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>01</b> · Capa · Off-white + foto + pergunta</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="01 Cover">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#0120eb">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--between">
+            <!-- Headline -->
+            <div>
+              <p style="font-family:var(--font-primary); font-weight:400; font-size:52px; line-height:1.15; color:#172c66; margin:0">
+                O orelhão sumiu porque<br>o consumidor <em style="font-style:italic">mudou.</em>
+              </p>
+              <h2 style="font-family:var(--font-primary); font-weight:900; font-size:80px; line-height:1.05; color:#172c66; margin:32px 0 0">
+                Sua cobrança<br>acompanhou?
+              </h2>
+            </div>
+            <!-- Photo bottom -->
+            <div style="height:560px; flex-shrink:0">
+              <div class="ph">
+                <div class="ph-text">FOTO<br>orelhões Telefônica nostálgicos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 02 · STAT ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>02</b> · Stat · Navy + acento verde</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="02 Stat">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#40eb4f">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:96px; line-height:1.04; color:#ededed; margin:0">
+              De 1,5 milhão de aparelhos no auge dos anos 70 para menos de <span style="color:#40eb4f">40 mil hoje.</span>
+            </h2>
+            <div class="accent-rule" style="color:#40eb4f; margin:48px 0 40px"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-size:40px; line-height:1.30; color:#ededed; margin:0; max-width:880px">
+              O aparelho não morreu porque deixou de fazer sentido. <em style="font-style:italic;font-weight:700;color:#40eb4f">Na cobrança, a lógica é a mesma.</em>
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#40eb4f">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 03 · PROVOCATION ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>03</b> · Provocação · Off-white + foto</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="03 Provocation">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#40eb4f">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--between">
+            <h2 style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:56px; line-height:1.18; color:#172c66; margin:0">
+              Quando o canal não acompanha o comportamento do consumidor, <b style="font-style:normal;font-weight:900">ele vira orelhão: tem sinal, mas não conecta.</b>
+            </h2>
+            <div style="height:580px; flex-shrink:0">
+              <div class="ph">
+                <div class="ph-text">FOTO<br>orelhão abandonado na cidade</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s-foot" style="color:#40eb4f">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 04 · CHANNEL ROLE ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>04</b> · Lógica · Degradê azul→verde (brand)</div>
+      <div class="deck-stage">
+        <div class="slide v-gradient" data-screen-label="04 Channel Role">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#40eb4f">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:100px; line-height:1.02; color:#ededed; margin:0; max-width:940px">
+              Cada canal tem um papel.
+            </h2>
+            <h3 style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:70px; line-height:1.10; color:#ededed; margin:32px 0 0; max-width:920px">
+              Acertar a escolha <span style="font-weight:900;font-style:normal">muda a conversa.</span>
+            </h3>
+            <div class="accent-rule" style="color:#40eb4f; margin:56px 0 0"></div>
+          </div>
+
+          <div class="s-foot" style="color:#40eb4f">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 05 · CHANNELS ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>05</b> · 5 canais · Off-white + lista com ⊕</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="05 Channels">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#40eb4f">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--between">
+            <ul class="s-plus-list" style="color:#40eb4f">
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">WhatsApp<small>Negociações e propostas personalizadas em tempo real.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">SMS<small>Lembretes e acionamentos rápidos para perfis de menor engajamento digital.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">E-mail<small>Relacionamentos detalhados, acordos formalizados e histórico.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Voz <em style="font-style:italic;font-weight:400">(voicebot e humano)</em><small>Negociações complexas e perfis que respondem melhor ao contato verbal.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Portais de autonegociação<small>Autonomia para o consumidor resolver no seu tempo, sem constrangimento.</small></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="s-foot" style="color:#40eb4f">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 06 · QUOTE ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>06</b> · Citação · Verde sólido</div>
+      <div class="deck-stage">
+        <div class="slide v-green" data-screen-label="06 Quote">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <p style="font-family:var(--font-primary); font-weight:900; font-size:60px; line-height:1.15; color:#172c66; margin:0 0 56px; text-wrap:pretty">
+              "O erro mais comum nas operações de cobrança é tratar o multicanal como volume. Canal certo não é o que a empresa tem disponível, é o que <em style="font-style:italic">faz sentido para aquela pessoa naquele momento."</em>
+            </p>
+            <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:36px; color:#172c66; margin:0">
+              Samir Silveira — CSO, PGMais
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 07 · FRAMED INSIGHT ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>07</b> · Síntese · Navy + frame brand</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="07 Synthesis">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#40eb4f">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--between">
+            <!-- Framed headline -->
+            <div class="quote-frame">
+              <h2 style="font-family:var(--font-primary); font-weight:900; font-size:64px; line-height:1.08; color:#ededed; margin:0; max-width:780px">
+                Não há canal superior — o que define o resultado é a inteligência por trás da escolha.
+              </h2>
+              <div style="margin-top:36px; display:flex; gap:18px; color:#40eb4f">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </div>
+            </div>
+
+            <div>
+              <p style="font-family:var(--font-primary); font-weight:400; font-size:40px; line-height:1.30; color:#ededed; margin:0 0 28px; max-width:840px">
+                Quer estruturar uma operação de cobrança multicanal com inteligência de dados?
+              </p>
+              <p style="font-family:var(--font-primary); font-weight:900; font-style:italic; font-size:48px; color:#40eb4f; margin:0">
+                Link na bio.
+              </p>
+            </div>
+          </div>
+
+          <div class="s-foot" style="color:#40eb4f">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 08 · CTA ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>08</b> · CTA · Amarelo + Link na bio</div>
+      <div class="deck-stage">
+        <div class="slide v-yellow" data-screen-label="08 CTA">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div class="s-content s-content--center">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:76px; line-height:1.06; color:#172c66; margin:0; max-width:920px">
+              Pronto pra <em style="font-style:italic;font-weight:900">orquestrar canais</em> com dados, IA e gente?
+            </h2>
+            <div class="accent-rule" style="color:#172c66; width:240px; margin:48px 0 40px"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:44px; line-height:1.30; color:#172c66; margin:0">
+              Fale com nossos especialistas.<br>
+              <span style="font-weight:900;font-style:italic">Link na bio.</span>
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Cobrança Digital · Queda do alô</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="_init.js"></script>
+</body>
+</html>

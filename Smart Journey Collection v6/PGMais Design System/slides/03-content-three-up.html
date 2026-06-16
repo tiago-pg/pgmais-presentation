@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PGMais · Content</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0a1230}
+  .slide{width:1280px;height:720px;background:#ededed;color:#172c66;position:relative;overflow:hidden;font-family:var(--font-primary)}
+  .stage{padding:80px 96px;height:100%;display:flex;flex-direction:column}
+  .top{display:flex;align-items:center;justify-content:space-between}
+  .eyebrow{font-family:var(--font-primary);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#4a4e5e}
+  .logo{height:26px}
+  h2{font-family:var(--font-primary);font-weight:700;font-size:52px;line-height:1.05;letter-spacing:-.02em;color:#172c66;margin:40px 0 12px 0;max-width:880px}
+  .sub{font-family:var(--font-secondary);font-size:18px;line-height:1.5;color:#4a4e5e;max-width:760px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:auto}
+  .card{background:#fff;border:1px solid rgba(23,44,102,.08);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+  .card .num{font-family:var(--font-mono);font-size:13px;color:#4a4e5e;letter-spacing:.1em}
+  .card h3{font-family:var(--font-primary);font-weight:700;font-size:24px;line-height:1.15;color:#172c66;margin:0}
+  .card p{font-family:var(--font-secondary);font-size:13.5px;line-height:1.55;color:#4a4e5e;margin:0}
+  .card .dot{width:10px;height:10px;border-radius:50%;background:#40eb4f;position:absolute;top:28px;right:28px}
+  .card.accent{background:#172c66;color:#ededed}
+  .card.accent h3{color:#ededed}
+  .card.accent p{color:rgba(237,237,237,.7)}
+  .card.accent .num{color:rgba(237,237,237,.6)}
+  .card.accent .dot{background:#40eb4f}
+  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:32px}
+  .tagline{font-family:var(--font-primary);font-weight:400;font-size:12px;color:#6d7080;letter-spacing:.04em}
+  .page{font-family:var(--font-mono);font-size:12px;color:#6d7080;letter-spacing:.1em}
+</style></head>
+<body>
+<div class="slide" data-screen-label="03 Atributos">
+  <div class="stage">
+    <div class="top">
+      <div class="eyebrow">BRAND · ATRIBUTOS</div>
+      <img class="logo" src="../assets/logos/pgmais-horizontal-reduzida-light.png" alt="PGMais">
+    </div>
+    <h2>Especialista, Integrador <br>e <span style="color:#40eb4f">Humano</span>.</h2>
+    <div class="sub">Três pilares inegociáveis. A maturidade da PGMais sustentada pela ciência da cobrança, por um hub modular sem silos, e pelo respeito à experiência do usuário final.</div>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01</div><div class="dot"></div>
+        <h3>Especialista</h3>
+        <p>15 anos dominando a ciência da cobrança — do preventivo à gestão de acordos.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div><div class="dot"></div>
+        <h3>Integrador</h3>
+        <p>Hub modular sem silos. Omnichannel nativo, portais de autonegociação white-label.</p>
+      </div>
+      <div class="card accent">
+        <div class="num">03</div><div class="dot"></div>
+        <h3>Humano</h3>
+        <p>Tech, but people first. Tecnologia só é eficiente quando respeita o usuário final.</p>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="tagline">tech, but people first.</div>
+      <div class="page">03 / 06</div>
+    </div>
+  </div>
+</div>
+</body></html>

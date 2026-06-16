@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223 153">
+  <defs>
+    
+    <linearGradient id="linear-gradient" x1="46.11" y1="81.62" x2="103.12" y2="81.62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fe70bd"></stop>
+      <stop offset=".2" stop-color="#fe70bd"></stop>
+      <stop offset="1" stop-color="#3a60ff"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="46.11" y1="61.51" x2="103.12" y2="61.51" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-3" x1="46.11" y1="85.53" x2="103.12" y2="85.53" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="46.11" y1="84.93" x2="103.12" y2="84.93" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-5" x1="46.11" y1="81.68" x2="103.12" y2="81.68" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-6" x1="46.11" y1="89.12" x2="103.12" y2="89.12" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-7" x1="46.11" y1="96.55" x2="103.12" y2="96.55" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <text class="cls-7" transform="translate(111.19 89.71)"><tspan class="cls-13" x="0" y="0">R</tspan><tspan class="cls-3" x="14.91" y="0">e</tspan><tspan class="cls-11" x="29.62" y="0">p</tspan><tspan class="cls-1" x="45.88" y="0">o</tspan><tspan class="cls-9" x="61.05" y="0">r</tspan><tspan x="70.86" y="0">t</tspan></text>
+  <g>
+    <g id="Path_1829" data-name="Path 1829">
+      <path class="cls-12" d="M82.45,110.12h-32.65c-3.04,0-5.6-2.57-5.6-5.6v-40.62c0-.55.24-1.06.65-1.42l10.22-8.89c.34-.3.78-.46,1.24-.46h26.02c3.04,0,5.6,2.57,5.6,5.6v8.94c0,1.04-.84,1.89-1.89,1.89s-1.89-.84-1.89-1.89v-8.94c0-.94-.89-1.83-1.83-1.83h-25.31l-9.04,7.87v39.76c0,.94.89,1.83,1.83,1.83h32.65c.94,0,1.83-.89,1.83-1.83v-1.37c0-1.04.84-1.89,1.89-1.89s1.89.84,1.89,1.89v1.37c0,3.04-2.57,5.6-5.6,5.6Z"></path>
+    </g>
+    <g id="Path_1830" data-name="Path 1830">
+      <path class="cls-2" d="M57.89,69.1h-6.9c-1.04,0-1.89-.84-1.89-1.89s.84-1.89,1.89-1.89h5.02v-9.53c0-1.04.84-1.89,1.89-1.89s1.89.84,1.89,1.89v11.42c0,1.04-.84,1.89-1.89,1.89Z"></path>
+    </g>
+    <g id="Path_1831" data-name="Path 1831">
+      <path class="cls-5" d="M88.82,99.92c-8.07,0-14.38-6.32-14.38-14.38s6.32-14.38,14.38-14.38,14.38,6.45,14.38,14.38-6.32,14.38-14.38,14.38ZM88.82,74.17c-6.37,0-11.37,4.99-11.37,11.37s4.99,11.37,11.37,11.37,11.37-4.99,11.37-11.37-5.1-11.37-11.37-11.37Z"></path>
+    </g>
+    <g id="Path_1832" data-name="Path 1832">
+      <path class="cls-4" d="M88.55,90.76c-.33,0-.66-.11-.92-.32l-5.31-4.11c-.66-.51-.78-1.46-.27-2.12.51-.66,1.46-.78,2.12-.27l4.11,3.19,5.71-7.43c.51-.66,1.46-.78,2.12-.28.66.51.78,1.46.28,2.12l-6.64,8.63c-.24.32-.61.53-1,.58-.06,0-.13.01-.19.01Z"></path>
+    </g>
+    <g id="Line_27" data-name="Line 27">
+      <path class="cls-6" d="M67.85,83.19h-14.07c-.83,0-1.51-.68-1.51-1.51s.68-1.51,1.51-1.51h14.07c.83,0,1.51.68,1.51,1.51s-.68,1.51-1.51,1.51Z"></path>
+    </g>
+    <g id="Line_28" data-name="Line 28">
+      <path class="cls-10" d="M67.98,90.63h-14.2c-.83,0-1.51-.68-1.51-1.51s.68-1.51,1.51-1.51h14.2c.83,0,1.51.68,1.51,1.51s-.68,1.51-1.51,1.51Z"></path>
+    </g>
+    <g id="Line_29" data-name="Line 29">
+      <path class="cls-8" d="M71.43,98.06h-17.65c-.83,0-1.51-.68-1.51-1.51s.68-1.51,1.51-1.51h17.65c.83,0,1.51.68,1.51,1.51s-.68,1.51-1.51,1.51Z"></path>
+    </g>
+  </g>
+</svg>

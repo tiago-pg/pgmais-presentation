@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Get-ChildItem ''Figma/assets/'' | Where-Object { $_Name -like ''CARN*'' } | Select-Object Name\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\thali\\\\Downloads\\\\Smart Journey Collection\\\\Smart Journey Collection\\\\add-carne.ps1\")"
+    ]
+  }
+}

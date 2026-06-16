@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><title>PGMais Slide Templates</title>
+<template id="__bundler_thumbnail" data-bg-color="#0a1230">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a1230"/>
+    <g transform="translate(600 400)">
+      <rect x="-260" y="-150" width="240" height="135" rx="10" fill="#172c66" stroke="#40eb4f" stroke-width="2"/>
+      <rect x="-10" y="-150" width="240" height="135" rx="10" fill="#172c66" stroke="#40eb4f" stroke-width="2"/>
+      <rect x="-260" y="15" width="240" height="135" rx="10" fill="#172c66" stroke="#40eb4f" stroke-width="2"/>
+      <rect x="-10" y="15" width="240" height="135" rx="10" fill="#172c66" stroke="#40eb4f" stroke-width="2"/>
+    </g>
+    <text x="600" y="700" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="40" fill="#ededed">PGMais · Slides</text>
+  </svg>
+</template>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{background:#0a1230;padding:48px;display:flex;flex-direction:column;gap:24px;align-items:center;margin:0}
+  h1{color:#ededed;font-family:'Lato',sans-serif;font-weight:700;margin:0}
+  .sub{color:rgba(237,237,237,.6);font-family:'Poppins',sans-serif;font-size:14px;margin-bottom:8px}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1520px;width:100%}
+  .card{border-radius:12px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,.3);cursor:pointer;transition:transform .2s;text-decoration:none;background:#000}
+  .card:hover{transform:translateY(-4px)}
+  .card .frame{width:100%;aspect-ratio:16/9;overflow:hidden;background:#000;position:relative}
+  .card iframe{width:1280px;height:720px;border:none;transform:scale(.38);transform-origin:top left;pointer-events:none;position:absolute;top:0;left:0}
+  .card .cap{padding:12px 16px;background:#1d3574;color:#ededed;font-family:'Poppins',sans-serif;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+  .card .cap b{font-weight:600}
+  .card .cap span{color:rgba(237,237,237,.6)}
+  .group-head{width:100%;max-width:1520px;display:flex;align-items:baseline;gap:14px;margin-top:24px;padding-bottom:10px;border-bottom:1px solid rgba(237,237,237,.12)}
+  .group-head h2{color:#ededed;font-family:'Lato',sans-serif;font-weight:700;font-size:18px;margin:0}
+  .group-head .count{color:rgba(237,237,237,.5);font-family:'Poppins',sans-serif;font-size:13px}
+</style></head>
+<body>
+  <div style="max-width:1520px;width:100%">
+    <h1>PGMais · Template Institucional</h1>
+    <div class="sub">12 layouts · 1280 × 720 · 16:9</div>
+  </div>
+
+  <div class="group-head"><h2>Apresentação institucional</h2><span class="count">6 slides</span></div>
+  <div class="row">
+    <a class="card" href="01-title.html"><div class="frame"><iframe src="01-title.html"></iframe></div><div class="cap"><b>01 · Title</b><span>hero</span></div></a>
+    <a class="card" href="02-section.html"><div class="frame"><iframe src="02-section.html"></iframe></div><div class="cap"><b>02 · Section</b><span>mapa BR</span></div></a>
+    <a class="card" href="03-content-three-up.html"><div class="frame"><iframe src="03-content-three-up.html"></iframe></div><div class="cap"><b>03 · 3-up content</b><span>headline + cards</span></div></a>
+    <a class="card" href="04-quote.html"><div class="frame"><iframe src="04-quote.html"></iframe></div><div class="cap"><b>04 · Big quote</b><span>navy hero</span></div></a>
+    <a class="card" href="05-stats.html"><div class="frame"><iframe src="05-stats.html"></iframe></div><div class="cap"><b>05 · Stats</b><span>4-up KPI</span></div></a>
+    <a class="card" href="06-thanks.html"><div class="frame"><iframe src="06-thanks.html"></iframe></div><div class="cap"><b>06 · Thanks</b><span>closing</span></div></a>
+  </div>
+
+  <div class="group-head"><h2>Layouts editoriais</h2><span class="count">6 slides</span></div>
+  <div class="row">
+    <a class="card" href="07-ig-quote.html"><div class="frame"><iframe src="07-ig-quote.html"></iframe></div><div class="cap"><b>07 · IG quote</b><span>card + marca</span></div></a>
+    <a class="card" href="08-vertical-title.html"><div class="frame"><iframe src="08-vertical-title.html"></iframe></div><div class="cap"><b>08 · Vertical title</b><span>título 90° + corpo</span></div></a>
+    <a class="card" href="09-outline-hero.html"><div class="frame"><iframe src="09-outline-hero.html"></iframe></div><div class="cap"><b>09 · Outline hero</b><span>frames degradê</span></div></a>
+    <a class="card" href="10-split-body.html"><div class="frame"><iframe src="10-split-body.html"></iframe></div><div class="cap"><b>10 · Split body</b><span>título + texto</span></div></a>
+    <a class="card" href="11-split-light.html"><div class="frame"><iframe src="11-split-light.html"></iframe></div><div class="cap"><b>11 · Navy/Light</b><span>split + barra</span></div></a>
+    <a class="card" href="12-rounded-panel.html"><div class="frame"><iframe src="12-rounded-panel.html"></iframe></div><div class="cap"><b>12 · Rounded panel</b><span>painel arredondado</span></div></a>
+  </div>
+</body></html>

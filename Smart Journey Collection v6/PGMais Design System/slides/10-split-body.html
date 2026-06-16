@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><title>PGMais · Split</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+html,body{margin:0;padding:0;background:#0a1230}
+.slide{width:1280px;height:720px;background:#172c66;color:#ededed;position:relative;overflow:hidden;font-family:var(--font-primary)}
+/* Frame: left edge bleeds off-screen. Top, right and bottom visible. */
+.frame{position:absolute;top:32px;bottom:32px;left:-200px;width:860px;border-radius:48px;pointer-events:none}
+.frame::before{content:"";position:absolute;inset:0;border-radius:48px;padding:1.5px;background:linear-gradient(135deg,#40eb4f 0%,#0120eb 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.left{position:absolute;left:96px;top:50%;transform:translateY(-50%);width:480px;display:flex;flex-direction:column;gap:18px;z-index:2}
+.left h2{font-family:var(--font-primary);font-weight:900;font-size:56px;line-height:1;color:#ededed;margin:0;letter-spacing:-0.02em}
+.left .legenda{font-family:var(--font-secondary);font-weight:400;font-size:22px;line-height:1.3;color:#ededed}
+.right{position:absolute;right:80px;top:50%;transform:translateY(-50%);width:480px;display:flex;align-items:center;z-index:2}
+.right p{font-family:var(--font-secondary);font-weight:400;font-size:22px;line-height:1.5;color:rgba(237,237,237,.95);margin:0}
+.plus{position:absolute;top:36px;right:48px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;z-index:3}
+.plus img{width:100%;height:100%;display:block}
+</style></head>
+<body><div class="slide" data-screen-label="Split Title + Body">
+<div class="frame"></div>
+<div class="left">
+  <h2>Clique para adicionar<br>um título</h2>
+  <div class="legenda">Clique para adicionar uma legenda</div>
+</div>
+<div class="right"><p>Clique para adicionar texto. Use Poppins Regular para descrever um produto, processo, ou capacidade do ecossistema PGMais.</p></div>
+<div class="plus"><img src="../assets/logos/pgmais-simbolo-dark.png" alt=""></div>
+</div></body></html>

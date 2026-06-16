@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Color ramps</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1100px !important; overflow: visible !important; }
+  body { padding: 28px 32px; gap: 18px; }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 28px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .sub { color: var(--coral-500); font-size: 12px; line-height: 1.4; }
+  .ramp { display: flex; flex-direction: column; gap: 6px; }
+  .ramp-name { font-family: var(--font-primary); font-weight: 400; font-size: 13px; color: var(--gray-900); }
+  .stops-head { display: grid; grid-template-columns: repeat(10, 1fr); gap: 0; padding: 0 4px; }
+  .stops-head span { font-family: var(--font-primary); font-size: 10px; color: var(--gray-700); }
+  .stops { display: grid; grid-template-columns: repeat(10, 1fr); height: 56px; border-radius: 4px; overflow: hidden; }
+  .stop { position: relative; }
+  .stop[data-low="1"] { border: 1px solid var(--gray-50); border-right: none; }
+  .stop:last-child[data-low="1"] { border-right: 1px solid var(--gray-50); }
+  .stop .hex { position: absolute; bottom: 4px; left: 4px; font-family: var(--font-mono); font-size: 8px; color: rgba(255,255,255,.85); letter-spacing: 0; opacity: 0; }
+  .stop:hover .hex { opacity: 1; }
+  .ramps { display: flex; flex-direction: column; gap: 14px; }
+</style>
+</head>
+<body>
+  <div>
+    <h2>Cores — uso interno</h2>
+    <div class="sub">Para uso interno dos designers · Paleta completa de graduações (50 → 900) por matiz.</div>
+  </div>
+  <div class="ramps">
+    <!-- generated -->
+  </div>
+  <script>
+    const ramps = [
+      ['primary-blue',   ['#E7EBFD','#C2CDF9','#9AACF5','#728BF1','#5372EE','#3559EB','#3051E9','#2848E5','#223EE2','#162EDD']],
+      ['secondary-blue', ['#E8F6FE','#C5E9FC','#9EDBFA','#77CDF7','#5AC2F6','#3DB7F4','#37B0F3','#2FA7F1','#279FEF','#1A90EC']],
+      ['tertiary-blue',  ['#E5E7F0','#BDC4DA','#929DC1','#6675A8','#455896','#243A83','#20347B','#1B2C70','#162566','#0D1853']],
+      ['brand-email',    ['#E4FBFD','#BCF5FB','#90EFF8','#63E9F5','#41E4F3','#20DFF1','#1CDBEF','#18D7ED','#13D2EB','#0BCAE7']],
+      ['secondary-pink', ['#FFEEF7','#FFD4EB','#FFB8DE','#FE9BD1','#FE85C7','#FE70BD','#FE68B7','#FE5DAE','#FE53A6','#FD4198']],
+      ['cyan',           ['#E2FAF9','#B6F4F0','#85ECE7','#54E4DD','#30DFD5','#0BD9CE','#0AD5C9','#08CFC2','#06CABC','#03C0B0']],
+      ['green',          ['#F3FAE0','#E2F2B3','#CEE980','#BAE04D','#ACD926','#9DD200','#95CD00','#8BC700','#81C100','#5D930A']],
+      ['purple',         ['#F2E8FF','#DFC6FF','#C9A0FF','#B379FF','#A35DFF','#9340FF','#8B3AFF','#8032FF','#7325FF','#641CFF']],
+      ['coral',          ['#FCEDEE','#F9D3D5','#F5B5B9','#F0979C','#ED8187','#EA6B72','#E7636A','#E4585F','#E14E55','#DB3C42']],
+      ['orange',         ['#FEEFE1','#FCD7B3','#FABC80','#F7A14D','#F68D27','#F47901','#F37101','#F16601','#EF5C01','#DB4604']],
+      ['success',        ['#E8FDEA','#C6F9CA','#A0F5A7','#79F184','#5DEE69','#40EB4F','#3AE948','#32E53F','#2AE236','#1CDD26']],
+      ['warning',        ['#FFF7E0','#FFECB3','#FFDF80','#FFD24D','#FFC826','#FFBE00','#FFB800','#FFAF00','#FFA700','#FF9900']],
+      ['error',          ['#FEE6E0','#FCC0B3','#FA9680','#F86C4D','#F74D26','#F52D00','#F42800','#F22200','#F01C00','#EE1100']],
+    ];
+    const stopLabels = ['50','100','200','300','400','500','600','700','800','900'];
+    const root = document.querySelector('.ramps');
+    let html = '';
+    // header row
+    html += '<div class="ramp"><div class="ramp-name" style="visibility:hidden">.</div>';
+    html += '<div class="stops-head">' + stopLabels.map(l=>`<span>${l}</span>`).join('') + '</div></div>';
+    for (const [name, hexes] of ramps) {
+      html += `<div class="ramp"><div class="ramp-name">${name}</div>`;
+      html += '<div class="stops">' + hexes.map((h,i)=>{
+        const isLow = i < 2;
+        return `<div class="stop" style="background:${h}" data-low="${isLow?1:0}"><span class="hex">${h}</span></div>`;
+      }).join('') + '</div></div>';
+    }
+    root.innerHTML = html;
+  </script>
+</body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Select & Dropdown — PGMais Components</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { width: 1240px !important; overflow: visible !important; }
+  body { margin:0; background: var(--gray-10); color: var(--fg-default); padding: 40px 48px 64px; font-family: var(--font-secondary); }
+  .page-head { margin-bottom: 36px; }
+  .page-head .crumb { font-family: var(--font-primary); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color: var(--gray-500); }
+  .page-head h1 { font: 700 36px/1.15 var(--font-primary); letter-spacing:-.01em; color: var(--gray-900); margin: 6px 0; }
+  .page-head p { font: 400 14px/1.6 var(--font-secondary); color: var(--gray-600); max-width: 720px; margin: 0; }
+
+  section { margin-top: 40px; }
+  .sec-title { font: 600 18px/1.3 var(--font-primary); color: var(--gray-900); margin: 0 0 4px; }
+  .sec-desc { font: 400 13px/1.55 var(--font-secondary); color: var(--gray-600); margin: 0 0 20px; max-width: 760px; }
+
+  .states { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 18px; }
+  .state-cell { display: flex; flex-direction: column; gap: 14px; padding: 14px; border: 1px dashed var(--gray-50); border-radius: 10px; min-height: 180px; }
+  .state-cell .label-state { font: 500 10px/1 var(--font-primary); letter-spacing: .14em; text-transform: uppercase; color: var(--gray-500); }
+  .state-cell .render { display: flex; align-items: flex-start; min-height: 40px; }
+  .state-cell .specs { margin-top:auto; font: 400 9px/1.4 var(--font-mono); color: var(--gray-500); border-top: 1px solid var(--gray-30); padding-top: 8px; }
+  .state-cell .specs b { color: var(--gray-700); font-weight: 600; }
+
+  /* Select base */
+  .select { display: flex; flex-direction: column; gap: 4px; width: 220px; position: relative; }
+  .select .label { font: 600 12px/1.3 var(--font-primary); color: var(--gray-800); }
+  .select .trigger {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    height: 40px; padding: 0 12px;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-100);
+    border-radius: 8px;
+    cursor: pointer;
+    font: 400 13px/1 var(--font-secondary);
+    color: var(--gray-900);
+  }
+  .select .trigger .placeholder { color: var(--gray-400); }
+  .select .trigger .caret { color: var(--gray-500); }
+  .select.is-hover .trigger { border-color: var(--gray-700); background: var(--gray-10); }
+  .select.is-focused .trigger { border-color: var(--primary-blue-500); box-shadow: 0 0 0 3px rgba(53,89,235,.18); }
+  .select.is-disabled .trigger { background: var(--gray-30); color: var(--gray-400); cursor: not-allowed; }
+  .select.is-open .trigger { border-color: var(--primary-blue-500); }
+
+  .menu {
+    position: absolute; top: calc(100% + 4px); left: 0; right: 0;
+    background: var(--gray-0);
+    border: 1px solid var(--gray-100);
+    border-radius: 8px;
+    box-shadow: var(--elevation-3);
+    padding: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  .menu .option {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font: 400 13px/1 var(--font-secondary);
+    color: var(--gray-900);
+    cursor: pointer;
+  }
+  .menu .option:hover { background: var(--gray-10); }
+  .menu .option.is-selected { background: var(--primary-blue-50); color: var(--primary-blue-700); font-weight: 500; }
+
+  /* Multi-select with checkbox list */
+  .menu .check {
+    width: 16px; height: 16px; border-radius: 3px; border: 1.5px solid var(--gray-300);
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .menu .option.is-checked .check {
+    background: var(--primary-blue-500); border-color: var(--primary-blue-500); color: var(--gray-0);
+  }
+  .menu .option.is-checked .check svg { display: block; }
+  .menu .check svg { display: none; }
+  .menu .option.is-checked { background: var(--primary-blue-500); color: var(--gray-0); }
+  .menu .option.is-checked .check { background: var(--gray-0); color: var(--primary-blue-500); border-color: var(--gray-0); }
+
+  /* Hierarchy row */
+  .hier-row { display: grid; grid-template-columns: 140px 1fr; gap: 18px; align-items: stretch; margin-top: 14px; }
+  .hier-row:first-of-type { margin-top: 0; }
+  .hier-label { padding: 18px 14px; background: var(--tertiary-blue-50); border-radius: 10px; border: 1px solid var(--tertiary-blue-100); }
+  .hier-label .h-name { font: 600 13px/1.2 var(--font-primary); color: var(--tertiary-blue-800); margin-bottom: 4px; }
+  .hier-label .h-desc { font: 400 11px/1.45 var(--font-secondary); color: var(--tertiary-blue-700); }
+
+  /* Anatomy panel */
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 32px; }
+  .anatomy .specimen { display: flex; flex-direction: column; align-items: stretch; gap: 14px; padding: 0; }
+  .anatomy .legend { display: grid; grid-template-columns: 22px 1fr; gap: 8px 12px; font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700); }
+  .anatomy .legend .num { width: 22px; height: 22px; border-radius: 50%; background: var(--secondary-pink-500); color: var(--gray-0); font: 700 10px/22px var(--font-primary); text-align: center; }
+  .anatomy .legend b { font-weight: 600; color: var(--gray-900); }
+  .anatomy .legend .meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+
+  .demo-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Components · Select & Dropdown</div>
+  <h1>Select & Dropdown</h1>
+  <p>Componente de seleção. Use quando há possibilidade de ter uma listagem com duas ou mais opções. Suporta seleção única e múltipla (com checkbox list).</p>
+</header>
+
+<!-- Anatomy -->
+<section>
+  <h2 class="sec-title">Anatomia</h2>
+  <p class="sec-desc">Label, container clicável com caret de abrir/fechar e menu suspenso com lista de opções.</p>
+
+  <div class="anatomy">
+    <div class="specimen">
+      <div class="select is-open">
+        <div class="label">Label</div>
+        <div class="trigger"><span class="placeholder">Selecione uma opção</span><span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="menu" style="position: static; margin-top: 4px;">
+          <div class="option">Opção 1</div>
+          <div class="option is-selected">Opção 2</div>
+          <div class="option">Opção 3</div>
+          <div class="option">Opção 4</div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="num">1</span><div><b>Label</b><div class="meta">Style Body2 bold · color gray-800</div></div>
+      <span class="num">2</span><div><b>Trigger / Container</b><div class="meta">Border 1px gray-100 · radius 8px · height 40px</div></div>
+      <span class="num">3</span><div><b>Select text / placeholder</b><div class="meta">Style Body2 · color gray-900 (gray-400 placeholder)</div></div>
+      <span class="num">4</span><div><b>Caret icon</b><div class="meta">Token caret-down · color gray-500 · scale 12px</div></div>
+      <span class="num">5</span><div><b>Option container</b><div class="meta">Background gray-0 · padding 4px · radius 8px</div></div>
+      <span class="num">6</span><div><b>Elevation</b><div class="meta">Elevation-3 (menu suspenso)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- States -->
+<section>
+  <h2 class="sec-title">Estados</h2>
+  <p class="sec-desc">Componente fechado responde a 4 estados padrão. Quando aberto, mostra o menu com elevação 3.</p>
+
+  <div class="states">
+    <div class="state-cell">
+      <div class="label-state">Enable</div>
+      <div class="render">
+        <div class="select">
+          <div class="label">Label</div>
+          <div class="trigger"><span class="placeholder">Selecione uma opção</span><span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> 1px gray-100<br><b>BG</b> gray-0</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Hover</div>
+      <div class="render">
+        <div class="select is-hover">
+          <div class="label">Label</div>
+          <div class="trigger"><span class="placeholder">Selecione uma opção</span><span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        </div>
+      </div>
+      <div class="specs"><b>Border</b> gray-700<br><b>BG</b> gray-10</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Focused (open)</div>
+      <div class="render">
+        <div class="select is-focused" style="position: relative">
+          <div class="label">Label</div>
+          <div class="trigger" style="border-color: var(--primary-blue-500)"><span>Opção 1</span><span class="caret" style="transform: rotate(180deg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        </div>
+      </div>
+      <div class="specs"><b>Ring</b> 3px blue/18<br><b>Caret</b> rotated 180°</div>
+    </div>
+    <div class="state-cell">
+      <div class="label-state">Disabled</div>
+      <div class="render">
+        <div class="select is-disabled">
+          <div class="label">Label</div>
+          <div class="trigger"><span class="placeholder">Selecione uma opção</span><span class="caret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        </div>
+      </div>
+      <div class="specs"><b>BG</b> gray-30<br><b>Color</b> gray-400</div>
+    </div>
+  </div>
+</section>
+
+<!-- Open menu variations -->
+<section>
+  <h2 class="sec-title">Menu aberto</h2>
+  <p class="sec-desc">Comportamento de seleção única — destaca a opção ativa em azul. Hover ilumina linha em cinza claro.</p>
+
+  <div class="demo-row">
+    <div class="select is-open">
+      <div class="label">Default</div>
+      <div class="trigger"><span class="placeholder">Selecione uma opção</span><span class="caret" style="transform: rotate(180deg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="menu" style="position: static; margin-top: 4px;">
+        <div class="option">Opção 1</div>
+        <div class="option">Opção 2</div>
+        <div class="option">Opção 3</div>
+        <div class="option">Opção 4</div>
+        <div class="option">Opção 5</div>
+      </div>
+    </div>
+    <div class="select is-open">
+      <div class="label">Com seleção</div>
+      <div class="trigger" style="color: var(--gray-900); font-weight: 500"><span>Opção 2</span><span class="caret" style="transform: rotate(180deg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="menu" style="position: static; margin-top: 4px;">
+        <div class="option">Opção 1</div>
+        <div class="option is-selected">Opção 2</div>
+        <div class="option">Opção 3</div>
+        <div class="option">Opção 4</div>
+      </div>
+    </div>
+    <div class="select is-open">
+      <div class="label">Com busca interna</div>
+      <div class="trigger"><span class="placeholder">|</span><span class="caret" style="transform: rotate(180deg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="menu" style="position: static; margin-top: 4px;">
+        <div style="padding: 6px 12px 8px; border-bottom: 1px solid var(--gray-50); font: 400 11px/1 var(--font-secondary); color: var(--gray-500);">Buscar resultados</div>
+        <div class="option">Opção 1</div>
+        <div class="option">Opção 2</div>
+        <div class="option">Opção 3</div>
+        <div class="option">Opção 4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Multi-select -->
+<section>
+  <h2 class="sec-title">Multi-select (checkbox list)</h2>
+  <p class="sec-desc">Permite múltiplas seleções dentro do mesmo dropdown. Cada item tem um checkbox e a opção selecionada destaca-se em azul.</p>
+
+  <div class="hier-row">
+    <div class="hier-label">
+      <div class="h-name">Opções estados</div>
+      <div class="h-desc">Hover claro · Selecionada destaca toda a linha em azul.</div>
+    </div>
+    <div class="states" style="grid-template-columns: repeat(2, 1fr)">
+      <div class="state-cell" style="min-height: 160px">
+        <div class="label-state">Item · Default & Hover</div>
+        <div class="render" style="flex-direction: column; gap: 6px; width: 100%;">
+          <div class="menu" style="position: static; margin: 0; box-shadow: none; border: 1px solid var(--gray-50); width: 220px;">
+            <div class="option">Opção</div>
+            <div class="option" style="background: var(--secondary-blue-50)">Opção</div>
+            <div class="option" style="background: var(--primary-blue-500); color: var(--gray-0)">Opção</div>
+            <div class="option"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção</div>
+            <div class="option" style="background: var(--secondary-blue-50)"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção</div>
+            <div class="option is-checked"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção</div>
+          </div>
+        </div>
+        <div class="specs"><b>Hover</b> secondary-blue-50<br><b>Selected</b> primary-blue-500</div>
+      </div>
+      <div class="state-cell" style="min-height: 160px">
+        <div class="label-state">Multi · Aberto</div>
+        <div class="render">
+          <div class="select is-open">
+            <div class="label">Marque as opções</div>
+            <div class="trigger" style="border-color: var(--primary-blue-500)"><span>3 selecionadas</span><span class="caret" style="transform: rotate(180deg)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+            <div class="menu" style="position: static; margin-top: 4px;">
+              <div class="option"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção 1</div>
+              <div class="option is-checked"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção 2</div>
+              <div class="option is-checked"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção 3</div>
+              <div class="option"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção 4</div>
+              <div class="option is-checked"><span class="check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Opção 5</div>
+            </div>
+          </div>
+        </div>
+        <div class="specs"><b>Checkbox</b> 16px · radius 3px<br><b>Selected</b> background primary-blue-500</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

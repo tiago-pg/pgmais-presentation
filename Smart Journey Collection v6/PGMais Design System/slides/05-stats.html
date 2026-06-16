@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PGMais · Stats</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#0a1230}
+  .slide{width:1280px;height:720px;background:#ededed;color:#172c66;position:relative;overflow:hidden}
+  .stage{padding:80px 96px;height:100%;display:flex;flex-direction:column}
+  .top{display:flex;align-items:center;justify-content:space-between}
+  .eyebrow{font-family:var(--font-primary);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#4a4e5e}
+  .logo{height:26px}
+  h2{font-family:var(--font-primary);font-weight:900;font-size:52px;line-height:1.05;letter-spacing:-.02em;color:#172c66;margin:36px 0 0 0;max-width:880px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:auto;padding:60px 0 40px 0;border-top:1px solid rgba(23,44,102,.1)}
+  .stat{display:flex;flex-direction:column;gap:8px}
+  .stat .num{font-family:var(--font-primary);font-weight:900;font-size:72px;line-height:1;color:#172c66;letter-spacing:-.03em}
+  .stat .num .plus{color:#40eb4f}
+  .stat .lbl{font-family:var(--font-secondary);font-size:13px;line-height:1.4;color:#4a4e5e;max-width:220px}
+  .rule{height:3px;width:40px;background:linear-gradient(90deg,#40eb4f,#0120eb);border-radius:3px}
+  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+  .tagline{font-family:var(--font-primary);font-size:12px;color:#6d7080}
+  .page{font-family:var(--font-mono);font-size:12px;color:#6d7080;letter-spacing:.1em}
+</style></head>
+<body>
+<div class="slide" data-screen-label="05 Stats">
+  <div class="stage">
+    <div class="top">
+      <div class="eyebrow">CASES · RESULTADOS REAIS</div>
+      <img class="logo" src="../assets/logos/pgmais-horizontal-reduzida-light.png" alt="PGMais">
+    </div>
+    <h2>Números que demonstram a eficiência do ecossistema.</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="rule"></div>
+        <div class="num"><span class="plus">+</span>48%</div>
+        <div class="lbl">Aumento médio na taxa de recuperação para clientes PGMais.</div>
+      </div>
+      <div class="stat">
+        <div class="rule"></div>
+        <div class="num">37%</div>
+        <div class="lbl">Redução de custos operacionais em cases reais.</div>
+      </div>
+      <div class="stat">
+        <div class="rule"></div>
+        <div class="num">70%</div>
+        <div class="lbl">Taxa de interação com nossa IA conversacional proprietária.</div>
+      </div>
+      <div class="stat">
+        <div class="rule"></div>
+        <div class="num">15<span style="color:#40eb4f">+</span></div>
+        <div class="lbl">Anos dominando a ciência da cobrança no Brasil.</div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="tagline">tech, but people first.</div>
+      <div class="page">05 / 06</div>
+    </div>
+  </div>
+</div>
+</body></html>

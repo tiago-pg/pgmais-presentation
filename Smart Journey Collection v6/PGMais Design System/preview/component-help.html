@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Help & Tutorial — PGMais Components</title>
+<template id="__bundler_thumbnail" data-bg-color="#EFF0F2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#EFF0F2"/>
+    <rect x="380" y="180" width="440" height="440" rx="14" fill="#FFFFFF" stroke="#CBD0D6" stroke-width="2"/>
+    <rect x="410" y="220" width="100" height="22" rx="11" fill="#C93D45"/>
+    <rect x="520" y="220" width="100" height="22" rx="11" fill="#5D930A"/>
+    <rect x="630" y="220" width="120" height="22" rx="11" fill="#243A83"/>
+    <rect x="410" y="280" width="380" height="200" rx="8" fill="#E1E1E4"/>
+    <circle cx="600" cy="380" r="36" fill="rgba(0,0,0,0.4)"/>
+    <path d="M590 365 L590 395 L615 380 Z" fill="white"/>
+    <rect x="410" y="510" width="240" height="14" rx="2" fill="#1D1F27"/>
+    <rect x="410" y="535" width="380" height="10" rx="2" fill="#8A929B"/>
+    <rect x="410" y="555" width="320" height="10" rx="2" fill="#8A929B"/>
+    <rect x="410" y="585" width="380" height="40" rx="8" fill="#3559EB"/>
+    <text x="600" y="120" font-family="Lato, sans-serif" font-weight="700" font-size="44" fill="#1D1F27" text-anchor="middle">Help &amp; Tutorial</text>
+    <text x="600" y="710" font-family="Lato, sans-serif" font-weight="700" font-size="14" fill="#3559EB" text-anchor="middle" letter-spacing="2">PGMAIS DESIGN SYSTEM</text>
+  </svg>
+</template>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { width: 1240px !important; overflow: visible !important; }
+  body { margin:0; background: var(--gray-10); color: var(--fg-default); padding: 40px 48px 64px; font-family: var(--font-secondary); }
+
+  .page-head { margin-bottom: 36px; }
+  .page-head .crumb { font-family: var(--font-primary); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color: var(--gray-500); }
+  .page-head h1 { font: 700 36px/1.15 var(--font-primary); letter-spacing:-.01em; color: var(--gray-900); margin: 6px 0; }
+  .page-head p { font: 400 14px/1.6 var(--font-secondary); color: var(--gray-600); max-width: 720px; margin: 0; }
+
+  section { margin-top: 40px; }
+  .sec-title { font: 600 18px/1.3 var(--font-primary); color: var(--gray-900); margin: 0 0 4px; }
+  .sec-desc { font: 400 13px/1.55 var(--font-secondary); color: var(--gray-600); margin: 0 0 20px; max-width: 760px; }
+
+  /* ===== NOVIDADES MODAL ===== */
+  .news-modal {
+    width: 400px;
+    background: var(--gray-0);
+    border-radius: 14px;
+    box-shadow: var(--elevation-5);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .news-modal .head {
+    padding: 16px 20px 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .news-modal .title-block { display: flex; flex-direction: column; gap: 2px; }
+  .news-modal .title {
+    font: 700 16px/1.2 var(--font-primary); color: var(--gray-900);
+  }
+  .news-modal .date {
+    display: flex; align-items: center; gap: 6px;
+    font: 400 11px/1 var(--font-secondary);
+    color: var(--gray-600);
+  }
+  .news-modal .date .pager { display: inline-flex; gap: 4px; }
+  .news-modal .date .pager button { all: unset; cursor: pointer; color: var(--gray-500); padding: 2px; display: inline-flex;}
+  .news-modal .date .pager button:hover { color: var(--gray-900); }
+  .news-modal .close { all: unset; cursor: pointer; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--gray-700); border-radius: 6px; }
+  .news-modal .close:hover { background: var(--gray-30); }
+  .news-modal .body { padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 14px; }
+  .news-modal .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font: 700 9px/1 var(--font-primary); letter-spacing: .08em; text-transform: uppercase; color: var(--gray-0); }
+  .badge.novos    { background: #C93D45; }
+  .badge.atualiza { background: #5D930A; }
+  .badge.desemp   { background: #243A83; }
+  .news-modal .video-frame {
+    aspect-ratio: 16 / 9;
+    background: var(--gray-50);
+    border-radius: 8px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-400);
+  }
+  .news-modal .video-frame .play {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.4);
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+  }
+  .news-modal .news-title {
+    font: 700 14px/1.3 var(--font-primary); color: var(--gray-900);
+    margin: 0;
+  }
+  .news-modal .news-text {
+    font: 400 12px/1.5 var(--font-secondary);
+    color: var(--gray-700);
+    margin: 0;
+  }
+  .news-modal .info-bar {
+    display: flex; align-items: flex-start; gap: 8px;
+    background: var(--gray-30);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font: 400 12px/1.4 var(--font-secondary);
+    color: var(--gray-800);
+  }
+  .news-modal .info-bar a { color: var(--primary-blue-500); font-weight: 600; }
+  .news-modal .info-bar .icon { color: var(--primary-blue-500); flex-shrink: 0; margin-top: 2px; }
+  .news-modal .footer {
+    padding: 0 20px 18px;
+  }
+  .news-modal .btn-primary {
+    all: unset; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%;
+    height: 40px;
+    background: var(--primary-blue-500); color: var(--gray-0);
+    border-radius: 8px;
+    font: 700 13px/1 var(--font-secondary);
+  }
+
+  /* ===== TUTORIAL TOOLTIP ===== */
+  .tutorial-stage {
+    background: rgba(23, 44, 102, 0.6);
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tutorial-stage::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(0, 0, 0, .35);
+  }
+  .tooltip-card {
+    position: relative;
+    width: 320px;
+    background: var(--gray-0);
+    border-radius: 12px;
+    padding: 18px 18px 14px;
+    box-shadow: var(--elevation-6);
+    display: flex; flex-direction: column; gap: 12px;
+    z-index: 2;
+  }
+  .tooltip-card .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .tooltip-card .step-title { font: 700 14px/1.3 var(--font-primary); color: var(--gray-900); margin: 0; }
+  .tooltip-card .close { all: unset; cursor: pointer; width: 24px; height: 24px; display:inline-flex; align-items: center; justify-content: center; color: var(--gray-600); border-radius: 4px; }
+  .tooltip-card .step-text { font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700); margin: 0; }
+  .tooltip-card .dots { display: inline-flex; gap: 6px; align-self: center; }
+  .tooltip-card .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-100); }
+  .tooltip-card .dots span.active { background: var(--primary-blue-500); width: 16px; border-radius: 3px; }
+  .tooltip-card .actions { display: flex; justify-content: space-between; align-items: center; }
+  .tooltip-card .actions .ghost { all: unset; cursor: pointer; font: 500 12px/1 var(--font-secondary); color: var(--gray-600); display: inline-flex; align-items: center; gap: 4px; }
+  .tooltip-card .actions .next { all: unset; cursor: pointer; background: var(--primary-blue-500); color: var(--gray-0); padding: 8px 14px; border-radius: 6px; font: 700 12px/1 var(--font-secondary); display: inline-flex; align-items: center; gap: 6px; }
+  .tooltip-card::before {
+    content: "";
+    position: absolute;
+    bottom: -8px; left: 40px;
+    width: 14px; height: 14px;
+    background: var(--gray-0);
+    transform: rotate(45deg);
+    box-shadow: 4px 4px 6px rgba(0,0,0,.1);
+  }
+  /* Tooltip variants */
+  .tooltip-card.arrow-top::before { top: -8px; bottom: auto; left: 40px; box-shadow: -3px -3px 4px rgba(0,0,0,.06); }
+  .tooltip-card.arrow-left::before { left: -8px; top: 30px; bottom: auto; box-shadow: -3px 3px 4px rgba(0,0,0,.06); }
+  .tooltip-card.arrow-right::before { right: -8px; left: auto; top: 30px; bottom: auto; box-shadow: 3px -3px 4px rgba(0,0,0,.06); }
+
+  /* Anatomy */
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 32px; }
+  .anatomy .legend { display: grid; grid-template-columns: 22px 1fr; gap: 8px 12px; font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700); }
+  .anatomy .legend .num { width: 22px; height: 22px; border-radius: 50%; background: var(--secondary-pink-500); color: var(--gray-0); font: 700 10px/22px var(--font-primary); text-align: center; }
+  .anatomy .legend b { font-weight: 600; color: var(--gray-900); }
+  .anatomy .legend .meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+
+  .row-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .row-stage > .cell {
+    background: var(--gray-0);
+    border: 1px solid var(--gray-30);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 360px;
+  }
+  .badge-doc { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font: 600 11px/1 var(--font-primary); }
+  .badge-doc.novos { background: #FCEDEE; color: #C93D45; }
+  .badge-doc.atualiza { background: #F3FAE0; color: #5D930A; }
+  .badge-doc.desemp { background: #E5E7F0; color: #243A83; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Components · Help</div>
+  <h1>Help · Novidades & Tutorial</h1>
+  <p>Componentes de onboarding e novidades. <b>Modal de Novidades</b> aparece quando o usuário entra no painel ou clica em "Ver novidades". <b>Tutorial Wizard</b> conduz o usuário em fluxos novos com tooltips numerados e setas direcionais.</p>
+</header>
+
+<!-- ===== NOVIDADES ===== -->
+<section>
+  <h2 class="sec-title">Modal de Novidades</h2>
+  <p class="sec-desc">Apresenta releases, atualizações e melhorias de performance. Sempre traz badges categorizando o que mudou, vídeo ou GIF demonstrativo e CTA para confirmar.</p>
+
+  <div class="anatomy">
+    <div style="display: flex; align-items: flex-start; justify-content: center;">
+      <div class="news-modal">
+        <div class="head">
+          <div class="title-block">
+            <div class="title">Novidades</div>
+            <div class="date">
+              Junho de 2022
+              <div class="pager">
+                <button><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+                <button><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <button class="close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <div class="body">
+          <div class="badges">
+            <span class="badge novos">NOVOS RECURSOS</span>
+            <span class="badge atualiza">ATUALIZAÇÃO</span>
+            <span class="badge desemp">DESEMPENHO</span>
+          </div>
+          <div class="news-title">Title</div>
+          <div class="video-frame">
+            <div class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="news-title" style="font-size: 13px; font-weight: 700;">Lorem ipsum.</div>
+          <div class="news-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at tristique dolor, nec sodales urna. Ut in commodo lectus. Duis eget orci nibh. Donec eleifend maximus dignissim.</div>
+          <div class="info-bar">
+            <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            <div>Quer conhecer a nova tela? Acesse o link abaixo<br><a>Nome da nova tela</a></div>
+          </div>
+        </div>
+        <div class="footer">
+          <button class="btn-primary">Obrigado<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="num">1</span><div><b>Title</b><div class="meta">Style: Subtitle 3 · color gray-900</div></div>
+      <span class="num">2</span><div><b>Subtitle (data)</b><div class="meta">Style: Caption · color gray-600</div></div>
+      <span class="num">3</span><div><b>Change month</b><div class="meta">Componente icon button · navega entre releases</div></div>
+      <span class="num">4</span><div><b>Badges</b><div class="meta">Novos recursos · Atualização · Desempenho</div></div>
+      <span class="num">5</span><div><b>News title</b><div class="meta">Style: Body 2 bold · color gray-900</div></div>
+      <span class="num">6</span><div><b>Video / Image Frame</b><div class="meta">Aspect 16:9 · radius 8px · fill</div></div>
+      <span class="num">7</span><div><b>Text</b><div class="meta">Style: Body 2 · color gray-700</div></div>
+      <span class="num">8</span><div><b>Info / link</b><div class="meta">Componente info-bar com link interno</div></div>
+      <span class="num">9</span><div><b>Divider</b><div class="meta">Height 1px · color gray-100 · width auto</div></div>
+      <span class="num">10</span><div><b>Button</b><div class="meta">Componente Button Primary · CTA confirmação</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BADGES ===== -->
+<section>
+  <h2 class="sec-title">Badges de novidades</h2>
+  <p class="sec-desc">Três categorias que classificam o tipo de mudança. Use uma ou mais por release.</p>
+
+  <div style="background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 24px;">
+    <div style="display: grid; grid-template-columns: 110px 1fr; gap: 12px 24px; align-items: center;">
+      <span class="badge novos">NOVOS RECURSOS</span>
+      <div style="font: 400 12px/1.55 var(--font-secondary); color: var(--gray-700);">Para falar sobre um recurso novo que ainda não tinha na plataforma.</div>
+      <span class="badge atualiza">ATUALIZAÇÃO</span>
+      <div style="font: 400 12px/1.55 var(--font-secondary); color: var(--gray-700);">Para falar sobre alguma alteração ou ajuste em um recurso que já existia na plataforma.</div>
+      <span class="badge desemp">DESEMPENHO</span>
+      <div style="font: 400 12px/1.55 var(--font-secondary); color: var(--gray-700);">Para falar sobre alguma alteração na plataforma que não seja necessariamente visual mas tenha algum impacto de performance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TUTORIAL WIZARD ===== -->
+<section>
+  <h2 class="sec-title">Tutorial Wizard</h2>
+  <p class="sec-desc">Tooltip ancorada a um elemento na tela, com backdrop escurecido e máscara revelando o ponto de interesse. Setas direcionais nos 4 lados. Sempre dois botões: Anterior + Próximo (ou Concluir).</p>
+
+  <div class="row-stage">
+    <div class="cell">
+      <div class="tutorial-stage" style="width: 100%; height: 320px;">
+        <!-- highlighted target -->
+        <div style="position: absolute; top: 60px; left: 60px; width: 180px; height: 90px; background: rgba(255,255,255,0.95); border-radius: 8px; box-shadow: 0 0 0 4px var(--primary-blue-500); display: flex; align-items: center; justify-content: center; font: 600 12px/1 var(--font-secondary); color: var(--gray-700);">Elemento destacado</div>
+        <!-- tooltip -->
+        <div class="tooltip-card arrow-left" style="margin-left: 200px; margin-top: -40px;">
+          <div class="head">
+            <h3 class="step-title">2. Title</h3>
+            <button class="close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </div>
+          <p class="step-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <div class="dots"><span></span><span class="active"></span><span></span><span></span></div>
+          <div class="actions">
+            <button class="ghost"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Anterior</button>
+            <button class="next">Próximo<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cell">
+      <div class="tutorial-stage" style="width: 100%; height: 320px;">
+        <!-- tooltip arrow top -->
+        <div class="tooltip-card arrow-top" style="margin-top: 60px;">
+          <div class="head">
+            <h3 class="step-title">1. Title</h3>
+            <button class="close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+          </div>
+          <p class="step-text">Primeiro passo do tutorial. Apresenta a funcionalidade principal da tela ao usuário.</p>
+          <div class="dots"><span class="active"></span><span></span><span></span><span></span></div>
+          <div class="actions">
+            <span></span>
+            <button class="next">Próximo<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Specs row -->
+  <div style="background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 22px 28px; margin-top: 16px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+    <div>
+      <div style="font: 600 11px/1 var(--font-primary); color: var(--gray-700); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;">Mask</div>
+      <div style="font: 400 12px/1.5 var(--font-mono); color: var(--gray-700);">Background gray-900<br>Opacity 0.5</div>
+    </div>
+    <div>
+      <div style="font: 600 11px/1 var(--font-primary); color: var(--gray-700); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;">Highlight</div>
+      <div style="font: 400 12px/1.5 var(--font-mono); color: var(--gray-700);">Border-radius 4px<br>Background gray-0</div>
+    </div>
+    <div>
+      <div style="font: 600 11px/1 var(--font-primary); color: var(--gray-700); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;">Pointer & Container</div>
+      <div style="font: 400 12px/1.5 var(--font-mono); color: var(--gray-700);">Background gray-0<br>Elevation 6</div>
+    </div>
+    <div>
+      <div style="font: 600 11px/1 var(--font-primary); color: var(--gray-700); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px;">Buttons</div>
+      <div style="font: 400 12px/1.5 var(--font-mono); color: var(--gray-700);">Primary · icon right<br>Secondary · icon left</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

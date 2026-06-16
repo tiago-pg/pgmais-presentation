@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+
+<template id="__bundler_thumbnail" data-bg-color="#f2f24b">
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#f2f24b"/>
+      <g transform="translate(600 380)" fill="#172c66">
+        <text x="0" y="-40" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="86" letter-spacing="-2">E se a cobrança</text>
+        <text x="0" y="60"  text-anchor="middle" font-family="Lato, sans-serif" font-weight="400" font-size="86" letter-spacing="-2">pudesse cuidar?</text>
+      </g>
+      <text x="600" y="720" text-anchor="middle" font-family="Lato, sans-serif" font-weight="900" font-size="32" fill="#172c66">PGMais · Cobrança Humanizada</text>
+    </svg>
+</template>
+<title>PGMais · Cobrança Humanizada</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="_chrome.css">
+<style>
+  /* ---- Page-specific tokens ---- */
+  .deck { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 920px) { .deck { grid-template-columns: 1fr; } }
+
+  /* The .slide bg-color sets the surface; we set --accent per slide so
+     the line, plus icon and footer label all pick the same accent. */
+
+  /* COVER · Yellow slide */
+  .cover-yellow .s-chrome  { --accent: #172c66; color: #172c66; }
+  .cover-yellow .s-foot    { color: #172c66; }
+  .cover-yellow h1 {
+    font-family: var(--font-primary);
+    font-size: 96px;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #172c66;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .cover-yellow h1 .b { font-weight: 900; }
+  .cover-yellow h1 .l { font-weight: 400; }
+  .cover-yellow .sub {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.35;
+    color: #172c66;
+    margin: 28px 0 0;
+    max-width: 880px;
+  }
+  .cover-yellow .sub b { font-style: italic; font-weight: 900; }
+
+  /* Photo placeholder (visible on first render — user can swap later) */
+  .ph {
+    width: 100%; height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    position: relative;
+    background: rgba(23,44,102,.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ph.dark-bg { background: rgba(255,255,255,.10); }
+  .ph .ph-text {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(23,44,102,.42);
+    text-align: center;
+    padding: 16px 32px;
+    line-height: 1.4;
+  }
+  .ph.dark-bg .ph-text { color: rgba(255,255,255,.55); }
+  .ph::after {
+    /* Faint diagonal stripe to indicate "image placeholder" */
+    content: ""; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(23,44,102,.04) 32px 33px);
+    pointer-events: none;
+  }
+  .ph.dark-bg::after { background-image: repeating-linear-gradient(135deg, transparent 0 32px, rgba(255,255,255,.05) 32px 33px); }
+
+  /* Big-quote (Green slide) */
+  .quote-mark {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 1;
+  }
+  .quote-body {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.25;
+    color: #172c66;
+    margin: 0 0 28px;
+    text-wrap: pretty;
+  }
+  .quote-author {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 30px;
+    color: #172c66;
+    opacity: 0.92;
+  }
+
+  /* Stats slide */
+  .stat-stack { display: flex; flex-direction: column; gap: 48px; }
+  .stat-row {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 36px;
+    align-items: baseline;
+  }
+  .stat-row .n {
+    font-family: var(--font-primary);
+    font-weight: 900;
+    font-size: 156px;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #f173ac;
+  }
+  .stat-row .lbl {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.20;
+    color: #ededed;
+    max-width: 480px;
+    text-wrap: pretty;
+  }
+
+  /* Rule under headlines (uses accent var) */
+  .accent-rule {
+    height: 2.5px;
+    width: 320px;
+    background: currentColor;
+    border-radius: 2px;
+    margin: 28px 0 32px;
+  }
+</style>
+</head>
+<body>
+
+
+<!-- PGMais brand symbol (used for handle-plus + bullet markers) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pg-sym" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M12 7.5v9M7.5 12h9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="page">
+  <div class="page-head">
+    <div>
+      <div class="crumb"><a href="index.html">Social</a> &nbsp;/&nbsp; Carrossel 01</div>
+      <h1>Cobrança Humanizada</h1>
+    </div>
+    <div class="meta">
+      8 slides · 1080×1350 · Instagram Feed<br>
+      Tom: humano + dado · Sistema unificado
+    </div>
+  </div>
+
+  <div class="deck">
+
+    <!-- ════════════════════════════ 01 · COVER ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>01</b> · Capa · Pergunta editorial · Amarelo</div>
+      <div class="deck-stage">
+        <div class="slide v-yellow cover-yellow" data-screen-label="01 Cover">
+
+          <!-- Header: @pgmais + line + plus, all in navy -->
+          <div class="s-chrome">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <!-- Headline + sub -->
+          <div style="position:absolute; left:80px; right:80px; top:200px;">
+            <h1>
+              <span class="b">E se a cobrança</span><br>
+              <span class="l">pudesse fortalecer</span><br>
+              <span class="l">relacionamentos ao</span><br>
+              <span class="l">invés de romper vínculos?</span>
+            </h1>
+            <p class="sub">Descubra o poder da <b>cobrança humanizada.</b></p>
+          </div>
+
+          <!-- Photo placeholder bottom-half -->
+          <div style="position:absolute; left:80px; right:80px; bottom:80px; height:480px;">
+            <div class="ph">
+              <div class="ph-text">FOTO<br>pessoa sorrindo no laptop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 02 · TESE ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>02</b> · Tese · Navy + acento amarelo</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="02 Tese">
+
+          <div class="s-chrome">
+            <span class="handle" style="color:#ededed">@pgmais</span>
+            <div class="handle-row" style="color:#f2f24b">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:340px;">
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-size:92px; line-height:1.02; letter-spacing:-0.02em; color:#ededed; margin:0">
+              Toda cobrança<br>é uma conversa.
+            </h2>
+            <div class="accent-rule" style="color:#f2f24b"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-size:34px; line-height:1.35; color:#ededed; margin:0; max-width:880px">
+              O desafio vai além de recuperar valores: é transformar uma <b style="font-weight:900;color:#f2f24b">experiência negativa em reconexão</b> com o cliente.
+            </p>
+          </div>
+
+          <div class="s-foot">
+            <span class="s-label" style="color:#f2f24b">Cobrança Humanizada</span>
+            <div class="ig-icons" style="color:#f2f24b">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 03 · EMPATHY ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>03</b> · Empatia · Rosa + foto</div>
+      <div class="deck-stage">
+        <div class="slide v-pink" data-screen-label="03 Empathy">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#ededed">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:200px;">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:60px; line-height:1.10; color:#172c66; margin:0">
+              Cada cliente tem uma história.
+            </h2>
+            <h2 style="font-family:var(--font-primary); font-weight:900; font-style:italic; font-size:60px; line-height:1.10; color:#172c66; margin:18px 0 0">
+              A gente ajuda você a<br>ouvir cada uma delas.
+            </h2>
+          </div>
+
+          <!-- Photo bottom -->
+          <div style="position:absolute; left:80px; right:80px; bottom:80px; height:540px;">
+            <div class="ph">
+              <div class="ph-text">FOTO<br>mulher trabalhando · sorrindo</div>
+            </div>
+          </div>
+
+          <div class="s-foot" style="color:#ededed">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 04 · CONTEXT ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>04</b> · Contexto · Off-white + foto</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="04 Context">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#0120eb">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <!-- Photo top -->
+          <div style="position:absolute; left:80px; right:80px; top:200px; height:520px;">
+            <div class="ph">
+              <div class="ph-text">FOTO<br>família com celulares no sofá</div>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:780px;">
+            <h2 style="font-family:var(--font-primary); font-weight:400; font-size:50px; line-height:1.15; color:#172c66; margin:0; max-width:900px">
+              Por trás dos números da inadimplência <b style="font-weight:900;font-style:italic">estão famílias em momentos delicados</b> e empresas ajustando estratégias.
+            </h2>
+          </div>
+
+          <div class="s-foot" style="color:#0120eb">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 05 · MERCADO ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>05</b> · Mercado · Off-white + lista com ⊕</div>
+      <div class="deck-stage">
+        <div class="slide v-light" data-screen-label="05 Market">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f173ac">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:260px;">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:54px; line-height:1.10; color:#172c66; margin:0">
+              O que o mercado já exige<br>de uma operação que cuida:
+            </h2>
+            <div class="accent-rule" style="color:#f173ac; width:260px; margin:24px 0 56px"></div>
+
+            <ul class="s-plus-list" style="color:#f173ac">
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Relacionamento <em style="font-style:italic">hiperpersonalizado</em><small>Cada mensagem desenhada para o momento daquele cliente.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Automação <em style="font-style:italic">com contexto individual</em><small>Escala sem perder o tom — IA aprende com cada interação.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Dados <em style="font-style:italic">que antecipam necessidades</em><small>Da régua preventiva ao pós-pagamento, em tempo real.</small></span>
+              </li>
+              <li>
+                <svg class="pmark" aria-hidden="true"><use href="#pg-sym"/></svg>
+                <span class="ptext" style="color:#172c66">Multicanal <em style="font-style:italic">orquestrado</em><small>WhatsApp, SMS, voz e portal de autonegociação em uma única jornada.</small></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="s-foot" style="color:#f173ac">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 06 · QUOTE ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>06</b> · Citação · Verde sólido + autor</div>
+      <div class="deck-stage">
+        <div class="slide v-green" data-screen-label="06 Quote">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:360px;">
+            <div class="quote-mark">"</div>
+            <p class="quote-body">
+              O erro mais comum nas operações de cobrança é tratar o multicanal como volume. Canal certo não é o que a empresa tem disponível, é o que <em style="font-style:italic">faz sentido para aquela pessoa naquele momento.</em>
+            </p>
+            <p class="quote-author">Samir Silveira — CSO, PGMais</p>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 07 · STATS ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>07</b> · Prova · Navy + 3 KPIs em rosa</div>
+      <div class="deck-stage">
+        <div class="slide v-navy-deep" data-screen-label="07 Stats">
+
+          <div class="s-chrome" style="color:#ededed">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#f173ac">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:220px;">
+            <p style="font-family:var(--font-primary); font-weight:400; font-size:36px; line-height:1.30; color:#ededed; margin:0 0 56px; max-width:840px">
+              Resultados reais de quem migrou para o <b style="font-weight:900;font-style:italic;color:#f173ac">ecossistema completo</b> da PGMais:
+            </p>
+
+            <div class="stat-stack">
+              <div class="stat-row">
+                <div class="n">+51<small style="font-size:80px">%</small></div>
+                <div class="lbl">mais acordos fechados pela IA conversacional</div>
+              </div>
+              <div class="stat-row">
+                <div class="n">−24<small style="font-size:80px">%</small></div>
+                <div class="lbl">de redução em custos por CPF acionado</div>
+              </div>
+              <div class="stat-row">
+                <div class="n">−50<small style="font-size:80px">%</small></div>
+                <div class="lbl">de redução nos acionamentos diários</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s-foot" style="color:#f173ac">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════ 08 · CTA ════════════════════════════ -->
+    <div class="deck-cell">
+      <div class="num"><b>08</b> · CTA · Rosa + Link na bio</div>
+      <div class="deck-stage">
+        <div class="slide v-pink" data-screen-label="08 CTA">
+
+          <div class="s-chrome" style="color:#172c66">
+            <span class="handle">@pgmais</span>
+            <div class="handle-row" style="color:#172c66">
+              <div class="handle-line"></div>
+              <svg class="handle-plus" aria-hidden="true"><use href="#pg-sym"/></svg>
+            </div>
+          </div>
+
+          <div style="position:absolute; left:80px; right:80px; top:380px;">
+            <h2 style="font-family:var(--font-primary); font-weight:700; font-size:62px; line-height:1.10; color:#ededed; margin:0; max-width:920px">
+              Quer estruturar uma <em style="font-style:italic;font-weight:900">cobrança que cuida</em> do seu cliente?
+            </h2>
+            <div class="accent-rule" style="color:#172c66; width:260px; margin:36px 0 32px"></div>
+            <p style="font-family:var(--font-primary); font-weight:400; font-style:italic; font-size:38px; line-height:1.30; color:#172c66; margin:0">
+              Fale com nossos especialistas.<br>
+              <span style="font-weight:900;font-style:italic">Link na bio.</span>
+            </p>
+          </div>
+
+          <div class="s-foot" style="color:#172c66">
+            <span class="s-label">Cobrança Humanizada</span>
+            <div class="ig-icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 12L21 4l-7 17-3-7-8-2z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="_init.js"></script>
+</body>
+</html>

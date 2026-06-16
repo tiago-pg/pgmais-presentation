@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223 153">
+  <defs>
+    
+    <linearGradient id="linear-gradient" x1="68.42" y1="54.53" x2="151.09" y2="54.53" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3db6f3"></stop>
+      <stop offset=".2" stop-color="#3db6f3"></stop>
+      <stop offset="1" stop-color="#3a60ff"></stop>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="68.42" y1="67.42" x2="151.09" y2="67.42" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-3" x1="68.42" y1="55.02" x2="151.09" y2="55.02" xlink:href="#linear-gradient"></linearGradient>
+    <linearGradient id="linear-gradient-4" x1="68.42" y1="42.72" x2="151.09" y2="42.72" xlink:href="#linear-gradient"></linearGradient>
+  </defs>
+  <g>
+    <path class="cls-10" d="M154.56,26.42c-1.17-1.34-2.8-2.07-4.59-2.07h-61.53c-1.18,0-2.25.7-2.71,1.8s-.23,2.34.6,3.19l28.52,29.4c1.07,1.1,2.77,1.2,3.96.24l31.11-25.14-5.42,43.58c-.07.72-.69,1.33-1.4,1.43h-60.62c-1.62,0-2.94,1.32-2.94,2.94s1.32,2.94,2.94,2.94h60.74c.08,0,.17,0,.25-.01,3.66-.32,6.54-3.13,6.86-6.67l5.76-46.27c.26-1.98-.31-3.93-1.55-5.35ZM145.02,30.23l-27.82,22.48-21.8-22.48h49.62Z"></path>
+    <path class="cls-1" d="M80.52,67.42c0,1.62,1.32,2.94,2.94,2.94h20.7c1.62,0,2.94-1.32,2.94-2.94s-1.32-2.94-2.94-2.94h-20.7c-1.62,0-2.94,1.32-2.94,2.94Z"></path>
+    <path class="cls-5" d="M100.56,55.02c0-1.62-1.32-2.94-2.94-2.94h-29.49c-1.62,0-2.94,1.32-2.94,2.94s1.32,2.94,2.94,2.94h29.49c1.62,0,2.94-1.32,2.94-2.94Z"></path>
+    <path class="cls-4" d="M79.55,45.66h8.5c1.62,0,2.94-1.32,2.94-2.94s-1.32-2.94-2.94-2.94h-8.5c-1.62,0-2.94,1.32-2.94,2.94s1.32,2.94,2.94,2.94Z"></path>
+  </g>
+  <g>
+    <text class="cls-7" transform="translate(80.83 125.52)"><tspan class="cls-8" x="0" y="0">C</tspan><tspan class="cls-6" x="18.85" y="0">a</tspan><tspan class="cls-3" x="35.52" y="0">r</tspan><tspan class="cls-11" x="45.99" y="0">t</tspan><tspan class="cls-9" x="55.47" y="0">a</tspan></text>
+    <path class="cls-2" d="M76.01,115.5c-.84,0-1.53-.69-1.53-1.53v-2.92h-2.08v4.45h-4.45v2.08h2.92c.84,0,1.53.69,1.53,1.53v2.92h2.08v-4.45h4.45v-2.08h-2.92Z"></path>
+  </g>
+</svg>

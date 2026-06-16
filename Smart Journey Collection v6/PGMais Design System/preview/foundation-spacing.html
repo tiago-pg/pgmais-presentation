@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Spacing</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1000px !important; overflow: visible !important; }
+  body { padding: 28px 32px; gap: 4px; background: var(--gray-30); }
+  .topbar { display: flex; justify-content: space-between; align-items: baseline; }
+  h2 { font-family: var(--font-primary); font-weight: 300; font-size: 28px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .grid8 { font-family: var(--font-primary); font-weight: 700; font-size: 22px; color: var(--gray-900); }
+  .sub { color: var(--coral-500); font-size: 12px; margin-bottom: 18px; }
+  .row { display: grid; grid-template-columns: 60px 1fr; align-items: center; gap: 12px; padding: 6px 0; }
+  .lbl { font-family: var(--font-primary); font-size: 11px; color: var(--gray-900); text-align: right; }
+  .bar { background: var(--primary-blue-500); border-radius: 2px; }
+</style></head>
+<body>
+  <div class="topbar">
+    <h2>Spacing</h2>
+    <div class="grid8">8 point grid</div>
+  </div>
+  <div class="sub">Espaçamento, margins e paddings consistentes mantêm o balanço visual nos nossos designs.</div>
+  <div id="rows"></div>
+  <script>
+    const sizes = [4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80];
+    const max = 80;
+    const fullW = 800; // px
+    document.getElementById('rows').innerHTML = sizes.map(s=>{
+      // bar width grows with value, but min visible width
+      const w = Math.max(40, (s/max) * fullW);
+      const h = Math.max(4, Math.min(s, 32));
+      return `<div class="row"><div class="lbl">${s}px</div><div class="bar" style="width:${w}px; height:${h}px"></div></div>`;
+    }).join('');
+  </script>
+</body></html>

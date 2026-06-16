@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Modal — PGMais Components</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { width: 1240px !important; overflow: visible !important; }
+  body { margin:0; background: var(--gray-10); color: var(--fg-default); padding: 40px 48px 64px; font-family: var(--font-secondary); }
+
+  .page-head { margin-bottom: 36px; }
+  .page-head .crumb { font-family: var(--font-primary); font-size:11px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color: var(--gray-500); }
+  .page-head h1 { font: 700 36px/1.15 var(--font-primary); letter-spacing:-.01em; color: var(--gray-900); margin: 6px 0; }
+  .page-head p { font: 400 14px/1.6 var(--font-secondary); color: var(--gray-600); max-width: 720px; margin: 0; }
+
+  section { margin-top: 40px; }
+  .sec-title { font: 600 18px/1.3 var(--font-primary); color: var(--gray-900); margin: 0 0 4px; }
+  .sec-desc { font: 400 13px/1.55 var(--font-secondary); color: var(--gray-600); margin: 0 0 20px; max-width: 760px; }
+
+  .stage {
+    background: rgba(23, 44, 102, 0.08);
+    border-radius: 12px;
+    padding: 48px;
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 440px;
+  }
+  .stage-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* Modal base */
+  .modal {
+    width: 420px;
+    background: var(--gray-0);
+    border-radius: 12px;
+    box-shadow: var(--elevation-5);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .modal .head { display: flex; justify-content: flex-end; padding: 14px 16px 0; }
+  .modal .close {
+    all: unset; cursor: pointer;
+    width: 32px; height: 32px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--gray-700); border-radius: 6px;
+  }
+  .modal .close:hover { background: var(--gray-30); }
+  .modal .body { padding: 0 32px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+  .modal .body .illust {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--primary-blue-50);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--primary-blue-500);
+  }
+  .modal .body h3 {
+    font: 700 18px/1.3 var(--font-primary);
+    color: var(--primary-blue-500); margin: 0;
+  }
+  .modal .body .alert {
+    background: var(--secondary-blue-50);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex; align-items: flex-start; gap: 10px;
+    font: 400 13px/1.5 var(--font-secondary);
+    color: var(--gray-800);
+    width: 100%;
+    text-align: left;
+  }
+  .modal .body .alert .icon { color: var(--primary-blue-500); flex-shrink: 0; margin-top: 2px; }
+  .modal .body .alert a { color: var(--primary-blue-500); font-weight: 600; }
+  .modal .body .question {
+    font: 400 13px/1.5 var(--font-secondary);
+    color: var(--gray-700);
+    width: 100%;
+    text-align: left;
+  }
+  .modal .body .radio-list { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+  .modal .body .radio-item {
+    display: flex; flex-direction: column; gap: 8px;
+    text-align: left;
+  }
+  .modal .body .radio-row {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 400 13px/1 var(--font-secondary);
+    color: var(--gray-900);
+  }
+  .modal .body .radio-dot {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 1.5px solid var(--gray-300);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .modal .body .radio-dot.checked { border-color: var(--primary-blue-500); }
+  .modal .body .radio-dot.checked::after {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary-blue-500);
+  }
+  .modal .body .field-wrap {
+    width: 100%;
+    height: 38px; padding: 0 12px;
+    background: var(--gray-0); border: 1px solid var(--gray-100); border-radius: 8px;
+    display: flex; align-items: center;
+    font: 400 13px/1 var(--font-secondary); color: var(--gray-900);
+  }
+  .modal .footer {
+    padding: 16px 32px 28px;
+    display: flex; gap: 12px; justify-content: center;
+  }
+  .modal .btn {
+    all: unset; cursor: pointer;
+    flex: 1;
+    background: var(--primary-blue-500); color: var(--gray-0);
+    height: 40px; border-radius: 8px;
+    font: 700 13px/1 var(--font-secondary);
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .modal .btn-secondary {
+    background: var(--gray-0); color: var(--primary-blue-500);
+    border: 1px solid var(--primary-blue-500);
+  }
+  .modal .btn-check {
+    background: var(--primary-blue-500); color: var(--gray-0);
+  }
+  .modal .btn-check::after { content: '✓'; font-weight: 700; }
+
+  /* SMS contact illustration */
+  .illust-chat { font-size: 28px; }
+
+  /* States */
+  .states { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 18px; }
+  .state-cell { display: flex; flex-direction: column; gap: 14px; padding: 18px; border: 1px dashed var(--gray-50); border-radius: 10px; min-height: 100px; align-items: center; }
+  .state-cell .label-state { font: 500 10px/1 var(--font-primary); letter-spacing: .14em; text-transform: uppercase; color: var(--gray-500); align-self: flex-start; }
+
+  /* Anatomy */
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 32px; }
+  .anatomy .legend { display: grid; grid-template-columns: 22px 1fr; gap: 8px 12px; font: 400 12px/1.5 var(--font-secondary); color: var(--gray-700); }
+  .anatomy .legend .num { width: 22px; height: 22px; border-radius: 50%; background: var(--secondary-pink-500); color: var(--gray-0); font: 700 10px/22px var(--font-primary); text-align: center; }
+  .anatomy .legend b { font-weight: 600; color: var(--gray-900); }
+  .anatomy .legend .meta { font-family: var(--font-mono); font-size: 11px; color: var(--gray-500); }
+
+  .props-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .prop-card { background: var(--gray-0); border: 1px solid var(--gray-30); border-radius: 12px; padding: 22px; }
+  .prop-card h4 { font: 600 13px/1 var(--font-primary); color: var(--gray-900); margin: 0 0 14px; }
+  .prop-card p { font: 400 12px/1.55 var(--font-secondary); color: var(--gray-700); margin: 0; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Components · Feedback</div>
+  <h1>Modal</h1>
+  <p>Diálogo modal sobrepondo a interface. Captura a atenção total do usuário para uma confirmação, escolha ou ação importante. Sempre tem botão de fechar (X) e ação primária. Use elevation-5 e backdrop escurecido.</p>
+</header>
+
+<!-- Anatomy -->
+<section>
+  <h2 class="sec-title">Anatomia</h2>
+  <p class="sec-desc">Estrutura: head (X), body (ilustração + título + corpo), footer (CTA).</p>
+
+  <div class="anatomy">
+    <div class="modal">
+      <div class="head"><button class="close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+      <div class="body">
+        <div class="illust">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <h3>Título do modal</h3>
+        <div class="alert">
+          <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+          <div>Texto de contexto do modal explicando o que será feito. Pode incluir <a>links de apoio</a> para outras telas.</div>
+        </div>
+      </div>
+      <div class="footer">
+        <button class="btn btn-check">Entendi</button>
+      </div>
+    </div>
+    <div class="legend">
+      <span class="num">1</span><div><b>Container</b><div class="meta">Background gray-0 · radius 12px · elevation-5</div></div>
+      <span class="num">2</span><div><b>Close (X)</b><div class="meta">Icon button 32×32 · sempre canto sup. direito</div></div>
+      <span class="num">3</span><div><b>Ilustração / GIF</b><div class="meta">72×72 · background primary-blue-50</div></div>
+      <span class="num">4</span><div><b>Título</b><div class="meta">Style Subtitle 3 · color primary-blue-500</div></div>
+      <span class="num">5</span><div><b>Alert / Body</b><div class="meta">Snackbar info · background secondary-blue-50</div></div>
+      <span class="num">6</span><div><b>Inputs / Radios (opcional)</b><div class="meta">Conforme tipo de modal</div></div>
+      <span class="num">7</span><div><b>Button CallAction</b><div class="meta">Hierarquia Primary · icon position right</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Variants -->
+<section>
+  <h2 class="sec-title">Variantes</h2>
+  <p class="sec-desc">Quatro arquétipos de modal usados no produto.</p>
+
+  <div class="stage">
+    <div class="stage-row" style="grid-template-columns: 1fr 1fr; gap: 32px;">
+      <!-- Modal 1: Relatório gerado (email/SMS notification) -->
+      <div>
+        <div style="font: 500 10px/1 var(--font-primary); letter-spacing:.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;">Modal · Geração de relatório (email)</div>
+        <div class="modal">
+          <div class="head"><button class="close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="body">
+            <h3 style="font-size: 16px; color: var(--primary-blue-500)">O relatório está sendo gerado em plano de fundo!</h3>
+            <div class="alert">
+              <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+              <div>O relatório ficará disponível por 30 dias na página <a>Meus relatórios</a>.</div>
+            </div>
+            <div class="question" style="text-align: center">Escolha uma opção para receber a notificação quando seu relatório estiver pronto.</div>
+            <div class="radio-list">
+              <div class="radio-item">
+                <div class="radio-row"><span class="radio-dot checked"></span>Receber notificação por e-mail</div>
+                <div class="field-wrap" style="margin-left: 24px;">emaildocadastrado@pgmais.com.br</div>
+              </div>
+              <div class="radio-row"><span class="radio-dot"></span>Receber notificação por mensagem de texto</div>
+              <div class="radio-row"><span class="radio-dot"></span>Não quero ser notificado</div>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="btn btn-check">Entendi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 2: Suporte -->
+      <div>
+        <div style="font: 500 10px/1 var(--font-primary); letter-spacing:.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;">Modal · Suporte</div>
+        <div class="modal">
+          <div class="head"><button class="close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="body">
+            <div class="illust">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="9" r="3"/>
+                <circle cx="15" cy="9" r="3"/>
+                <path d="M3 21v-1a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v1"/>
+                <path d="M19 6h2M20 5v2"/>
+              </svg>
+            </div>
+            <h3>Está com dúvida ou precisa de ajuda?</h3>
+            <div class="alert">
+              <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+              <div>O time de suporte está preparado para te atender em <b>suporte.app@pgmais.com.br</b></div>
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 12px; text-align: left;">
+              <div>
+                <div style="font: 600 12px/1.3 var(--font-primary); color: var(--gray-800); margin-bottom: 4px;">Conta</div>
+                <div class="field-wrap" style="color: var(--gray-400)">Informe sua empresa</div>
+              </div>
+              <div>
+                <div style="font: 600 12px/1.3 var(--font-primary); color: var(--gray-800); margin-bottom: 4px;">Em que podemos ajudar?</div>
+                <div class="field-wrap" style="color: var(--gray-400)">Escreva para nós</div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="btn btn-check">Entrar em contato</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="margin-top: 16px">
+    <div class="stage-row" style="grid-template-columns: 1fr 1fr; gap: 32px;">
+      <!-- Modal 3: SMS notification -->
+      <div>
+        <div style="font: 500 10px/1 var(--font-primary); letter-spacing:.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;">Modal · SMS notification</div>
+        <div class="modal">
+          <div class="head"><button class="close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="body">
+            <h3 style="font-size: 16px; color: var(--primary-blue-500)">O relatório está sendo gerado em plano de fundo!</h3>
+            <div class="alert">
+              <span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+              <div>O relatório ficará disponível por 30 dias na página <a>Meus relatórios</a>.</div>
+            </div>
+            <div class="question" style="text-align: center">Escolha uma opção para receber a notificação quando seu relatório estiver pronto.</div>
+            <div class="radio-list">
+              <div class="radio-row"><span class="radio-dot"></span>Receber notificação por e-mail</div>
+              <div class="radio-item">
+                <div class="radio-row"><span class="radio-dot checked"></span>Receber notificação por mensagem de texto</div>
+                <div class="field-wrap" style="margin-left: 24px; color: var(--gray-400)">Informe o telefone para receber o SMS</div>
+              </div>
+              <div class="radio-row"><span class="radio-dot"></span>Não quero ser notificado</div>
+            </div>
+          </div>
+          <div class="footer">
+            <button class="btn btn-check">Entendi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal 4: Simple confirm -->
+      <div>
+        <div style="font: 500 10px/1 var(--font-primary); letter-spacing:.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 12px;">Modal · Confirmação simples</div>
+        <div class="modal" style="min-height: 320px">
+          <div class="head"><button class="close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="body">
+            <div class="illust" style="background: var(--success-50); color: var(--success-700)">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <path d="M22 4 12 14.01l-3-3"/>
+              </svg>
+            </div>
+            <h3>Operação concluída</h3>
+            <div class="question" style="text-align: center">Sua campanha foi salva com sucesso. Você pode acessá-la a qualquer momento na lista de campanhas.</div>
+          </div>
+          <div class="footer">
+            <button class="btn btn-secondary">Voltar</button>
+            <button class="btn">Ver campanha</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Specs reference -->
+<section>
+  <h2 class="sec-title">Specs por elemento</h2>
+  <p class="sec-desc">Tokens oficiais para cada parte do modal.</p>
+
+  <div class="props-grid">
+    <div class="prop-card">
+      <h4>Container</h4>
+      <p>Background: <b>gray-0</b> · Radius: <b>12px</b> · Elevation: <b>5</b> · Width default: <b>420px</b> · Max-width: <b>560px</b></p>
+    </div>
+    <div class="prop-card">
+      <h4>Backdrop</h4>
+      <p>Background: <b>rgba(23, 44, 102, 0.5)</b> · Blur: opcional 4px · Z-index: 1000</p>
+    </div>
+    <div class="prop-card">
+      <h4>Ilustração</h4>
+      <p>Container: 72×72 · Radius: <b>full</b> · Background: <b>primary-blue-50</b> · Color: <b>primary-blue-500</b></p>
+    </div>
+    <div class="prop-card">
+      <h4>Tipografia</h4>
+      <p>Título: <b>Subtitle 3</b> · color primary-blue-500 · Body: <b>Body 2</b> · color gray-800</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

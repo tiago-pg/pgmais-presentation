@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080">
+  <defs>
+    
+    <linearGradient id="Gradiente_sem_nome_3" data-name="Gradiente sem nome 3" x1=".23" y1="540" x2="1079.77" y2="540" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#45ff1d"></stop>
+      <stop offset="1" stop-color="#3559eb"></stop>
+    </linearGradient>
+  </defs>
+  <rect class="cls-1" x="1.23" y="317.17" width="1077.54" height="445.67" rx="46.05" ry="46.05"></rect>
+</svg>

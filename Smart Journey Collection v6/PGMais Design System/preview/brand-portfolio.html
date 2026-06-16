@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Portfólio de Produtos — PGMais</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { width: 1280px !important; overflow: visible !important; }
+  body {
+    margin: 0;
+    padding: 48px 56px 64px;
+    background: var(--gray-10);
+    color: var(--fg-default);
+    font-family: var(--font-primary);
+  }
+  .page-head .crumb {
+    font-family: var(--font-primary); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500);
+  }
+  .page-head h1 {
+    font: 700 38px/1.1 var(--font-primary);
+    letter-spacing: -0.01em; color: var(--gray-900); margin: 6px 0 10px;
+  }
+  .page-head p {
+    font: 400 15px/1.6 var(--font-primary);
+    color: var(--gray-700); max-width: 820px; margin: 0;
+  }
+
+  .legend-row { display: flex; gap: 18px; margin: 28px 0 0; flex-wrap: wrap; }
+  .legend-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gray-0); border: 1px solid var(--gray-50);
+    padding: 6px 12px; border-radius: 9999px;
+    font: 500 11px/1 var(--font-primary); color: var(--gray-800);
+  }
+  .legend-pill .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-blue { background: linear-gradient(135deg, #3DB7F4, #3559EB); }
+  .dot-cyan { background: linear-gradient(135deg, #3DB7F4, #20DFF1); }
+  .dot-purple { background: linear-gradient(135deg, #FE70BD, #9340FF); }
+  .dot-gray { background: var(--gray-300); }
+
+  /* Family section */
+  .family { margin-top: 48px; }
+  .family-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 6px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-50); }
+  .family-head .number {
+    font-family: var(--font-primary); font-weight: 300; font-size: 22px;
+    color: var(--gray-400); letter-spacing: -0.01em;
+  }
+  .family-head h2 {
+    font: 700 24px/1.2 var(--font-primary);
+    color: var(--gray-900); margin: 0; letter-spacing: -0.01em;
+  }
+  .family-head .desc {
+    margin-left: auto;
+    font: 400 13px/1.5 var(--font-primary); color: var(--gray-600);
+    max-width: 540px; text-align: right;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 22px; }
+  .product {
+    background: var(--gray-0);
+    border: 1px solid var(--gray-50);
+    border-radius: 14px;
+    padding: 18px 14px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    text-align: center;
+    transition: box-shadow 200ms var(--ease-standard), transform 200ms var(--ease-standard);
+  }
+  .product:hover { box-shadow: var(--elevation-2); transform: translateY(-1px); }
+  .product .icon {
+    width: 100%; aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .product .icon img {
+    max-width: 100%; max-height: 100%;
+    width: auto; height: auto;
+    object-fit: contain;
+  }
+  .product .name {
+    font: 700 13px/1.3 var(--font-primary);
+    color: var(--gray-900);
+    min-height: 16px;
+  }
+  .product .role {
+    font: 400 11px/1.45 var(--font-primary);
+    color: var(--gray-600);
+  }
+  .product.is-soon { opacity: 0.55; }
+  .product .badge {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 4px;
+    font: 600 9px/1 var(--font-primary);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 9999px;
+  }
+  .badge.ai { background: linear-gradient(135deg, rgba(254,112,189,.18), rgba(147,64,255,.18)); color: var(--purple-700); }
+  .badge.new { background: rgba(64,235,79,.18); color: var(--success-900); }
+  .badge.soon { background: var(--gray-30); color: var(--gray-600); }
+
+  /* Special: master row showcasing 5 brand platforms */
+  .platforms { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; margin-top: 22px; }
+  .platform {
+    background: var(--gray-0);
+    border: 1px solid var(--gray-50);
+    border-radius: 14px;
+    padding: 22px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+    box-shadow: var(--elevation-1);
+  }
+  .platform .icon {
+    width: 100%; aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .platform .icon img {
+    max-width: 100%; max-height: 100%; object-fit: contain;
+  }
+  .platform .role {
+    font: 600 10px/1 var(--font-primary);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gray-500); text-align: center;
+  }
+
+  /* ONE hero card */
+  .one-hero {
+    background: linear-gradient(135deg, #172c66 0%, #243A83 100%);
+    color: var(--gray-0);
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-top: 22px;
+    display: grid; grid-template-columns: 280px 1fr; gap: 36px; align-items: center;
+    box-shadow: var(--elevation-3);
+    position: relative; overflow: hidden;
+  }
+  .one-hero::before {
+    content: ""; position: absolute; right: -100px; top: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(64,235,79,.18) 0%, transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(254,112,189,.22) 0%, transparent 55%);
+    filter: blur(20px);
+  }
+  .one-hero .one-mark {
+    background: var(--gray-0); border-radius: 14px; padding: 28px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .one-hero .one-mark img { width: 100%; height: auto; max-height: 80px; object-fit: contain; }
+  .one-hero .one-body { position: relative; z-index: 2; }
+  .one-hero .eyebrow {
+    font: 500 11px/1 var(--font-primary);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); margin-bottom: 8px;
+  }
+  .one-hero h2 {
+    font: 700 32px/1.1 var(--font-primary);
+    color: var(--gray-0); margin: 0 0 10px; letter-spacing: -0.01em;
+  }
+  .one-hero p {
+    font: 400 15px/1.55 var(--font-primary);
+    color: rgba(255,255,255,0.85); margin: 0; max-width: 600px;
+  }
+  .one-hero .meta {
+    display: flex; gap: 24px; margin-top: 18px;
+    font: 400 12px/1 var(--font-primary); color: rgba(255,255,255,0.7);
+  }
+  .one-hero .meta b { font-weight: 700; color: var(--gray-0); }
+
+  /* AI ecosystem image */
+  .ai-ecosystem {
+    background: var(--gray-0); border: 1px solid var(--gray-50);
+    border-radius: 16px; padding: 28px;
+    margin-top: 22px;
+    display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center;
+  }
+  .ai-ecosystem .img {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ai-ecosystem .img img { width: 100%; height: auto; }
+  .ai-ecosystem h3 {
+    font: 700 22px/1.2 var(--font-primary);
+    color: var(--gray-900); margin: 0 0 10px;
+  }
+  .ai-ecosystem p {
+    font: 400 14px/1.55 var(--font-primary);
+    color: var(--gray-700); margin: 0 0 14px;
+  }
+  .ai-ecosystem ul {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px;
+    list-style: none; padding: 0; margin: 0;
+    font: 400 13px/1.45 var(--font-primary); color: var(--gray-800);
+  }
+  .ai-ecosystem li { display: flex; align-items: center; gap: 8px; }
+  .ai-ecosystem li::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: linear-gradient(135deg, #FE70BD, #9340FF); flex-shrink: 0;
+  }
+
+  /* Compact list when many items */
+  .grid-tight { grid-template-columns: repeat(6, 1fr); }
+  .grid-wide  { grid-template-columns: repeat(4, 1fr); }
+
+  /* Usage rules box */
+  .rules {
+    background: var(--gray-0); border: 1px solid var(--gray-50);
+    border-radius: 14px; padding: 24px 28px; margin-top: 28px;
+  }
+  .rules h3 {
+    font: 600 14px/1 var(--font-primary);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gray-700); margin: 0 0 14px;
+  }
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 32px; }
+  .rules dt {
+    font: 600 13px/1.4 var(--font-primary);
+    color: var(--gray-900); margin-bottom: 2px;
+  }
+  .rules dd {
+    font: 400 13px/1.55 var(--font-primary);
+    color: var(--gray-700); margin: 0 0 12px;
+  }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="crumb">Brand · Product Portfolio</div>
+  <h1>Portfólio de produtos PGMais</h1>
+  <p>O ecossistema PGMais é organizado em <b>5 plataformas</b> (pg+) que orquestram dezenas de produtos modulares — todos identificados pelo prefixo <b>"+"</b>. No centro está o <b>o.n.e.</b>, sistema modular de relacionamento, ativado pela camada de inteligência artificial <b>+AI</b>.</p>
+
+  <div class="legend-row">
+    <span class="legend-pill"><span class="dot dot-blue"></span>Produtos ativos · azul (PGMais brand)</span>
+    <span class="legend-pill"><span class="dot dot-cyan"></span>Canais · ciano + azul</span>
+    <span class="legend-pill"><span class="dot dot-purple"></span>Inteligência (+AI) · rosa + roxo</span>
+    <span class="legend-pill"><span class="dot dot-gray"></span>Cinza · em desenvolvimento / placeholder</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     5 PLATAFORMAS pg+
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">01</span>
+    <h2>5 Plataformas pg+</h2>
+    <div class="desc">As 5 frentes que organizam o ecossistema. Cada plataforma agrupa produtos modulares relacionados.</div>
+  </div>
+  <div class="platforms">
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-contact.png" alt=""></div>
+      <div class="role">Dados de contato</div>
+    </div>
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-channels.png" alt=""></div>
+      <div class="role">Comunicação</div>
+    </div>
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-files.png" alt=""></div>
+      <div class="role">Documentos</div>
+    </div>
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-system.png" alt=""></div>
+      <div class="role">Sistema</div>
+    </div>
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-lab.png" alt=""></div>
+      <div class="role">Inteligência</div>
+    </div>
+    <div class="platform">
+      <div class="icon"><img src="../assets/portfolio/pg-insights.png" alt=""></div>
+      <div class="role">Analytics</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     o.n.e. - SISTEMA MODULAR DE RELACIONAMENTO (HERO)
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">02</span>
+    <h2>o.n.e. — Sistema Modular de Relacionamento</h2>
+    <div class="desc">O coração da operação. Sistema phygital que orquestra todos os produtos em uma única jornada.</div>
+  </div>
+  <div class="one-hero">
+    <div class="one-mark"><img src="../assets/portfolio/one.png" alt="o.n.e. — Sistema Modular de Relacionamento"></div>
+    <div class="one-body">
+      <div class="eyebrow">Produto Master · phygital</div>
+      <h2>Único sistema phygital do mercado</h2>
+      <p>Plataforma unificada que conecta dados, canais, agendamento e inteligência artificial em uma única operação. Integração nativa com todos os outros produtos do portfólio PGMais — modular para plugar onde faz sentido, completa quando a operação exige.</p>
+      <div class="meta">
+        <span><b>+48%</b> recuperação média</span>
+        <span><b>37%</b> redução de custo</span>
+        <span><b>70%</b> interação com IA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     +AI — INTELIGÊNCIA ARTIFICIAL
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">03</span>
+    <h2>+AI · Inteligência Artificial</h2>
+    <div class="desc">Camada de IA proprietária. Transforma dados em decisão e automatiza o relacionamento.</div>
+  </div>
+  <div class="ai-ecosystem">
+    <div class="img"><img src="../assets/portfolio/ai-ecosystem.png" alt="+AI ecossistema"></div>
+    <div>
+      <h3>Quatro motores de inteligência</h3>
+      <p>Atuamos como o cérebro estratégico do parceiro, utilizando processamento inteligente de dados para antecipar comportamentos e automatizar conversas.</p>
+      <ul>
+        <li><b>Prediction</b> · scoring de propensão</li>
+        <li><b>Intention</b> · análise de intenção</li>
+        <li><b>ChatBot</b> · agente conversacional</li>
+        <li><b>VoiceBot</b> · agente de voz</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid grid-wide" style="margin-top:16px">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/prediction.png" alt=""></div>
+      <span class="badge ai">+AI</span>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/intention.png" alt=""></div>
+      <span class="badge ai">+AI</span>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/chatbot.png" alt=""></div>
+      <span class="badge ai">+AI</span>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/voicebot.png" alt=""></div>
+      <span class="badge ai">+AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     pg+channels — CANAIS DE COMUNICAÇÃO
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">04</span>
+    <h2>pg+channels · Canais de comunicação</h2>
+    <div class="desc">Canais omnichannel nativos. Plugados ao o.n.e. para orquestração de jornadas.</div>
+  </div>
+  <div class="grid">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/sms.png" alt=""></div>
+      <div class="role">Mensagem curta</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/email.png" alt=""></div>
+      <div class="role">Marketing & transacional</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/rcs.png" alt=""></div>
+      <div class="role">Rich Communication Services</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/whats.png" alt=""></div>
+      <div class="role">WhatsApp Business API</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/ura.png" alt=""></div>
+      <div class="role">URA · voz automatizada</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/carta.png" alt=""></div>
+      <div class="role">Carta física</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/landing-page.png" alt=""></div>
+      <div class="role">Páginas de captação</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/ads.png" alt=""></div>
+      <div class="role">Mídia paga</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     pg+files — DOCUMENTOS
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">05</span>
+    <h2>pg+files · Documentos financeiros</h2>
+    <div class="desc">Geração, distribuição e gestão de documentos de cobrança.</div>
+  </div>
+  <div class="grid">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/boleto.png" alt=""></div>
+      <div class="role">Boleto bancário</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/carne.png" alt=""></div>
+      <div class="role">Carnê de pagamento</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/fatura.png" alt=""></div>
+      <div class="role">Fatura</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/agenda.png" alt=""></div>
+      <div class="role">Agendamento</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     pg+contact — DADOS DE CONTATO
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">06</span>
+    <h2>pg+contact · Qualificação de dados</h2>
+    <div class="desc">Tratamento, enriquecimento e scoring de bases de contato.</div>
+  </div>
+  <div class="grid">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/higienizacao.png" alt=""></div>
+      <div class="name">+Higienização</div>
+      <div class="role">Limpeza de bases</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/enriquecimento.png" alt=""></div>
+      <div class="name">+Enriquecimento</div>
+      <div class="role">Atualização cadastral</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/smart-contact.png" alt=""></div>
+      <div class="name">+Smart Contact</div>
+      <div class="role">Contato inteligente</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/contact-score.png" alt=""></div>
+      <div class="name">Contact Score</div>
+      <div class="role">Scoring de propensão</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/valida.png" alt=""></div>
+      <div class="name">+Valida</div>
+      <div class="role">Validação de dados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     pg+insights — ANALYTICS
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">07</span>
+    <h2>pg+insights · Analytics & BI</h2>
+    <div class="desc">Visualização, rastreabilidade e tomada de decisão a partir dos dados da operação.</div>
+  </div>
+  <div class="grid">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/report.png" alt=""></div>
+      <div class="name">+Report</div>
+      <div class="role">Relatórios operacionais</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/dashboards.png" alt=""></div>
+      <div class="name">+Dashboards</div>
+      <div class="role">Painéis em tempo real</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/discovery.png" alt=""></div>
+      <div class="name">+Discovery</div>
+      <div class="role">Exploração de dados</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/analytics.png" alt=""></div>
+      <div class="name">+Analytics</div>
+      <div class="role">Análise avançada</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Outros & complementares
+     ============================================================ -->
+<section class="family">
+  <div class="family-head">
+    <span class="number">08</span>
+    <h2>Soluções complementares</h2>
+    <div class="desc">Produtos especializados e serviços customizados que complementam o ecossistema.</div>
+  </div>
+  <div class="grid">
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/portal.png" alt=""></div>
+      <div class="name">+Portal</div>
+      <div class="role">Autonegociação white-label</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/zero-divida.png" alt=""></div>
+      <div class="name">Zero Dívida Online</div>
+      <div class="role">Negociação ao consumidor</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/telecobranca.png" alt=""></div>
+      <div class="name">+Telecobrança</div>
+      <div class="role">Operação humana</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/gbm.png" alt=""></div>
+      <div class="name">+GBM</div>
+      <div class="role">Gestão de base</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/seeds.png" alt=""></div>
+      <div class="name">Seeds</div>
+      <div class="role">Origens & qualificação</div>
+    </div>
+    <div class="product">
+      <div class="icon"><img src="../assets/portfolio/custom.png" alt=""></div>
+      <div class="name">Custom</div>
+      <div class="role">Soluções sob medida</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REGRAS DE USO
+     ============================================================ -->
+<section class="rules">
+  <h3>Regras de uso da marca dos produtos</h3>
+  <dl class="rules-grid">
+    <div>
+      <dt>Prefixo "+"</dt>
+      <dd>Todo produto modular leva o "+" antes do nome (ex: <b>+SMS, +Whats, +Boleto</b>). É o sinal visual de que o produto se "soma" ao ecossistema.</dd>
+    </div>
+    <div>
+      <dt>Cores por família</dt>
+      <dd>Cinzas e azuis para canais e documentos; rosa+roxo para a linha <b>+AI</b>; azul vibrante para plataformas <b>pg+</b>; verde reservado para o.n.e. e badges.</dd>
+    </div>
+    <div>
+      <dt>Capitalização</dt>
+      <dd>Sentence case sempre (ex: <b>+Smart Contact</b>, <b>+Higienização</b>). Lettermarks em minúsculas: <b>pg+channels, o.n.e.</b></dd>
+    </div>
+    <div>
+      <dt>Versão "soon"</dt>
+      <dd>Versões em cinza/desabilitadas indicam produtos em desenvolvimento ou desabilitados em contextos específicos. Não usar como ilustração comum.</dd>
+    </div>
+  </dl>
+</section>
+
+</body>
+</html>

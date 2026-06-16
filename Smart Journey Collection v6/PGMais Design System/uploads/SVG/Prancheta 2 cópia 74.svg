@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 223 153">
+  <defs>
+    
+    <linearGradient id="Gradiente_sem_nome_49" data-name="Gradiente sem nome 49" x1="81.42" y1="50.59" x2="149.42" y2="50.59" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"></stop>
+      <stop offset="1" stop-color="#b3b3b3"></stop>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_49-2" data-name="Gradiente sem nome 49" y1="85.48" x2="149.42" y2="85.48" xlink:href="#Gradiente_sem_nome_49"></linearGradient>
+    <linearGradient id="Gradiente_sem_nome_49-3" data-name="Gradiente sem nome 49" x1="81.42" y1="67.03" x2="149.42" y2="67.03" xlink:href="#Gradiente_sem_nome_49"></linearGradient>
+    <linearGradient id="Gradiente_sem_nome_49-4" data-name="Gradiente sem nome 49" x1="81.42" y1="37.27" x2="149.42" y2="37.27" xlink:href="#Gradiente_sem_nome_49"></linearGradient>
+  </defs>
+  <g>
+    <text class="cls-3" transform="translate(88.79 136.52)"><tspan x="0" y="0">URA</tspan></text>
+    <path class="cls-1" d="M83.98,126.5c-.84,0-1.53-.69-1.53-1.53v-2.92h-2.08v4.45h-4.45v2.08h2.92c.84,0,1.53.69,1.53,1.53v2.92h2.08v-4.45h4.45v-2.08h-2.92Z"></path>
+  </g>
+  <g>
+    <path class="cls-5" d="M125.46,33.65c-1.7,0-3.07-1.36-3.09-3.05v25.13c0,4.79-3.9,8.68-8.69,8.68s-8.68-3.89-8.68-8.68h0c0,1.71-1.38,3.09-3.09,3.09s-3.09-1.38-3.09-3.09c0,8.2,6.67,14.87,14.87,14.87s14.87-6.67,14.87-14.87v-25.13h0c-.02,1.69-1.4,3.05-3.09,3.05Z"></path>
+    <path class="cls-2" d="M125.5,89.5h-8.72v-11.16c0-1.72-1.39-3.11-3.11-3.11s-3.11,1.39-3.11,3.11v11.16h-8.72c-1.72,0-3.11,1.39-3.11,3.11s1.39,3.11,3.11,3.11h23.65c1.72,0,3.11-1.39,3.11-3.11s-1.39-3.11-3.11-3.11Z"></path>
+    <path class="cls-4" d="M113.68,81.46c-14.19,0-25.73-11.54-25.73-25.73,0-1.72,1.39-3.11,3.11-3.11s3.11,1.39,3.11,3.11c0,10.76,8.75,19.51,19.51,19.51s19.51-8.75,19.51-19.51c0-1.72,1.39-3.11,3.11-3.11s3.11,1.39,3.11,3.11c0,14.19-11.54,25.73-25.73,25.73Z"></path>
+    <path class="cls-6" d="M128.55,30.57s0,0,0-.01h0c-.02-8.18-6.68-14.83-14.87-14.83s-14.87,6.67-14.87,14.87v25.13c0,1.71,1.39,3.09,3.09,3.09s3.09-1.39,3.09-3.09v-25.13c0-4.79,3.9-8.68,8.68-8.68s8.68,3.89,8.68,8.68h0c.02,1.69,1.4,3.05,3.09,3.05s3.07-1.36,3.09-3.05h0s0-.02,0-.03Z"></path>
+  </g>
+</svg>

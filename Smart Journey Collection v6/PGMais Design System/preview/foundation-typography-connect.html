@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>Foundation — Typography +Connect</title><link rel="stylesheet" href="_card.css">
+<style>
+  html, body { width: 1000px !important; overflow: visible !important; }
+  body { padding: 28px 32px; gap: 16px; }
+  .head { display: flex; align-items: baseline; gap: 16px; }
+  .head .small { font-family: var(--font-primary); font-weight: 700; font-size: 14px; color: var(--gray-900); }
+  .head h1 { font-family: var(--font-primary); font-weight: 300; font-size: 40px; color: var(--gray-900); margin: 0; letter-spacing: -0.01em; }
+  .meta { font-family: var(--font-primary); font-size: 12px; color: var(--gray-700); display:flex; gap: 24px; }
+  .grid { display: grid; grid-template-columns: 1fr 60px 2fr; gap: 8px 24px; align-items: center; padding-top: 12px; }
+  .colhead { font-family: var(--font-primary); font-weight: 400; font-size: 24px; color: var(--gray-900); padding-bottom: 16px; border-bottom: 1px solid var(--gray-50); letter-spacing: -0.01em; }
+  .arrow { display: flex; align-items: center; justify-content: center; }
+  .arrow svg { width: 60px; height: 12px; }
+  .label { font-family: var(--font-primary); font-size: 13px; color: var(--gray-800); }
+  .new { display: flex; align-items: baseline; gap: 16px; }
+  .new .px { font-family: var(--font-primary); font-size: 11px; color: var(--gray-700); text-align: right; min-width: 60px; line-height: 1.4; }
+  .new .name { font-family: 'Lato', sans-serif; color: var(--gray-900); }
+  .row-line { grid-column: 1 / -1; height: 1px; background: var(--gray-50); margin: 4px 0; }
+  .section-title { grid-column: 1 / -1; font-family: var(--font-primary); font-weight: 300; font-size: 22px; color: var(--gray-900); margin-top: 24px; padding-bottom: 4px; }
+</style></head>
+<body>
+  <div>
+    <div class="small">De-para</div>
+    <h1>+Connect</h1>
+  </div>
+  <div class="grid">
+    <div class="colhead">Antiga</div>
+    <div></div>
+    <div class="colhead">Nova<div class="meta" style="margin-top:6px"><span>Base Value: 16</span><span>Scale: 1.25</span></div></div>
+
+    <div class="label">Títulos</div>
+    <div class="arrow"><svg viewBox="0 0 60 12"><circle cx="4" cy="6" r="3" fill="none" stroke="#3DB7F4" stroke-width="1.5"/><line x1="8" y1="6" x2="50" y2="6" stroke="#3DB7F4" stroke-width="1.5"/><polygon points="50,2 58,6 50,10" fill="#3DB7F4"/></svg></div>
+    <div class="new"><span class="px">25px<br/>1.562rem</span><span class="name" style="font-size:25px; font-weight:300">Subtitle 1</span></div>
+    <div class="row-line"></div>
+
+    <div class="label">Subtítulos</div>
+    <div class="arrow"><svg viewBox="0 0 60 12"><circle cx="4" cy="6" r="3" fill="none" stroke="#3DB7F4" stroke-width="1.5"/><line x1="8" y1="6" x2="50" y2="6" stroke="#3DB7F4" stroke-width="1.5"/><polygon points="50,2 58,6 50,10" fill="#3DB7F4"/></svg></div>
+    <div class="new"><span class="px">16px<br/>1.000rem</span><span class="name" style="font-size:16px; font-weight:600">Subtitle 3</span></div>
+    <div class="row-line"></div>
+
+    <div class="label">Parágrafos</div>
+    <div class="arrow"><svg viewBox="0 0 60 12"><circle cx="4" cy="6" r="3" fill="none" stroke="#3DB7F4" stroke-width="1.5"/><line x1="8" y1="6" x2="50" y2="6" stroke="#3DB7F4" stroke-width="1.5"/><polygon points="50,2 58,6 50,10" fill="#3DB7F4"/></svg></div>
+    <div class="new"><span class="px">13px<br/>0.812rem</span><span class="name" style="font-size:13px; font-weight:700">Body 2</span></div>
+    <div class="row-line"></div>
+
+    <div class="label">Legendas</div>
+    <div class="arrow"><svg viewBox="0 0 60 12"><circle cx="4" cy="6" r="3" fill="none" stroke="#3DB7F4" stroke-width="1.5"/><line x1="8" y1="6" x2="50" y2="6" stroke="#3DB7F4" stroke-width="1.5"/><polygon points="50,2 58,6 50,10" fill="#3DB7F4"/></svg></div>
+    <div class="new"><span class="px">10px<br/>0.625rem</span><span class="name" style="font-size:10px; font-weight:400">Caption</span></div>
+  </div>
+
+  <div style="font-family:var(--font-primary); font-weight:300; font-size:22px; color:var(--gray-900); margin-top:8px">Mais estilos</div>
+  <div style="display:grid; grid-template-columns: 80px 1fr; gap: 14px 24px; align-items:baseline">
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">61px<br/>3.812rem</div>
+    <div style="font-family:'Lato'; font-size:61px; font-weight:300; color:var(--gray-900); line-height:1.1">Headline 1</div>
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">49px<br/>3.062rem</div>
+    <div style="font-family:'Lato'; font-size:49px; font-weight:300; color:var(--gray-900); line-height:1.1">Headline 2</div>
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">39px<br/>2.438rem</div>
+    <div style="font-family:'Lato'; font-size:39px; font-weight:300; color:var(--gray-900); line-height:1.1">Headline 3</div>
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">31px<br/>1.938rem</div>
+    <div style="font-family:'Lato'; font-size:31px; font-weight:300; color:var(--gray-900); line-height:1.1">Headline 4</div>
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">20px<br/>1.250rem</div>
+    <div style="font-family:'Lato'; font-size:20px; font-weight:600; color:var(--gray-900); line-height:1.2">Subtitle 2</div>
+    <div class="px" style="font-family:var(--font-primary); font-size:11px; color:var(--gray-700); text-align:right">16px<br/>1.000rem</div>
+    <div style="font-family:'Lato'; font-size:16px; font-weight:400; color:var(--gray-900); line-height:1.4">Body 1</div>
+  </div>
+</body></html>

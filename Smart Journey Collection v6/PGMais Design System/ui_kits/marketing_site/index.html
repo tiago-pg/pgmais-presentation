@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PGMais · Marketing Site</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html,body{margin:0;padding:0;background:#172c66;font-family:'Poppins',sans-serif}
+  #app{min-height:100vh}
+  .hero-wrap{background:#172c66}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="hero-wrap">
+    <div id="nav-slot"></div>
+    <div id="hero-slot"></div>
+  </div>
+  <div id="logos-slot"></div>
+  <div id="ecosystem-slot"></div>
+  <div id="stats-slot"></div>
+  <div id="oc-slot"></div>
+  <div id="footer-slot"></div>
+</div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="utils.js"></script>
+<script type="text/babel" src="Icons.jsx"></script>
+<script type="text/babel" src="Nav.jsx"></script>
+<script type="text/babel" src="Hero.jsx"></script>
+<script type="text/babel" src="EcosystemGrid.jsx"></script>
+<script type="text/babel" src="StatsBand.jsx"></script>
+<script type="text/babel" src="OneCollectFeature.jsx"></script>
+<script type="text/babel" src="CaseLogos.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+<script type="text/babel">
+  const mount = (id, C) => ReactDOM.createRoot(document.getElementById(id)).render(<C/>);
+  setTimeout(() => {
+    mount('nav-slot', () => <Nav dark />);
+    mount('hero-slot', Hero);
+    mount('logos-slot', CaseLogos);
+    mount('ecosystem-slot', EcosystemGrid);
+    mount('stats-slot', StatsBand);
+    mount('oc-slot', OneCollectFeature);
+    mount('footer-slot', Footer);
+  }, 50);
+</script>
+</body>
+</html>
