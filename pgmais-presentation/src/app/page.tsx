@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 
 const services = [
@@ -10,6 +11,11 @@ const services = [
 ];
 
 export default function MenuPage() {
+  useEffect(() => {
+    const keys = ["sjc_triagem", "ga_triagem", "gf_triagem", "jc_triagem"];
+    keys.forEach(k => sessionStorage.removeItem(k));
+  }, []);
+
   return (
     <div className="menu-body relative flex items-center justify-center min-h-dvh w-full overflow-x-hidden p-4 sm:p-8" style={{ background: "var(--color-gray-light)" }}>
       <div className="absolute w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full pointer-events-none opacity-18 blur-[60px] sm:blur-[90px] animate-[t-orb-drift_12s_ease-in-out_infinite]" style={{ background: "var(--color-navy)", top: "-150px", right: "-80px" }} />

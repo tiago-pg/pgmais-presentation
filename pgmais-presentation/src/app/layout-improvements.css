@@ -23,10 +23,10 @@
 }
 
 /* ── 2. ESPAÇAMENTO AO REMOVER BLOCOS ── */
-/* Remove max-width fixos quando o bloco está visível
-   e permite que cresça para preencher espaço vazio */
+/* Itens crescem para preencher espaço vazio quando irmãos somem */
 .service-flex-block {
-  flex: 1 1 0% !important;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* Blocos que devem encolher menos */
@@ -39,7 +39,7 @@
   min-height: 0;
 }
 
-/* Quando um bloco SOME, os irmãos visíveis crescem automaticamente */
+/* Layout em row única em telas ≥ 1280px, wrap abaixo */
 .main-layout-row-parent {
   display: flex;
   flex-wrap: wrap;
@@ -49,31 +49,29 @@
     flex-wrap: nowrap;
   }
   .main-layout-row-parent > *:not(.hidden) {
-    flex: 1 1 0%;
-    min-width: 120px;
+    min-width: 0;
+    flex: 1 1 auto;
   }
-  /* SistemaOrigem não deve crescer */
-  .main-layout-row-parent > .sistema-origem:not(.hidden) {
+  /* SistemaOrigem: tamanho fixo */
+  .main-layout-row-parent > .flex-shrink-0:not(.hidden) {
     flex: 0 0 auto !important;
     min-width: 40px;
   }
-  /* Área da pessoal não deve ficar gigante */
-  .main-layout-row-parent > .person-area:not(.hidden) {
+  /* Person area: limite de largura */
+  .main-layout-row-parent > .person-area:not(.hidden),
+  .main-layout-row-parent > [class*="person-area"]:not(.hidden) {
     max-width: 350px;
+    flex: 0 1 auto;
   }
 }
-@media (min-width: 1024px) and (max-width: 1279px) {
+@media (min-width: 768px) and (max-width: 1279px) {
   .main-layout-row-parent > *:not(.hidden) {
-    min-width: 180px;
-    flex: 1 1 calc(33.333% - 1rem);
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 200px;
   }
-  .main-layout-row-parent > .sistema-origem:not(.hidden) {
+  .main-layout-row-parent > .flex-shrink-0:not(.hidden) {
     flex: 0 0 auto !important;
     min-width: 40px;
-    width: auto;
-  }
-  .main-layout-row-parent > .person-area:not(.hidden) {
-    max-width: 350px;
   }
 }
 
