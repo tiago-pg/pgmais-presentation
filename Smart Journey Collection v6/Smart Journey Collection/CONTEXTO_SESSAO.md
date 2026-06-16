@@ -1,6 +1,6 @@
 # Contexto da Sessão — Smart Journey / PGMais
 
-**Data:** 2026-03-29
+**Data:** 2026-06-16
 **Leia este arquivo ao iniciar uma nova sessão antes de qualquer ação.**
 
 ---
@@ -9,29 +9,32 @@
 
 Sistema de apresentação comercial da PGMais. O comercial configura e baixa um template visual (PDF/JPG/PNG) para mostrar ao cliente.
 
-Estrutura atual:
-- `index.html` — Menu de seleção de serviço (4 cards, todos disponíveis)
-- `smart-journey.html` — Smart Journey Collection (fluxo completo)
-- `gestao-acordo.html` — Gestão de Acordo (fluxo completo)
-- `gestao-fatura.html` — Gestão de Fatura (fluxo completo)
-- `jornada-cobranca.html` — Jornada de Cobrança (fluxo completo)
-- `shared.js` — Toda a lógica JS compartilhada entre os serviços
-- `style.css` — Estilos compartilhados (inclui menu, SJC, GA, GF, JC)
-- `assets-b64.js` — Assets em base64 (usados para download)
-- `Figma/assets/` — Imagens dos logos e ícones
+**Duas versões existem lado a lado:**
+
+### Versão Original (HTML puro)
+- `Smart Journey Collection/` — HTML5 + CSS3 + Vanilla JS
+- `index.html` + 4 páginas de serviço
+- `shared.js` — toda lógica JS
+- `style.css` — 2000 linhas de estilos
+- `colors_and_type.css` — design tokens
+- `assets-b64.js` — assets em base64 para download
+
+### Versão Next.js
+- `pgmais-presentation/` — Next.js 16 (App Router) + Tailwind v4 + TypeScript
+- 5 rotas: `/`, `/smart-journey`, `/gestao-acordo`, `/gestao-fatura`, `/jornada-cobranca`
+- 18 componentes React em `src/components/`
+- Lógica compartilhada em `src/lib/`
+- Deploy estático no Netlify via CLI
 
 ---
 
 ## Decisões arquiteturais tomadas (definitivas)
 
-1. **Arquivos separados por serviço** — cada serviço tem seu próprio `.html`
-2. **`index.html` = menu de seleção** — 4 cards, todos disponíveis
-3. **`shared.js`** — todo JS comum extraído (triagem, download, remoção, utilitários)
-4. **Cada serviço define antes do `shared.js`:**
-   - `SERVICE_CONFIG` — nome, filename, storageKey, columns, tagline
-   - `blockServices` — mapeamento bloco → [ids serviços filhos]
-   - `window._onTriagemApplied` (opcional) — hook pós-triagem por serviço
-5. **Apenas técnicos** editam os HTMLs
+1. **Arquivos separados por serviço** — cada serviço tem sua própria rota/página
+2. **Layout responsivo** — telas ≥1280px em row única; telas <1280px quebram em 2 linhas com `flex-wrap`
+3. **Wizard de triagem** — sessionStorage limpo ao voltar pro menu (`useEffect` na home limpa as 4 chaves)
+4. **Deploy manual via CLI** — Netlify NÃO tem auto-deploy por Git. Usar `netlify deploy --prod` na raiz do projeto
+5. **Apenas técnicos** editam os arquivos
 6. **Nome correto:** "Jornada de Cobrança" (não "da")
 
 ---
@@ -40,13 +43,12 @@ Estrutura atual:
 
 ### Concluído
 
-- ✅ `index.html` — menu de seleção (4 cards, todos DISPONÍVEL)
-- ✅ `smart-journey.html` — Smart Journey Collection
-- ✅ `gestao-acordo.html` — Gestão de Acordo
-- ✅ `gestao-fatura.html` — Gestão de Fatura
-- ✅ `jornada-cobranca.html` — Jornada de Cobrança
-- ✅ `shared.js` — lógica compartilhada
-- ✅ `style.css` — estilos de todos os serviços
+- ✅ Versão Original (HTML) — completa e funcional
+- ✅ Versão Next.js — todas as 5 rotas funcionais
+- ✅ Layout responsivo com wrap em telas <1280px
+- ✅ Wizard reaparece ao voltar pro menu
+- ✅ Design System documentado em `PGMais Design System/`
+- ✅ Deploy manual configurado no Netlify
 
 ---
 
@@ -103,16 +105,23 @@ Estrutura atual:
 
 ---
 
-## Pendente
+## Pendentes
 
-- ⏳ `assets-b64.js` — novos assets (Pg contact.png, +AI.svg, CONSULTOR.png, PGFiles - Logo.png, BOLETO.png, FATURA.png, TEXTO.png, VOZ.png, Mock Smarthphone.png) precisam ser adicionados para que o download funcione com todos os ícones novos
+### Versão Original (HTML)
+- ⏳ `assets-b64.js` — novos assets (Pg contact.png, +AI.svg, CONSULTOR.png, PGFiles - Logo.png, BOLETO.png, FATURA.png, TEXTO.png, VOZ.png, Mock Smarthphone.png) precisam ser adicionados para download completo
+- ⏳ `_cropImagem()` em `shared.js` — lógica de crop incompleta (cW, cH não definidos)
+
+### Versão Next.js
+- ⏳ API key de IA para `ai-suggestions.ts` — atualmente usa base local de perfis
+- ⏳ `overflow-visible` no `page-wrapper` pode afetar captura do html2canvas no download
 
 ---
 
 ## Como retomar
 
 1. Leia este arquivo
-2. Projeto está completo em 4 serviços — possíveis próximas tarefas:
-   - Atualizar `assets-b64.js` com novos assets
-   - Ajustes visuais pontuais nos serviços
-   - Novos serviços (se houver)
+2. O projeto está completo — possíveis próximas tarefas:
+   - Corrigir `assets-b64.js` com novos assets em base64
+   - Corrigir `_cropImagem` em shared.js
+   - Adicionar API key real para sugestões de IA
+   - Ajustes visuais nos serviços

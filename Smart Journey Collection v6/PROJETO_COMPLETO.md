@@ -53,9 +53,16 @@ Sistema de apresentação comercial **offline-first** (HTML puro) da empresa **P
 
 ### 1.4 Status do Projeto
 
-**COMPLETO ✅** — Projeto funcional e finalizado. Única pendência conhecida:
+**COMPLETO ✅** — Duas versões disponíveis:
 
-- ⏳ `assets-b64.js` precisa de novos assets (PG contact.png, +AI.svg, CONSULTOR.png, PGFiles - Logo.png, BOLETO.png, FATURA.png, TEXTO.png, VOZ.png, Mock Smarthphone.png) para download funcionar com 100% dos ícones
+| Versão | Localização | Stack |
+|--------|------------|-------|
+| **Original (HTML)** | `Smart Journey Collection v6/` | HTML5 + CSS3 + Vanilla JS |
+| **Next.js** | `pgmais-presentation/` | Next.js 16 (App Router) + Tailwind v4 + TypeScript |
+
+**Pendências conhecidas:**
+- ⏳ `assets-b64.js` (versão original) precisa de novos assets para download funcionar com 100% dos ícones
+- ⏳ API key do provedor de IA para o módulo `ai-suggestions.ts` funcionar com LLM real (atualmente usa base local)
 
 ---
 
@@ -194,6 +201,64 @@ Smart Journey Collection v6/
     └── launch.json
 ```
 
+### 2.2 Projeto Next.js (nova versão)
+
+```
+pgmais-presentation/                     ← Next.js 16 (App Router)
+│
+├── src/
+│   ├── app/                             ← 5 rotas (App Router)
+│   │   ├── layout.tsx                   ← Layout raiz (Lato + Poppins via <link>)
+│   │   ├── page.tsx                     ← / (Menu de seleção)
+│   │   ├── globals.css                  ← Tokens CSS do PGMais + Tailwind
+│   │   ├── layout-improvements.css      ← Responsividade, linhas conectoras, fixes
+│   │   ├── smart-journey/page.tsx       ← /smart-journey (SJC)
+│   │   ├── gestao-acordo/page.tsx       ← /gestao-acordo (GA)
+│   │   ├── gestao-fatura/page.tsx       ← /gestao-fatura (GF)
+│   │   └── jornada-cobranca/page.tsx    ← /jornada-cobranca (JC)
+│   │
+│   ├── components/                      ← 18 componentes React
+│   │   ├── ActionButtons.tsx            ← Barra superior (hamburger p/ mobile)
+│   │   ├── Card.tsx                     ← Card reutilizável (white/gradient, responsivo)
+│   │   ├── Header.tsx                   ← Título + linha + logo (responsive)
+│   │   ├── ServiceItem.tsx              ← Ícone com hover-excluir (responsive)
+│   │   ├── ServiceAddMenu.tsx           ← Botão "+" p/ restaurar serviços
+│   │   ├── SistemaOrigem.tsx            ← Barra vertical (horizontal no mobile)
+│   │   ├── OneBlock.tsx                 ← Bloco O.N.E. (5 itens)
+│   │   ├── PGChannelsBlock.tsx          ← Bloco PGChannels
+│   │   ├── PGFilesBlock.tsx             ← Bloco PGFiles
+│   │   ├── PersonArea.tsx               ← Foto + badge "INTERAÇÃO CLIENTE"
+│   │   ├── IAConversacionalBlock.tsx    ← IA Conversacional (SJC)
+│   │   ├── AtendimentoBlock.tsx         ← Atendimento (+AI/Consultor ou Texto/Voz)
+│   │   ├── ReceptivoBlock.tsx           ← Receptivo Multicanal (SJC)
+│   │   ├── PortalAutoBlock.tsx          ← Portal Autonegociação + PhoneMockup
+│   │   ├── PortalNegociacaoBlock.tsx    ← Portal Negociação + Carta (JC)
+│   │   ├── InsightsBlock.tsx            ← Rodapé Insights
+│   │   ├── TriagemWizard.tsx            ← Wizard 4 etapas (com busca IA)
+│   │   ├── ConnectorLines.tsx           ← Linhas de conexão SVG entre blocos
+│   │   ├── PhoneMockup.tsx              ← Simulação de smartphone
+│   │   └── ServiceTabs.tsx              ← Abas de serviço (GF/JC)
+│   │
+│   └── lib/                             ← Lógica compartilhada
+│       ├── types.ts                     ← Tipos TypeScript
+│       ├── constants.ts                 ← Configs de serviço + blocos + ícones
+│       ├── triagem-storage.ts           ← sessionStorage + upload + resize
+│       ├── download.ts                  ← PDF/JPG/PNG (html2canvas + jsPDF)
+│       ├── ai-suggestions.ts            ← IA: sugestão de cor/serviços por empresa
+│       └── use-service-state.ts         ← Gerenciamento de estado global
+│
+├── public/                              ← Assets estáticos
+│   ├── assets/                          ← ~90 SVGs/PNGs (logos, ícones)
+│   ├── icones/                          ← ~30 SVGs secundários
+│   └── fonts/                           ← Lato (10 .ttf)
+│
+├── netlify.toml                         ← Config de deploy Netlify
+├── next.config.ts                       ← output: 'export' (static site)
+├── tsconfig.json
+├── package.json
+└── .gitignore
+```
+
 ---
 
 ## 3. PÚBLICO-ALVO E CONTEXTO DE NEGÓCIO
@@ -231,7 +296,21 @@ Empresas brasileiras que terceirizam cobrança: bancos (Itaú, etc.), operadoras
 | PDF | jsPDF CDN | 2.5.1 |
 | Servidor | Qualquer servidor HTTP estático (ou file://) | — |
 
-### 4.2 Zero Dependências de Build
+### 4.2 Versão Next.js
+
+| Camada | Tecnologia | Versão |
+|--------|-----------|--------|
+| Framework | Next.js (App Router) | 16.2.9 |
+| CSS | Tailwind CSS v4 + CSS Variables | — |
+| JS/TS | TypeScript (strict) | ES2017 |
+| Fonte | Lato (self-hosted) + Poppins (Google Fonts) | — |
+| Ícones | Lucide React + SVGs | — |
+| Canvas | html2canvas | 1.4.1 |
+| PDF | jsPDF | 4.2.1 |
+| Deploy | Netlify (static export) | — |
+| Build | `output: 'export'` → HTML estático na pasta `out/` | — |
+
+### 4.3 Zero Dependências de Build (Original)
 
 **Não há:** npm, webpack, vite, react, vue, angular, sass, less, typescript, babel, gulp, grunt, docker, node_modules, package.json, lockfile, bundler, transpilador, task runner.
 
@@ -829,14 +908,131 @@ Necessários para download completo:
 
 ## 13. PENDÊNCIAS CONHECIDAS
 
-- ⏳ `assets-b64.js` incompleto — faltam ~9 assets em base64 para que o download funcione com todos os ícones
-- ⏳ `_cropImagem()` em `shared.js` (linhas 918-939) parece ter lógica incompleta — referência `cW` e `cH` não definidos no escopo da função
+- ⏳ `assets-b64.js` (versão original) incompleto — faltam ~9 assets em base64 para download
+- ⏳ `_cropImagem()` em `shared.js` (linhas 918-939) lógica incompleta — `cW` e `cH` não definidos
+- ⏳ API key de LLM para `ai-suggestions.ts` — atualmente usa base local de perfis
 
 ---
 
-## 14. PADRÕES DE CÓDIGO E CONVENÇÕES
+## 14. IMPLEMENTAÇÕES RECENTES (Next.js)
 
-### 14.1 HTML
+### 14.1 Responsividade Desktop
+
+**Arquivo:** `src/app/layout-improvements.css`
+
+Classes CSS específicas para layout fluido:
+- `.main-layout-row-parent` — flex container que faz os blocos expandirem quando um irmão é removido
+- `.service-layout-row` — ajusta gap dinamicamente conforme viewport (6px em 1024px, 14px em 1280px, 18px em 1440px+)
+- `.service-flex-block` — `flex: 1 1 0%` garante que todos os blocos tenham tamanho flexível para preencher espaço
+
+**Breakpoints:**
+| Viewport | Gap | Comportamento |
+|----------|-----|---------------|
+| < 1024px | — | Flex column (empilhado) |
+| 1024–1100px | 6px | Flex row compacto |
+| 1100–1280px | 10px | Flex row normal |
+| 1280–1440px | 14px | Flex row espaçado |
+| > 1440px | 18px | Flex row confortável |
+
+### 14.2 Preenchimento de Espaço ao Remover Blocos
+
+Antes: blocos com `max-width` fixo e `flex: 1 1 [px]` que impediam expansão.
+
+Agora:
+- `flex: 1 1 0%` em todos os blocos
+- `min-width: 120px` no desktop para evitar encolhimento excessivo
+- `max-width: 350px` na área da pessoa
+- `flex: 0 0 auto` no Sistema Origem e PG Contact (nunca crescem)
+- Uso de `style={{ display: "none" }}` em vez de classe `hidden` para remover do fluxo
+
+### 14.3 Linhas de Conexão (CSS-only)
+
+**Arquivos:** `src/app/layout-improvements.css` + classe `.connector-dot`
+
+Implementação CSS pura (sem JS/SVG de cálculo):
+- Cada bloco ganha classe `.connector-dot`
+- `::before` → bolinha de 8px à esquerda do card
+- Tracejado horizontal conecta as bolinhas entre blocos adjacentes
+- Visível apenas em desktop (`>= 1024px`), oculto no mobile
+- Se um bloco é removido (`display: none`), a linha de conexão desaparece junto
+
+### 14.4 Correção do Botão Download
+
+Problema: `overflow-hidden` estava como `overflow-visible` para acomodar as linhas de conexão, mas o html2canvas capturava área excessiva.
+
+Solução:
+- `#page-wrapper` mantém `overflow-hidden` para captura correta
+- Linhas de conexão são desenhadas via `::before` pseudo-elemento, não sobrepõem o fluxo
+- CSS de `.connector-overlay` isolado em `layout-improvements.css`
+
+### 14.5 Triagem Inteligente com IA
+
+**Arquivo:** `src/lib/ai-suggestions.ts`
+
+Base de conhecimento local com perfis de empresas:
+| Empresa | Cor Sugerida | Canais Recomendados |
+|---------|-------------|-------------------|
+| Itaú | `#003d6b` | SMS, Email, Whats, Carta, URA, Chatbot, VoiceBot |
+| Claro | `#ed1c24` | SMS, Email, Whats, URA, Chatbot |
+| Magalu | `#e20134` | SMS, Email, Whats, RCS, Chatbot |
+| Vivo | `#660099` | SMS, Email, URA, Carta, VoiceBot |
+
+Funcionalidades:
+- Sugestão por setor (banco, telecom, varejo, saúde, educação) → cor + serviços
+- Botão **IA ✨** no formulário de triagem que aplica sugestão automaticamente
+- Função `suggestFromCompanyName()` — busca textual por nome
+- Função `suggestFromSegment()` — busca por segmento de mercado
+- Arquitetura preparada para substituir por LLM real (OpenAI, Anthropic, etc.)
+
+### 14.6 Busca e Personalização Dinâmica
+
+- Campo "Nome da empresa" com autocomplete enquanto digita
+- Sugestões da base de conhecimento aparecem após 2 caracteres
+- Dropdown estilizado com mesma identidade visual do wizard
+- Clique na sugestão → preenche o campo automaticamente
+- Integrado nos formulários Padrão e Personalizado
+
+### 14.7 Deploy Netlify
+
+**Arquivo:** `netlify.toml`
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+- `output: "export"` no `next.config.ts` → gera site 100% estático
+- Pasta `out/` publicada no Netlify
+- Redirects SPA para todas as rotas funcionarem (/* → /index.html)
+- **URL:** https://pgmais-presentation.netlify.app
+- **GitHub:** https://github.com/tiago-pg/pgmais-presentation
+
+**⚠️ Importante — Deploy manual via CLI:**
+O Netlify NÃO está configurado para deploy automático via Git. Push no GitHub não dispara build. Para publicar:
+
+```bash
+cd pgmais-presentation
+netlify deploy --prod
+```
+
+Isso faz build + upload para a URL de produção. O comando `netlify deploy` (sem `--prod`) faz preview em URL única temporária.
+
+**Pré-requisitos:**
+- Netlify CLI instalado (`npm i -g netlify-cli`)
+- Autenticado via `netlify login`
+- Projeto vinculado: `netlify link` já configurado
+
+---
+
+## 15. PADRÕES DE CÓDIGO E CONVENÇÕES
+
+### 15.1 HTML
 
 - `<!doctype html>` (minúsculo)
 - `lang="pt-BR"`
@@ -845,7 +1041,7 @@ Necessários para download completo:
 - SERVICE_CONFIG + blockServices definidos antes do `<script src="shared.js">`
 - Classes: BEM simplificado (ex: `.menu-card`, `.block-title`, `.service-item`)
 
-### 14.2 CSS
+### 15.2 CSS
 
 - Design tokens em `colors_and_type.css`
 - Estilos específicos em `style.css` com seções comentadas: `/* ── HEADER ── */`
@@ -854,7 +1050,7 @@ Necessários para download completo:
 - Transições: 0.15s a 0.3s, `ease` na maioria
 - Sem media queries (design fixo para apresentação em desktop)
 
-### 14.3 JavaScript
+### 15.3 JavaScript
 
 - ES6+ (const, let, arrow functions, template strings, Sets)
 - `window._onTriagemApplied` como hook opcional
@@ -865,7 +1061,7 @@ Necessários para download completo:
 - `sessionStorage` para persistência de configuração
 - Event listeners com closures e `stopPropagation()`
 
-### 14.4 Regras de Estilo (Design System)
+### 15.4 Regras de Estilo (Design System)
 
 1. Português brasileiro obrigatório (inglês só em nomes próprios e tagline)
 2. Navy (`#172c66`) em fundos e texto corpo sobre superfícies claras
