@@ -30,6 +30,7 @@ export default function GestaoFaturaPage() {
 
   const toggleService = (id: string) => setHiddenServices(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   const removeBlock = (id: string) => { const c = GF_BLOCKS[id] || []; setHiddenBlocks(p => new Set([...p, id])); setHiddenServices(p => new Set([...p, ...c])); };
+  const isHidden = (id: string) => hiddenBlocks.has(id);
 
   if (!loaded) return null;
 
@@ -47,20 +48,20 @@ export default function GestaoFaturaPage() {
           />
           <Header title="Gestão de" strong="Fatura" />
           <div className="flex-1 flex flex-col min-h-0">
-            <div className="flex flex-col lg:flex-row flex-wrap lg:flex-nowrap gap-2 sm:gap-3 items-stretch flex-1 min-h-0">
+            <div className="main-layout-row-parent service-layout-row flex flex-col xl:flex-row flex-wrap gap-2 sm:gap-3 items-stretch flex-1 min-h-0">
               <SistemaOrigem triagemData={triagemData} />
-              <div className="flex-shrink-0 min-w-[50px] sm:min-w-[68px] max-w-full sm:max-w-[100px] flex items-center justify-center bg-white border-2 border-[var(--color-navy-20)] rounded-[22px] px-2 sm:px-[6px] py-3 cursor-pointer" style={{ display: hiddenBlocks.has("block-pg-contact") ? "none" : "flex" }} onClick={() => toggleService("block-pg-contact")}>
+              <div className="connector-dot flex-shrink-0 min-w-[50px] sm:min-w-[68px] max-w-full sm:max-w-[100px] flex items-center justify-center bg-white border-2 border-[var(--color-navy-20)] rounded-[22px] px-2 sm:px-[6px] py-3 cursor-pointer" style={{ display: isHidden("block-pg-contact") ? "none" : "flex" }} onClick={() => toggleService("block-pg-contact")}>
                 <img src="/assets/Pg contact.svg" alt="PG Contact" className="w-[120px] sm:w-[175px] max-h-[40px] sm:max-h-[56px] object-contain -rotate-90" />
               </div>
-              <OneBlock hidden={hiddenBlocks.has("block-one")} onRemove={() => removeBlock("block-one")} compact />
-              <PGChannelsBlock hidden={hiddenBlocks.has("block-channels")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-channels"]} onRemoveBlock={() => removeBlock("block-channels")} onRemoveService={toggleService} onRestoreService={toggleService} showCarta={false} showAds={false} />
-              <PGFilesBlock hidden={hiddenBlocks.has("block-files")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-files"]} onRemoveBlock={() => removeBlock("block-files")} onRemoveService={toggleService} onRestoreService={toggleService} />
-              <PersonArea triagemData={triagemData} showBadge badgeText="INTERAÇÃO CLIENTE" badgeSub="Texto ou voz" />
-              <AtendimentoBlock hidden={hiddenBlocks.has("block-atendimento")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-atendimento"]} onRemoveBlock={() => removeBlock("block-atendimento")} onRemoveService={toggleService} onRestoreService={toggleService} title="ATENDIMENTO" subtitle="Digital e ou transbordo humano" largeIcons />
+              <div className="connector-dot service-flex-block"><OneBlock hidden={isHidden("block-one")} onRemove={() => removeBlock("block-one")} compact /></div>
+              <div className="connector-dot service-flex-block"><PGChannelsBlock hidden={isHidden("block-channels")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-channels"]} onRemoveBlock={() => removeBlock("block-channels")} onRemoveService={toggleService} onRestoreService={toggleService} showCarta={false} showAds={false} /></div>
+              <div className="connector-dot service-flex-block"><PGFilesBlock hidden={isHidden("block-files")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-files"]} onRemoveBlock={() => removeBlock("block-files")} onRemoveService={toggleService} onRestoreService={toggleService} /></div>
+              <div className="connector-dot service-flex-block"><PersonArea triagemData={triagemData} showBadge badgeText="INTERAÇÃO CLIENTE" badgeSub="Texto ou voz" /></div>
+              <div className="connector-dot service-flex-block"><AtendimentoBlock hidden={isHidden("block-atendimento")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-atendimento"]} onRemoveBlock={() => removeBlock("block-atendimento")} onRemoveService={toggleService} onRestoreService={toggleService} title="ATENDIMENTO" subtitle="Digital e ou transbordo humano" largeIcons /></div>
             </div>
           </div>
           <div className="mt-2 sm:mt-[10px] flex-shrink-0 bg-white rounded-[26px] border-2 border-[var(--color-navy-20)]">
-            <InsightsBlock hidden={hiddenBlocks.has("block-insights")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-insights"]} onRemoveBlock={() => removeBlock("block-insights")} onRemoveService={toggleService} onRestoreService={toggleService} />
+            <InsightsBlock hidden={isHidden("block-insights")} hiddenServices={hiddenServices} serviceIds={GF_BLOCKS["block-insights"]} onRemoveBlock={() => removeBlock("block-insights")} onRemoveService={toggleService} onRestoreService={toggleService} />
           </div>
         </div>
       </div>

@@ -65,7 +65,7 @@
 .font-secondary { font-family: var(--font-secondary); }
 
 html { -webkit-font-smoothing: antialiased; }
-body { font-family: var(--font-secondary); overflow-x: hidden; }
+body { font-family: var(--font-secondary); }
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
 .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }

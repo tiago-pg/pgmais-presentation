@@ -1,0 +1,151 @@
+/* ═══════════════════════════════════════════════
+    layout-improvements.css
+    Fixes: responsividade desktop, preenchimento de
+    espaço ao remover blocos, linhas de conexão
+    ═══════════════════════════════════════════════ */
+
+/* ── 1. RESPONSIVIDADE DESKTOP ── */
+/* Ajusta o gap e o tamanho dos cards conforme a viewport */
+@media (min-width: 1280px) {
+  .service-layout-row {
+    gap: 14px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .service-layout-row {
+    gap: 18px !important;
+  }
+}
+@media (max-width: 1365px) and (min-width: 1024px) {
+  .service-layout-row {
+    gap: 8px !important;
+  }
+}
+
+/* ── 2. ESPAÇAMENTO AO REMOVER BLOCOS ── */
+/* Remove max-width fixos quando o bloco está visível
+   e permite que cresça para preencher espaço vazio */
+.service-flex-block {
+  flex: 1 1 0% !important;
+}
+
+/* Blocos que devem encolher menos */
+.service-flex-block--shrink-0 {
+  flex: 0 0 auto !important;
+}
+
+/* Garante que o container filho use todo o espaço */
+.service-layout-row > *:not(.hidden) {
+  min-height: 0;
+}
+
+/* Quando um bloco SOME, os irmãos visíveis crescem automaticamente */
+.main-layout-row-parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (min-width: 1280px) {
+  .main-layout-row-parent {
+    flex-wrap: nowrap;
+  }
+  .main-layout-row-parent > *:not(.hidden) {
+    flex: 1 1 0%;
+    min-width: 120px;
+  }
+  /* SistemaOrigem não deve crescer */
+  .main-layout-row-parent > .sistema-origem:not(.hidden) {
+    flex: 0 0 auto !important;
+    min-width: 40px;
+  }
+  /* Área da pessoal não deve ficar gigante */
+  .main-layout-row-parent > .person-area:not(.hidden) {
+    max-width: 350px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .main-layout-row-parent > *:not(.hidden) {
+    min-width: 180px;
+    flex: 1 1 calc(33.333% - 1rem);
+  }
+  .main-layout-row-parent > .sistema-origem:not(.hidden) {
+    flex: 0 0 auto !important;
+    min-width: 40px;
+    width: auto;
+  }
+  .main-layout-row-parent > .person-area:not(.hidden) {
+    max-width: 350px;
+  }
+}
+
+/* ── 3. LINHAS DE CONEXÃO (CSS only, sem SVG) ── */
+/* Cada card no fluxo ganha uma bolinha + linha conectora */
+.connector-dot {
+  position: relative;
+}
+@media (min-width: 1024px) {
+  .connector-dot::before {
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-navy-20);
+    border: 2px solid var(--color-navy-10);
+    z-index: 10;
+  }
+  /* Linha horizontal conectando os dots */
+  .connector-line-h {
+    position: absolute;
+    left: -9px;
+    top: 50%;
+    width: 9px;
+    height: 2px;
+    background: var(--color-navy-20);
+    z-index: 5;
+  }
+  /* Linha vertical para quando os cards empilham */
+  .connector-line-v {
+    position: absolute;
+    left: -5px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-navy-20);
+    z-index: 5;
+  }
+}
+@media (max-width: 1023px) {
+  .connector-dot::before,
+  .connector-line-h,
+  .connector-line-v {
+    display: none !important;
+  }
+}
+
+/* ── 4. DOWNLOAD BUTTON FIX ── */
+/* Garante que o botão fique visível e funcional */
+#action-buttons {
+  z-index: 100 !important;
+}
+
+/* Corrige o dropdown de download */
+.download-menu-btn {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 9px !important;
+  padding: 10px 16px !important;
+  font-size: 17px !important;
+  color: var(--gray-700) !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  font-family: var(--font-secondary) !important;
+  transition: background 0.15s, color 0.15s !important;
+  width: 100% !important;
+}
+.download-menu-btn:hover {
+  background: var(--color-navy-05) !important;
+  color: var(--color-navy) !important;
+}
